@@ -27,3 +27,4 @@
 ## At Work
 - [ ] mocks / tests
 - [ ] I/O / JSON / Mappings
+- [ ] Java Interoperability
