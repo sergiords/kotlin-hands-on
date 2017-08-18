@@ -185,10 +185,60 @@ fun filterFilmsUsingFilter(films: List<Film>, withCustomFilter: (Film) -> Boolea
 
 /**
  * sumPricesWithFolding should use List#foldLeft to return the given films prices sum
+ * Do you know the difference between 'reduce' and 'fold'?
  */
 fun sumPricesWithFolding(films: List<Film>): Double {
-    // TODO("2.7.x. map the film to its price, then reduce the sum")
+    // TODO("2.7.3. map the film to its price, then 'fold' the sum")
     return films
         .map { it.price }
-        .reduce { total, price -> total + price }
+        .fold(0.0, { total, next -> total + next })
+}
+
+/**
+ * Return a list containing distinct films only
+ * Note:
+ *  - start from an empty list
+ *  - add a new element if not already present
+ */
+fun deleteDuplicates(allFilms: List<Film>): List<Film> {
+    // TODO("2.7.4 use fold to delete duplicate films")
+    return allFilms
+        .fold(mutableListOf()) { filmList, film ->
+            if (filmList.contains(film)) {
+                filmList
+            } else {
+                filmList.add(film)
+                filmList
+            }
+        }
+}
+
+/**
+ * Return a discount for each film according to the following rules:
+ * - 35% reduction if price is only multiple of 3
+ * - 40% reduction if price is only multiple of 5
+ * - 50% reduction if price is both multiple of 5 and 3
+ * - 0% reduction otherwise
+ * Note:
+ *  - You can define a tuple like this: "Pair(x + 2, x * 2)"
+ *  - You could use a when to test the different cases:
+ *  <code>
+ *  when(elem) {
+ *    Pair(2, 4) -> "6"
+ *    else -> "default value"
+ *  }
+ *  </code>
+ */
+fun discounts(films: List<Film>): List<Double> {
+    //TODO("2.7.5. map the film to its price, then apply the discount when applies")
+    return films
+        .map { it.price }
+        .map { p ->
+            when (Pair(p % 3 == 0.0, p % 5 == 0.0)) {
+                Pair(true, true) -> 0.5 * p
+                Pair(true, false) -> 0.35 * p
+                Pair(false, true) -> 0.4 * p
+                else -> p
+            }
+        }
 }
