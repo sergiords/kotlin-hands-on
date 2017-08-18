@@ -17,12 +17,12 @@ import kotlin.collections.ArrayList
  * They will not be generated if explicitly defined
  */
 
-// TODO("Task 2.1.1. Create a class Director with name: String, bio: String and filmography: List<String>")
+// TODO("2.1.1. Create a class Director with name: String, bio: String and filmography: List<String>")
 // Filmography should have a default value of empty list
-data class Director(val name: String, val bio: String, val filmography: List<String> = emptyList())
+data class SpecialDirector(val name: String, val bio: String, val filmography: List<String> = emptyList())
 
-fun filmographyContaining(dir: Director, keyword: String): List<String> {
-    //TODO("Task 2.1.2. Deconstruct the director and add his name to every film containing the keyword specified")
+fun filmographyContaining(dir: SpecialDirector, keyword: String): List<String> {
+    //TODO("2.1.2. Deconstruct the director and add his name to every film containing the keyword specified")
     val (name, _, filmography) = dir
     return filmography
         .filter { it.contains(keyword) }
@@ -48,15 +48,15 @@ fun filmographyContaining(dir: Director, keyword: String): List<String> {
  *
  */
 class CsvFilmLoader private constructor(fileName: String, callback: (String) -> Unit) {
-    // TODO("Task 2.2.1. Change the value of the actualPath variable to capitals")
-    var actualPath : String = fileName.toUpperCase()
+    // TODO("2.2.1. Change the value of the actualPath variable to capitals")
+    var actualPath: String = fileName.toUpperCase()
 
-    // TODO("Task 2.2.2. insert init block here; don't forget to call the callback")
+    // TODO("2.2.2. insert init block here; don't forget to call the callback")
     init {
         callback("Contents of $actualPath")
     }
 
-    // TODO("Task 2.2.3. Insert companion object here to create a new instance of the class")
+    // TODO("2.2.3. Insert companion object here to create a new instance of the class")
     companion object {
         fun build(fileName: String, callback: (String) -> Unit): CsvFilmLoader =
             CsvFilmLoader(fileName, callback)
@@ -70,12 +70,40 @@ class CsvFilmLoader private constructor(fileName: String, callback: (String) -> 
  *
  * A sealed class can have subclasses, but all of them must be declared in the same file as the sealed class itself
  */
-sealed class Genre
+sealed class Genre(val desc: String)
 
-data class Action(val deaths: Int) : Genre()
-data class Drama(val tears: Int) : Genre()
+object Action : Genre("Action")
 
-data class Film(val name: String, val genre: Genre)
+object Drama : Genre("Drama")
+
+object Horror : Genre("Horror")
+
+object Thriller : Genre("Thriller")
+
+object Crime : Genre("Crime")
+
+object War : Genre("War")
+
+object Romance : Genre("Romance")
+
+object Mistery : Genre("Mistery")
+
+object Comedy : Genre("Comedy")
+
+object SciFi : Genre("Sci-Fi")
+
+
+sealed class Director(val name: String)
+
+object Kurosawa : Director("Kurosawa")
+
+object Hitchcock : Director("Hitchcock")
+
+object Spielberg : Director("Spielberg")
+
+object Kubrick : Director("Kubrick")
+
+object RandomDirector : Director("does_not_matter")
 
 /**
  * Task 2.4. getters/setters
@@ -87,12 +115,12 @@ data class Film(val name: String, val genre: Genre)
  * Task 2.5. generics (site-variance)
  */
 fun List<String>.splitWordsAndLines(): Pair<List<String>, List<String>> {
-    // TODO("Task 2.5.1. uncomment this line")
+    // TODO("2.5.1. uncomment this line")
     return this.partitionTo(ArrayList<String>(), ArrayList<String>()) { s -> !s.contains(" ") }
 }
 
 fun Set<Char>.splitLettersAndOthers(): Pair<Set<Char>, Set<Char>> {
-    // TODO("Task 2.5.1. uncomment this line")
+    // TODO("2.5.1. uncomment this line")
     return partitionTo(HashSet<Char>(), HashSet()) { c -> c in 'a'..'z' || c in 'A'..'Z' }
 }
 
@@ -130,6 +158,37 @@ fun <A, B : MutableCollection<A>> Collection<A>.partitionTo(first: B, second: B,
 
 /**
  * Task 2.7. collections & structures map, pair
- * TODO
  */
+data class Film(val name: String,
+                val releaseYear: Int,
+                val director: Director,
+                val type: List<Genre>,
+                val price: Double = 0.0)
 
+/**
+ * GetFilmsMadeBy should return films directed by the given director
+ */
+fun getFilmsMadeBy(director: Director, films: List<Film>): List<Film> {
+    //TODO("2.7.1. Filter films of this director")
+    return films
+        .filter { it.director == director }
+}
+
+/**
+ * filterFilmsUsingFilter should return films directed by the given director (using given filter)
+ */
+fun filterFilmsUsingFilter(films: List<Film>, withCustomFilter: (Film) -> Boolean): List<Film> {
+    //TODO("2.7.2. filter using high order function (function as parameter)")
+    return films
+        .filter(withCustomFilter)
+}
+
+/**
+ * sumPricesWithFolding should use List#foldLeft to return the given films prices sum
+ */
+fun sumPricesWithFolding(films: List<Film>): Double {
+    // TODO("2.7.x. map the film to its price, then reduce the sum")
+    return films
+        .map { it.price }
+        .reduce { total, price -> total + price }
+}
