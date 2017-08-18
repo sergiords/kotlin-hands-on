@@ -3,6 +3,8 @@ package fr.xebia.xke
 import fr.xebia.xke.MockFilmData.Companion.completeList
 import fr.xebia.xke.MockFilmData.Companion.hitchcockFilms
 import fr.xebia.xke.MockFilmData.Companion.kurosawaFilms
+import fr.xebia.xke.MockFilmData.Companion.ran
+import fr.xebia.xke.MockFilmData.Companion.rashomon
 import io.kotlintest.matchers.shouldBe
 import io.kotlintest.specs.StringSpec
 
@@ -94,8 +96,25 @@ class DataClassWithCollectionsTest : StringSpec({
         filterFilmsUsingFilter(completeList, { it.director == Kurosawa }) shouldBe kurosawaFilms
     }
 
-    "TODO 2.7.x - it should use folding to sum film prices" {
+    "TODO 2.7.3 - it should use folding to sum film prices" {
         sumPricesWithFolding(hitchcockFilms) shouldBe 7.8
         sumPricesWithFolding(kurosawaFilms) shouldBe 5.3
+    }
+
+    "TODO 2.7.4 - it should delete consecutive duplicates with TODO 9" {
+        deleteDuplicates(listOf<Film>()) shouldBe listOf<Film>()
+        deleteDuplicates(listOf(ran)) shouldBe listOf(ran)
+        deleteDuplicates(listOf(ran, rashomon)) shouldBe listOf(ran, rashomon)
+        deleteDuplicates(listOf(ran, rashomon, rashomon)) shouldBe listOf(ran, rashomon)
+        deleteDuplicates(listOf(ran, ran, rashomon, rashomon)) shouldBe listOf(ran, rashomon)
+    }
+
+    "TODO 2.7.5 - it should use pattern matching with TODO 7" {
+        val film1 = Film("Videodrome", 1984, RandomDirector, listOf(Horror), 9.0)
+        val film2 = Film("Donnie Darko", 2002, RandomDirector, listOf(Drama, SciFi), 10.0)
+        val film3 = Film("The Adventures of Baron Munchausen", 1989, RandomDirector, listOf(Comedy), 15.0)
+        val film4 = Film("Brazil", 1985, RandomDirector, listOf(SciFi), 2.0)
+        val discountFilms = listOf(film1, film2, film3, film4)
+        discounts(discountFilms) shouldBe listOf(3.15, 4.0, 7.5, 2.0)
     }
 })
