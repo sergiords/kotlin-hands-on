@@ -101,7 +101,7 @@ class DataClassWithCollectionsTest : StringSpec({
         sumPricesWithFolding(kurosawaFilms) shouldBe 5.3
     }
 
-    "TODO 2.7.4 - it should delete consecutive duplicates with TODO 9" {
+    "TODO 2.7.4 - it should delete consecutive duplicates" {
         deleteDuplicates(listOf<Film>()) shouldBe listOf<Film>()
         deleteDuplicates(listOf(ran)) shouldBe listOf(ran)
         deleteDuplicates(listOf(ran, rashomon)) shouldBe listOf(ran, rashomon)
@@ -109,12 +109,24 @@ class DataClassWithCollectionsTest : StringSpec({
         deleteDuplicates(listOf(ran, ran, rashomon, rashomon)) shouldBe listOf(ran, rashomon)
     }
 
-    "TODO 2.7.5 - it should use pattern matching with TODO 7" {
+    "TODO 2.7.5 - it should use pattern matching" {
         val film1 = Film("Videodrome", 1984, RandomDirector, listOf(Horror), 9.0)
         val film2 = Film("Donnie Darko", 2002, RandomDirector, listOf(Drama, SciFi), 10.0)
         val film3 = Film("The Adventures of Baron Munchausen", 1989, RandomDirector, listOf(Comedy), 15.0)
         val film4 = Film("Brazil", 1985, RandomDirector, listOf(SciFi), 2.0)
         val discountFilms = listOf(film1, film2, film3, film4)
         discounts(discountFilms) shouldBe listOf(3.15, 4.0, 7.5, 2.0)
+    }
+
+    "TODO 2.7.6 - it should use pattern matching with lists" {
+        val film1 = Film("Videodrome", 1984, RandomDirector, listOf(Horror), 9.0)
+        val film2 = Film("Donnie Darko", 2002, Kurosawa, listOf(Drama, SciFi, Thriller), 10.0)
+        val film3 = Film("The Adventures of Baron Munchausen", 1989, RandomDirector, listOf(Comedy), 15.0)
+        val film4 = Film("Brazil", 1985, RandomDirector, listOf(Action), 2.0)
+
+        labelizeFilm(film1) shouldBe listOf("Horror - Videodrome")
+        labelizeFilm(film2) shouldBe listOf(":( Donnie Darko", "Donnie Darko", "Thriller -> Kurosawa")
+        labelizeFilm(film3) shouldBe listOf("The Adventures of Baron Munchausen")
+        labelizeFilm(film4) shouldBe listOf("Action - Brazil")
     }
 })

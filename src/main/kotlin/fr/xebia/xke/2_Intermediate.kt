@@ -70,7 +70,11 @@ class CsvFilmLoader private constructor(fileName: String, callback: (String) -> 
  *
  * A sealed class can have subclasses, but all of them must be declared in the same file as the sealed class itself
  */
-sealed class Genre(val desc: String)
+sealed class Genre(val desc: String) {
+    override fun toString(): String {
+        return desc
+    }
+}
 
 object Action : Genre("Action")
 
@@ -239,6 +243,35 @@ fun discounts(films: List<Film>): List<Double> {
                 Pair(true, false) -> 0.35 * p
                 Pair(false, true) -> 0.4 * p
                 else -> p
+            }
+        }
+}
+
+/**
+ * Transform each type of the film following the following criteria:
+ * - if the type is Action, Horror or Crime return "$type - ${film.name}"
+ * - in the type is Romance or Drama return ":( ${film.name}"
+ * - if it is Thriller then return "Thriller -> ${film.director.name}"
+ * - otherwise, return the file name
+ * <code>
+ *  when(elem) {
+ *    ... ->
+ *    else -> "default value"
+ *  }
+ *  </code>
+ */
+fun labelizeFilm(film: Film): List<String> {
+    //TODO("2.7.6. map each type according to its value")
+    val bestFilms = listOf(Action, Horror, Crime)
+    val worstFilms = listOf(Romance, Drama)
+    return film
+        .type
+        .map { type ->
+            when (type) {
+                in bestFilms -> "$type - ${film.name}"
+                in worstFilms -> ":( ${film.name}"
+                Thriller -> "Thriller -> ${film.director.name}"
+                else -> film.name
             }
         }
 }
