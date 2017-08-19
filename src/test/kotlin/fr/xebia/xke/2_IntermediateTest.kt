@@ -63,6 +63,28 @@ class DataClassTest : StringSpec({
 
 })
 
+
+// ---------------------------------------
+// Task 2.4
+// ---------------------------------------
+class GettersSettersTest : StringSpec({
+    val withMyFilms = listOf(
+        Film("Videodrome", 1984, RandomDirector, listOf(Horror), 9.0),
+        Film("Donnie Darko", 2002, RandomDirector, listOf(Drama, SciFi), 10.0)
+    )
+
+    "TODO 2.4.1 - Lists should be able to split into words and lines" {
+        val filmCollection = FilmCollection(withMyFilms)
+        filmCollection.has80sFilms shouldBe false
+    }
+
+    "TODO 2.4.2 - Lists should be able to split into words and lines" {
+        val filmCollection = FilmCollection(withMyFilms)
+        filmCollection.periodStartYear = 1980
+        filmCollection.has80sFilms shouldBe true
+    }
+})
+
 // ---------------------------------------
 // Task 2.5
 // ---------------------------------------

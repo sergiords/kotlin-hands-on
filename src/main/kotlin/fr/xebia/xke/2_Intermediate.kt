@@ -1,6 +1,7 @@
 package fr.xebia.xke
 
 import java.util.*
+import kotlin.collections.AbstractList
 import kotlin.collections.ArrayList
 
 /**
@@ -112,7 +113,28 @@ object RandomDirector : Director("does_not_matter")
 /**
  * Task 2.4. getters/setters
  *
+ *  The full syntax for declaring a property is:
+ *  var <propertyName>[: <PropertyType>] [= <property_initializer>]
+ *   [<getter>]
+ *   [<setter>]
  */
+
+class FilmCollection(val collection: List<Film>) {
+    private var startingYear = 1990
+
+    // TODO("2.4.1. custom accessor for has80sFilms")
+    val has80sFilms: Boolean
+        get() = this.collection
+            .filter { it.releaseYear in startingYear..1990 }
+            .isNotEmpty()
+
+    // TODO("2.4.2. custom accessor/mutator for has80sFilms")
+    var periodStartYear: Int = startingYear
+        set(value) {
+            startingYear = value
+        }
+
+}
 
 
 /**
@@ -252,7 +274,7 @@ fun discounts(films: List<Film>): List<Double> {
  * - if the type is Action, Horror or Crime return "$type - ${film.name}"
  * - in the type is Romance or Drama return ":( ${film.name}"
  * - if it is Thriller then return "Thriller -> ${film.director.name}"
- * - otherwise, return the file name
+ * - otherwise, return the film name
  * <code>
  *  when(elem) {
  *    ... ->
