@@ -54,10 +54,10 @@ class DataClassTest : StringSpec({
     // Task 2.2 Companion objects
     // ---------------------------------------
     "TODO 2.2.3 - it should be able to use companion objects" {
-        val csvReader = CsvFilmLoader.build("file.csv") { it shouldBe "Contents of FILE.CSV" }
+        val csvReader = FileFilmLoader.build("file.csv") { it shouldBe "Contents of FILE.CSV" }
         csvReader.actualPath shouldBe "FILE.CSV"
 
-        val xmlReader = CsvFilmLoader.build("file.xml") { it shouldBe "Contents of FILE.XML" }
+        val xmlReader = FileFilmLoader.build("file.xml") { it shouldBe "Contents of FILE.XML" }
         xmlReader.actualPath shouldBe "FILE.XML"
     }
 
@@ -100,6 +100,11 @@ class GenericsTest : StringSpec({
         val (letters, other) = setOf('a', '%', 'r', '}').splitLettersAndOthers()
         setOf('a', 'r') shouldBe letters
         setOf('%', '}') shouldBe other
+    }
+
+    "TODO 2.5.3 - Add an extension function to a companion object" {
+        val confReader = FileFilmLoader.build { it shouldBe "Contents of APPLICATION.CONF" }
+        confReader.actualPath shouldBe "APPLICATION.CONF"
     }
 
 })

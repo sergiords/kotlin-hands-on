@@ -1,7 +1,6 @@
 package fr.xebia.xke
 
 import java.util.*
-import kotlin.collections.AbstractList
 import kotlin.collections.ArrayList
 
 /**
@@ -48,7 +47,7 @@ fun filmographyContaining(dir: SpecialDirector, keyword: String): List<String> {
  * }
  *
  */
-class CsvFilmLoader private constructor(fileName: String, callback: (String) -> Unit) {
+class FileFilmLoader private constructor(fileName: String, callback: (String) -> Unit) {
     // TODO("2.2.1. Change the value of the actualPath variable to capitals")
     var actualPath: String = fileName.toUpperCase()
 
@@ -59,8 +58,8 @@ class CsvFilmLoader private constructor(fileName: String, callback: (String) -> 
 
     // TODO("2.2.3. Insert companion object here to create a new instance of the class")
     companion object {
-        fun build(fileName: String, callback: (String) -> Unit): CsvFilmLoader =
-            CsvFilmLoader(fileName, callback)
+        fun build(fileName: String, callback: (String) -> Unit): FileFilmLoader =
+            FileFilmLoader(fileName, callback)
     }
 }
 
@@ -141,12 +140,12 @@ class FilmCollection(val collection: List<Film>) {
  * Task 2.5. generics (site-variance)
  */
 fun List<String>.splitWordsAndLines(): Pair<List<String>, List<String>> {
-    // TODO("2.5.1. uncomment this line")
+    // TODO("2.5.1. make the following line work")
     return this.partitionTo(ArrayList<String>(), ArrayList<String>()) { s -> !s.contains(" ") }
 }
 
 fun Set<Char>.splitLettersAndOthers(): Pair<Set<Char>, Set<Char>> {
-    // TODO("2.5.1. uncomment this line")
+    // TODO("2.5.1. make the following line work")
     return partitionTo(HashSet<Char>(), HashSet()) { c -> c in 'a'..'z' || c in 'A'..'Z' }
 }
 
@@ -175,6 +174,17 @@ fun <A, B : MutableCollection<A>> Collection<A>.partitionTo(first: B, second: B,
     return Pair(first, second)
 }
 
+/**
+ * Add an extension function to the 'FileFilmLoader' companion class that allows you to build a loader for the
+ * <b>application.conf</b> file.
+ * <code>
+ *   MyClass.Companion.myFunc(): String = "Hello"
+ * </code>
+ */
+fun FileFilmLoader.Companion.build(callback: (String) -> Unit): FileFilmLoader {
+    // TODO("2.5.3. uncomment this line")
+    return FileFilmLoader.build("application.conf", callback)
+}
 
 /**
  * Task 2.6. type alias
