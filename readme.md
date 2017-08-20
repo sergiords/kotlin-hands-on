@@ -6,9 +6,9 @@
 - [x] functions
 - [x] conditional expressions
 - [x] when expression
-- [ ] type checks / automatic casts
-- [ ] loop / ranges
-- [ ] null references
+- [x] type checks / automatic casts
+- [X] loop / ranges
+- [x] null references
 
 ## Intermediate
 - [x] data class / singleton / sealed class
