@@ -12,7 +12,7 @@
 
 ## Intermediate
 - [x] data class / singleton / sealed class
-- [ ] getters/setters
+- [x] getters/setters
 - [ ] generics (site-variance)
 - [ ] type alias
 - [x] collections & structures map, pair

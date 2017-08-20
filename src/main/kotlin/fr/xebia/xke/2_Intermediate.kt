@@ -112,12 +112,13 @@ object RandomDirector : Director("does_not_matter")
 /**
  * Task 2.4. getters/setters
  *
- *  The full syntax for declaring a property is:
- *  var <propertyName>[: <PropertyType>] [= <property_initializer>]
- *   [<getter>]
- *   [<setter>]
+ * The full syntax for declaring a property is:
+ * <code>
+ *   var <propertyName>[: <PropertyType>] [= <property_initializer>]
+ *     [<getter>]
+ *     [<setter>]
+ * <code>
  */
-
 class FilmCollection(val collection: List<Film>) {
     private var startingYear = 1990
 
@@ -135,6 +136,29 @@ class FilmCollection(val collection: List<Film>) {
 
 }
 
+/**
+ * Another example of custom code in both getter and setter
+ *
+ * You can refer to property's current value in the following way
+ * <code>
+ *   var dist: Int = 0
+ *       get() = field + 1
+ * </code>
+ */
+class StringMagicBox {
+
+    val toLower: String
+        // TODO("2.4.3. implement a getter that returns the expected value")
+        get() = "minuscule !"
+
+    var reversed: String = ""
+        // TODO("2.4.3. use the 'field' keyword to refering the property's current value")
+        get() = field.reversed()
+        set(value) {
+            field = value
+        }
+
+}
 
 /**
  * Task 2.5. generics (site-variance)

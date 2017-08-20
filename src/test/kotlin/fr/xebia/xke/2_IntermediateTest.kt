@@ -73,15 +73,23 @@ class GettersSettersTest : StringSpec({
         Film("Donnie Darko", 2002, RandomDirector, listOf(Drama, SciFi), 10.0)
     )
 
-    "TODO 2.4.1 - Lists should be able to split into words and lines" {
+    "TODO 2.4.1 - It should call the getter of a property" {
         val filmCollection = FilmCollection(withMyFilms)
         filmCollection.has80sFilms shouldBe false
     }
 
-    "TODO 2.4.2 - Lists should be able to split into words and lines" {
+    "TODO 2.4.2 - It should call the getter and setter of a property" {
         val filmCollection = FilmCollection(withMyFilms)
         filmCollection.periodStartYear = 1980
         filmCollection.has80sFilms shouldBe true
+    }
+
+    "TODO 2.4.3 - Lists should be able to split into words and lines" {
+        StringMagicBox().toLower shouldBe "minuscule !"
+
+        val stringMagicBox = StringMagicBox()
+        stringMagicBox.reversed = "reversed"
+        stringMagicBox.reversed shouldBe "desrever"
     }
 })
 
