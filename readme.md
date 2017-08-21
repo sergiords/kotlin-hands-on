@@ -6,16 +6,16 @@
 - [x] functions
 - [x] conditional expressions
 - [x] when expression
-- [ ] type checks / automatic casts
-- [ ] loop / ranges
-- [ ] null references
+- [x] type checks / automatic casts
+- [X] loop / ranges
+- [x] null references
 
 ## Intermediate
-- [ ] data class / singleton / sealed class
-- [ ] getters/setters
+- [x] data class / singleton / sealed class
+- [x] getters/setters
 - [ ] generics (site-variance)
 - [ ] type alias
-- [ ] collections & structures map, pair
+- [x] collections & structures map, pair
 
 ## Advanced
 - [ ] operator overloading (+,-,get/set,...)
