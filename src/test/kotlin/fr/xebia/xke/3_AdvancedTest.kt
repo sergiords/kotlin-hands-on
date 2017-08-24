@@ -2,6 +2,7 @@ package fr.xebia.xke
 
 import io.kotlintest.matchers.shouldBe
 import io.kotlintest.specs.StringSpec
+import java.time.LocalDate
 
 class OperatorOverloadingTest : StringSpec({
 
@@ -16,3 +17,32 @@ class OperatorOverloadingTest : StringSpec({
     }
 
 })
+
+class ExtensionFunctionTest : StringSpec({
+
+    val expectedArea = squareSize * squareSize
+    "${::squareArea.name} should be $expectedArea" {
+        squareArea shouldBe expectedArea
+    }
+
+    "${::ofCourse.name} should be true" {
+        ofCourse shouldBe true
+    }
+
+    "${::noWay.name} should be false" {
+        noWay shouldBe false
+    }
+
+    mapOf(
+        "Hello" to true,
+        "World" to true,
+        100 to false,
+        Any() to false
+    ).forEach {
+        "${it.key::class.simpleName} should ${if (it.value) "" else "not "}be considered as a String" {
+            it.key.isString() shouldBe it.value
+        }
+    }
+
+})
+

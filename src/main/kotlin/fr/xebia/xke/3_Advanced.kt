@@ -19,3 +19,26 @@ data class Vector(val dx: Int, val dy: Int) {
     operator fun minus(that: Vector): Vector = Vector(this.dx - that.dx, this.dy - that.dy)
 
 }
+
+
+/**
+ * Function extension
+ *
+ * A function can be attached to an existing type
+ *
+ * fun String.hello() = "Hello $this"
+ *
+ * "Bob".hello() // prints "Hello Bob"
+ */
+val squareSize = 10
+val squareArea = 10.square()
+
+fun Int.square() = this * this
+
+/**
+ * Same here but with any type
+ */
+val ofCourse = "Some String".isString()
+val noWay = 100.isString()
+
+fun <T> T.isString(): Boolean = this is String
