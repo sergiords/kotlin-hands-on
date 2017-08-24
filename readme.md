@@ -18,7 +18,7 @@
 - [x] collections & structures map, pair
 
 ## Advanced
-- [ ] operator overloading (+,-,get/set,...)
+- [x] operator overloading (+,-,get/set,...)
 - [ ] coroutines
 - [ ] inline functions
 - [ ] extension functions/properties
