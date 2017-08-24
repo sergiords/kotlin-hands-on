@@ -42,3 +42,23 @@ val ofCourse = "Some String".isString()
 val noWay = 100.isString()
 
 fun <T> T.isString(): Boolean = this is String
+
+
+/**
+ * Property extension
+ *
+ * A property can also be attached to an existing type
+ *
+ * val String.magicLength
+ *  get() = this.length * 14
+ *
+ * "Bob".magicLength // equals to 42
+ */
+
+data class Temperature(val celsius: Int)
+
+val Temperature.kelvin: Int
+    get() = 273 + this.celsius // approximately
+
+val celsiusValue: Int = Temperature(10).celsius // 10 °C
+val kelvinValue: Int = Temperature(10).kelvin   // 283 °K

@@ -21,7 +21,7 @@
 - [x] operator overloading (+,-,get/set,...)
 - [ ] coroutines
 - [ ] inline functions
-- [ ] extension functions/properties
+- [x] extension functions/properties
 - [ ] destructuring declarations
 
 ## At Work

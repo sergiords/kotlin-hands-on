@@ -2,7 +2,6 @@ package fr.xebia.xke
 
 import io.kotlintest.matchers.shouldBe
 import io.kotlintest.specs.StringSpec
-import java.time.LocalDate
 
 class OperatorOverloadingTest : StringSpec({
 
@@ -46,3 +45,26 @@ class ExtensionFunctionTest : StringSpec({
 
 })
 
+class ExtensionPropertyTest : StringSpec({
+
+    val expectedCelsiusValue = 10
+    "${::celsiusValue.name} should be $expectedCelsiusValue °C" {
+        celsiusValue shouldBe expectedCelsiusValue
+    }
+
+    val expectedKelvinValue = 283
+    "${::kelvinValue.name} should be $expectedKelvinValue °K" {
+        kelvinValue shouldBe expectedKelvinValue
+    }
+
+    mapOf(
+        Temperature(0) to 273,
+        Temperature(100) to 373,
+        Temperature(-273) to 0
+    ).forEach {
+        "${it.key.celsius} °C should equal to ${it.value} °K" {
+            it.key.kelvin shouldBe it.value
+        }
+    }
+
+})
