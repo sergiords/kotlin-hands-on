@@ -12,5 +12,5 @@ targetCompatibility = 1.8
 
 dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib-jre8"
-    testCompile 'io.kotlintest:kotlintest:2.0.3'
+    testCompile "io.kotlintest:kotlintest:2.0.3"
 }
