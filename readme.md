@@ -22,6 +22,7 @@
 - [ ] coroutines
 - [ ] inline functions
 - [x] extension functions/properties
+- [x] function type with receiver
 - [ ] destructuring declarations
 
 ## At Work

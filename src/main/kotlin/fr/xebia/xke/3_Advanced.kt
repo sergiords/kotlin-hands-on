@@ -62,3 +62,31 @@ val Temperature.kelvin: Int
 
 val celsiusValue: Int = Temperature(10).celsius // 10 °C
 val kelvinValue: Int = Temperature(10).kelvin   // 283 °K
+
+
+/**
+ * Function type with receiver is almost like function extension but can be used as function parameters only
+ *
+ * fun test(init: String.() -> Unit) = { ... }
+ *
+ * test {
+ *  "Something".init()
+ * }
+ *
+ * This allows creating type-safe builders/DSLs
+ */
+data class Build(val name: String, private val dependencies: ArrayList<String> = arrayListOf()) {
+    fun dependency(name: String) = dependencies.add(name)
+}
+
+fun build(name: String, init: Build.() -> Unit): Build {
+    val build = Build(name)
+    build.init()
+    return build
+}
+
+val myBuild =
+    build("myProject") {
+        dependency("libA")
+        dependency("libB")
+    }

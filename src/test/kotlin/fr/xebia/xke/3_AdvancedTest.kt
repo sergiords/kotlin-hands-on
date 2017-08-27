@@ -68,3 +68,12 @@ class ExtensionPropertyTest : StringSpec({
     }
 
 })
+
+class FunctionTypeReceiverTest : StringSpec({
+
+    val expectedBuild = Build("myProject", arrayListOf("libA", "libB"))
+    "${::myBuild.name} should be equal to $expectedBuild" {
+        myBuild shouldBe expectedBuild
+    }
+
+})
