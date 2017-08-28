@@ -1,5 +1,8 @@
 package fr.xebia.xke
 
+import java.util.logging.Level
+import java.util.logging.Logger
+
 /**
  * Operator overloading
  *
@@ -107,3 +110,26 @@ fun getPrettyTime(myTime: MyTime): String {
     val (hour, minute) = myTime
     return "$hour:$minute"
 }
+
+
+/**
+ * Inline functions
+ *
+ * Inlining functions allow compiler to emit inlined function body at each call-site
+ *
+ * https://kotlinlang.org/docs/reference/inline-functions.html
+ */
+inline fun Logger.fineIfEnabled(message: () -> String) {
+    if (this.isLoggable(Level.FINE)) {
+        this.fine(message())
+    }
+}
+
+/**
+ * Inline functions also allows access to parameter types since function code is emitted at call-site
+ *
+ * Parameter Types must be marked as 'reified'
+ *
+ * To access a type's class use the '::' operator like: 'String::class'
+ */
+inline fun <reified T> parameterTypeClass(): Class<T> = T::class.java

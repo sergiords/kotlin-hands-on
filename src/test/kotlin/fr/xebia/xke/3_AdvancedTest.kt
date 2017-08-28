@@ -2,6 +2,11 @@ package fr.xebia.xke
 
 import io.kotlintest.matchers.shouldBe
 import io.kotlintest.specs.StringSpec
+import java.time.LocalDate
+import java.util.logging.Handler
+import java.util.logging.Level
+import java.util.logging.LogRecord
+import java.util.logging.Logger
 
 class OperatorOverloadingTest : StringSpec({
 
@@ -84,4 +89,49 @@ class DestructuringDeclarationsTest : StringSpec({
     "$prettyTime should be equal to $expectedPrettyTime" {
         prettyTime shouldBe expectedPrettyTime
     }
+})
+
+class InlineFunctionsTest : StringSpec({
+
+    val witness = arrayListOf<String>()
+    val logger = Logger.getLogger("TestLogger")
+    logger.addHandler(object : Handler() {
+        override fun flush() {}
+        override fun close() {}
+        override fun publish(record: LogRecord) {
+            witness.add(record.message)
+        }
+    })
+
+    val assertLogCall = { witness.size == 1 && witness[0] == "message" }
+
+    mapOf(
+        Level.FINE to true,
+        Level.WARNING to false,
+        Level.SEVERE to false
+    ).forEach {
+        "${Logger::fineIfEnabled.name}() should ${if (it.value) "" else "not "}log message at ${it.key} level" {
+            witness.clear()
+            logger.level = it.key
+            logger.fineIfEnabled {
+                "message"
+            }
+            assertLogCall() shouldBe it.value
+        }
+    }
+
+})
+
+class InlineFunctionsWithReifiedParameterType : StringSpec({
+
+    mapOf(
+        parameterTypeClass<String>() to String::class.java,
+        parameterTypeClass<Int>() to Int::class.javaObjectType,
+        parameterTypeClass<LocalDate>() to LocalDate::class.java
+    ).forEach {
+        "parameterTypeClass<${it.value.simpleName}>() should be equal to ${it.value.simpleName}" {
+            it.key shouldBe it.value
+        }
+    }
+
 })

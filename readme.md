@@ -21,7 +21,7 @@
 ## Advanced
 - [x] operator overloading (+,-,get/set,...)
 - [ ] coroutines
-- [ ] inline functions
+- [x] inline functions
 - [x] extension functions/properties
 - [x] function type with receiver
 - [ ] destructuring declarations
