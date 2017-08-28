@@ -24,7 +24,7 @@
 - [x] inline functions
 - [x] extension functions/properties
 - [x] function type with receiver
-- [ ] destructuring declarations
+- [x] destructuring declarations
 
 ## At Work
 - [ ] mocks / tests
