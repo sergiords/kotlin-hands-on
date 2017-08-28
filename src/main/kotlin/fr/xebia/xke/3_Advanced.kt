@@ -90,3 +90,20 @@ val myBuild =
         dependency("libA")
         dependency("libB")
     }
+
+/**
+ * Destructuring declarations
+ * We have seen in Intermediate part that we can destruct an object
+ * See below how to make an object destructible
+ *
+ * Destructuring declaration can be used on Maps and Lambda since v1.1
+ */
+/**
+ * TODO: make the following code compile by modifying MyTime class declaration
+ */
+data class MyTime(val hour: Int, val minute: Int)
+
+fun getPrettyTime(myTime: MyTime): String {
+    val (hour, minute) = myTime
+    return "$hour:$minute"
+}
