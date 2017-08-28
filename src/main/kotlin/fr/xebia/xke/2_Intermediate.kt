@@ -331,3 +331,21 @@ fun labelizeFilm(film: Film): List<String> {
             }
         }
 }
+
+/**
+ * Lazy is a function which is computed once and then keep result in memory.
+ */
+/**
+ * TODO replace fun lazyValue by a lazy value to have lazyInc incremented only once.
+ */
+var lazyInc = 0
+
+//fun lazyValue(): String {
+//    lazyInc++
+//    return "hey"
+//}
+
+val lazyValue: String by lazy {
+    lazyInc++
+    "hey"
+}

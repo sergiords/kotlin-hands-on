@@ -6,6 +6,7 @@ import fr.xebia.xke.MockFilmData.Companion.kurosawaFilms
 import fr.xebia.xke.MockFilmData.Companion.ran
 import fr.xebia.xke.MockFilmData.Companion.rashomon
 import io.kotlintest.matchers.shouldBe
+import io.kotlintest.matchers.shouldEqual
 import io.kotlintest.specs.StringSpec
 
 class MockFilmData {
@@ -163,5 +164,15 @@ class DataClassWithCollectionsTest : StringSpec({
         labelizeFilm(film2) shouldBe listOf(":( Donnie Darko", "Donnie Darko", "Thriller -> Kurosawa")
         labelizeFilm(film3) shouldBe listOf("The Adventures of Baron Munchausen")
         labelizeFilm(film4) shouldBe listOf("Action - Brazil")
+    }
+})
+
+class LazyTest : StringSpec({
+
+    "LazyInc should be incremented once" {
+        println(lazyValue)
+        println(lazyValue)
+        println(lazyValue)
+        lazyInc shouldEqual 1
     }
 })
