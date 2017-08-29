@@ -1,7 +1,9 @@
 package fr.xebia.xke
 
+import kotlinx.coroutines.experimental.delay
 import java.util.logging.Level
 import java.util.logging.Logger
+import kotlin.coroutines.experimental.buildSequence
 
 /**
  * Operator overloading
@@ -23,6 +25,40 @@ data class Vector(val dx: Int, val dy: Int) {
 
 }
 
+/**
+ * Coroutines
+ *
+ * Using buildSequence
+ *
+ * TODO Let's implement Fibonacci sequence generator using this function and yield
+ */
+val fibonacciSeq = buildSequence {
+    var a = 0
+    var b = 1
+
+    yield(1)
+
+    while (true) {
+        yield(a + b)
+
+        val tmp = a + b
+        a = b
+        b = tmp
+    }
+}
+
+/**
+ * Use of kotlinx-coroutines to use raw coroutines
+ *
+ * TODO make following code compile and pass tests
+ */
+suspend fun giveTreatment(res: MutableList<String>) {
+    delay(1000L)
+    res.add("aspirin")
+}
+/**
+ * NB: Promise coroutines can be cancel at any moment by calling promise.cancel()
+ */
 
 /**
  * Function extension

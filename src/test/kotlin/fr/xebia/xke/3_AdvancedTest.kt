@@ -1,7 +1,11 @@
 package fr.xebia.xke
 
 import io.kotlintest.matchers.shouldBe
+import io.kotlintest.matchers.shouldEqual
 import io.kotlintest.specs.StringSpec
+import kotlinx.coroutines.experimental.CommonPool
+import kotlinx.coroutines.experimental.launch
+import kotlinx.coroutines.experimental.runBlocking
 import java.time.LocalDate
 import java.util.logging.Handler
 import java.util.logging.Level
@@ -20,6 +24,26 @@ class OperatorOverloadingTest : StringSpec({
         v4 shouldBe expectedV4
     }
 
+})
+
+class CoroutineTest : StringSpec({
+
+    "Generate 5 first number of Fibonacci" {
+        val list = fibonacciSeq.take(5).toList()
+        list shouldEqual listOf(1, 1, 2, 3, 5)
+    }
+
+    "Give treatment to patient" {
+        val res = mutableListOf<String>()
+        runBlocking {
+            val promise = launch(CommonPool) {
+                giveTreatment(res)
+            }
+            res.add("tee")
+            promise.join()
+        }
+        res shouldEqual listOf("tee", "aspirin")
+    }
 })
 
 class ExtensionFunctionTest : StringSpec({

@@ -20,7 +20,7 @@
 
 ## Advanced
 - [x] operator overloading (+,-,get/set,...)
-- [ ] coroutines
+- [x] coroutines
 - [x] inline functions
 - [x] extension functions/properties
 - [x] function type with receiver
