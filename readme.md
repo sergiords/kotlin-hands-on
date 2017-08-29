@@ -27,6 +27,6 @@
 - [x] destructuring declarations
 
 ## At Work
-- [ ] mocks / tests
+- [x] mocks / tests
 - [ ] I/O / JSON / Mappings
 - [ ] Java Interoperability
