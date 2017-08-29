@@ -18,3 +18,9 @@ dependencies {
     compile "org.jetbrains.kotlinx:kotlinx-coroutines-core:0.18"
     testCompile "io.kotlintest:kotlintest:2.0.3"
 }
+
+kotlin {
+    experimental {
+        coroutines "enable"
+    }
+}
