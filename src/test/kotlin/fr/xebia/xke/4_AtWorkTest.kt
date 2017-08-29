@@ -7,6 +7,7 @@ import org.mockito.ArgumentCaptor
 import org.mockito.BDDMockito.given
 import org.mockito.BDDMockito.verify
 import org.mockito.Mockito
+import java.time.LocalDate
 
 fun <T> anyNotNull(): T {
     Mockito.any<T>() // still use mockito any() behaviour
@@ -68,6 +69,33 @@ class KotlinLovesJsonTest : StringSpec({
 
         "${it.value} should be deserialized to ${it.key}" {
             it.value.jsonDeserialize<User>() shouldBe it.key
+        }
+
+    }
+
+})
+
+class JavaInteroperabilityTest : StringSpec({
+
+    mapOf(
+        javaType<String>() to java.lang.String::class.java,
+        javaType<Exception>() to java.lang.Exception::class.java,
+        javaType<Any>() to java.lang.Object::class.java
+    ).forEach {
+
+        "javaType<${it.value.simpleName}>() should return original Java type ${it.value}" {
+            it.key shouldBe it.value
+        }
+
+    }
+
+    mapOf(
+        LocalDate.of(2000, 10, 1) to LocalDate.of(2000, 1, 1),
+        LocalDate.of(2010, 10, 31) to LocalDate.of(2010, 1, 31)
+    ).forEach {
+
+        "${LocalDate::toJanuary.name}() should change ${it.key} to ${it.value}" {
+            it.key.toJanuary() shouldBe it.value
         }
 
     }

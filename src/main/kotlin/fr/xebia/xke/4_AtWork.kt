@@ -3,6 +3,8 @@ package fr.xebia.xke
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.module.kotlin.KotlinModule
 import com.fasterxml.jackson.module.kotlin.readValue
+import java.time.LocalDate
+import java.time.Month
 
 /**
  * Mocks and Tests: classes
@@ -57,3 +59,33 @@ val mapper: ObjectMapper = ObjectMapper().registerModule(KotlinModule())
 fun <T> T.jsonSerialize(): String = mapper.writeValueAsString(this)
 
 inline fun <reified T : Any> String.jsonDeserialize(): T = mapper.readValue(this)
+
+
+/**
+ * Java Interoperability
+ *
+ * Kotlin/Java interoperability features were already illustrated in previous exercises but here are a few more
+ */
+
+// Some Java types are 'merely' mapped to kotlin types
+inline fun <reified T> javaType(): Class<T> = T::class.java
+
+// Java getters/setters: this.year refers to getYear(), this.dayOfMonth refers to getDayOfMonth(), ...
+fun LocalDate.toJanuary(): LocalDate = LocalDate.of(this.year, Month.JANUARY, this.dayOfMonth)
+
+
+/**
+ * Kotlin interoperability
+ *
+ * Kotlin types can also be accessed from Java
+ * Build and import this project in a Java project of your own to test Java/Kotlin interoperability
+ * check following links for more:
+ *  - https://kotlinlang.org/docs/reference/java-interop.html
+ *  - https://kotlinlang.org/docs/reference/java-to-kotlin-interop.html
+ */
+
+/**
+ *
+ * That's all folks!
+ *
+ */
