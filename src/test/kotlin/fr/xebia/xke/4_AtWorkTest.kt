@@ -54,3 +54,22 @@ class MocksAndTestsTest : StringSpec({
     }
 
 })
+
+class KotlinLovesJsonTest : StringSpec({
+
+    mapOf(
+        User("Bob", 30) to """{"name":"Bob","age":30}""",
+        User("Alice", 20) to """{"name":"Alice","age":20}"""
+    ).forEach {
+
+        "${it.key} should be serialized to ${it.value}" {
+            it.key.jsonSerialize() shouldBe it.value
+        }
+
+        "${it.value} should be deserialized to ${it.key}" {
+            it.value.jsonDeserialize<User>() shouldBe it.key
+        }
+
+    }
+
+})

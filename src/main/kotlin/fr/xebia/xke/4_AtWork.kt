@@ -1,5 +1,9 @@
 package fr.xebia.xke
 
+import com.fasterxml.jackson.databind.ObjectMapper
+import com.fasterxml.jackson.module.kotlin.KotlinModule
+import com.fasterxml.jackson.module.kotlin.readValue
+
 /**
  * Mocks and Tests: classes
  *
@@ -37,3 +41,15 @@ class Greeter {
 
 }
 
+
+/**
+ * Kotlin ♡ JSON
+ */
+data class User(val name: String, val age: Int)
+
+// TODO: initialize an object mapper with KotlinModule or using jacksonObjectMapper function
+val mapper: ObjectMapper = ObjectMapper().registerModule(KotlinModule())
+
+fun <T> T.jsonSerialize(): String = mapper.writeValueAsString(this)
+
+inline fun <reified T : Any> String.jsonDeserialize(): T = mapper.readValue(this)
