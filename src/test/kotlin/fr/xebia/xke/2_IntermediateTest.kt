@@ -176,3 +176,10 @@ class LazyTest : StringSpec({
         lazyInc shouldEqual 1
     }
 })
+
+class TypeAliases : StringSpec({
+
+    "Create a type aliases corresponding to a dictionary" {
+        (dict is Dict) shouldBe true
+    }
+})

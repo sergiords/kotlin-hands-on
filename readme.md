@@ -14,7 +14,7 @@
 - [x] data class / singleton / sealed class
 - [x] getters/setters
 - [ ] generics (site-variance)
-- [ ] type alias
+- [x] type alias
 - [x] collections & structures map, pair
 - [x] lazy
 
