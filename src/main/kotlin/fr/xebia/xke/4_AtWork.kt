@@ -44,6 +44,10 @@ class Greeter {
 
 /**
  * Kotlin ♡ JSON
+ *
+ * example:
+ *  val user: User = "{...}".jsonDeserialize<User>()
+ *  val json: String = user.jsonSerialize()
  */
 data class User(val name: String, val age: Int)
 
