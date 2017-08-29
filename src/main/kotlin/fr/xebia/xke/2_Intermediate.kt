@@ -211,9 +211,20 @@ fun FileFilmLoader.Companion.build(callback: (String) -> Unit): FileFilmLoader {
 }
 
 /**
- * Task 2.6. type alias
- * TODO
+ * Type Aliases allows programmer to use a more clearly type than existing name type
+ *
+ * We cannot use type aliases to constrain parameters: a function accepting a HashPassword parameter will accept any String
+ * value for that parameter.
+ *
  */
+/**
+ * TODO create type aliases to make code compile
+ */
+typealias Dict = Map<String, String>
+
+val dict: Dict = hashMapOf(
+    Pair("hello", "used as a greeting or to begin a telephone conversation"),
+    Pair("world", "the earth, together with all of its countries and peoples"))
 
 
 /**
@@ -349,19 +360,3 @@ val lazyValue: String by lazy {
     lazyInc++
     "hey"
 }
-
-/**
- * Type Aliases allows programmer to use a more clearly type than existing name type
- *
- * We cannot use type aliases to constrain parameters: a function accepting a HashPassword parameter will accept any String
- * value for that parameter.
- *
- */
-/**
- * TODO create type aliases to make code compile
- */
-typealias Dict = Map<String, String>
-
-val dict: Dict = hashMapOf(
-    Pair("hello", "used as a greeting or to begin a telephone conversation"),
-    Pair("world", "the earth, together with all of its countries and peoples"))

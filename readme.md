@@ -13,8 +13,8 @@
 ## Intermediate
 - [x] data class / singleton / sealed class
 - [x] getters/setters
-- [ ] generics (site-variance)
 - [x] type alias
+- [x] generics (site-variance)
 - [x] collections & structures map, pair
 - [x] lazy
 
