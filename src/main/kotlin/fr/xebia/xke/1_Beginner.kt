@@ -164,23 +164,29 @@ fun sumSequenceNumbers(max: Int): Int = (0..max).step(3).sum()
 
 
 /**
- * for loop iterates through anything that provides an iterator.
- * Try to use it.
- * @products list of products to process
- * @propotional amount of items to process before apply policy of additional 20%
+ * Loops
+ *
+ * for loop iterates through anything that provides an iterator:
+ *  for (item in items) { ... }
+ *
+ * Ranges can also be used in for loops:
+ *  for (i in 1..10) { ... }
+ *  for (i in 1..10 step 2) { ... }
+ *  for (i in 10 downTo 1) { ... }
+ *  for (i in 10 downTo 1 step 2) { ... }
  */
-
-fun computeTotalPrice(products: List<Product>, promotional: Int): Double {
-    //TODO calculate the total proce of the product list. If more than *promotional* items have a promotional price, apply policy of 20% additional discount for all the products
+// TODO compute prices total amount, if 2 or more prices are promotional prices, apply a 5.0 discount to total amount
+fun computeTotalPrice(prices: List<Price>): Double {
     var sum = 0.0
-    var amount = 0
-    for (item in products) {
-        sum += computePrice(item.price)
-        if (item.price is PromotionalPrice)
-            amount++
+    var promotions = 0
+    for (price in prices) {
+        sum += computePrice(price)
+        if (price is PromotionalPrice) {
+            promotions++
+        }
     }
-    if (amount >= promotional) {
-        sum *= 0.8
+    if (promotions >= 2) {
+        sum -= 5.0
     }
     return sum
 }
@@ -211,6 +217,3 @@ fun computeControlNumberSiren(siren: List<Int>): Int {
     }
     return 10 - sum % 10
 }
-
-
-class Product(val name: String, val price: Price)

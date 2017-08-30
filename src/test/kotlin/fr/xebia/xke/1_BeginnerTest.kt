@@ -132,7 +132,7 @@ class NullReferencesTest : StringSpec({
 
 })
 
-class RangesTest : StringSpec({
+class RangesAndLoopsTest : StringSpec({
 
     mapOf(
         0 to emptyList(),
@@ -158,15 +158,15 @@ class RangesTest : StringSpec({
     }
 
     mapOf(
-        listOf(Product("aaa", StandardPrice(10.0))) to 10.0,
-        listOf(Product("aaa", StandardPrice(10.0)), Product("bbb", PromotionalPrice(15.0, 5.0))) to 20.0,
-        listOf(Product("aaa", StandardPrice(10.0)), Product("bbb", PromotionalPrice(15.0, 5.0)), Product("aaa", PromotionalPrice(20.0, 2.0)))
-            to 38.0,
-        listOf(Product("aaa", PromotionalPrice(10.0, 3.0)), Product("bbb", PromotionalPrice(15.0, 5.0)), Product("aaa", PromotionalPrice(20.0, 2.0)))
-            to 28.0
+        listOf(StandardPrice(10.0)) to 10.0,
+        listOf(StandardPrice(10.0), PromotionalPrice(15.0, 5.0)) to 20.0,
+        listOf(StandardPrice(10.0), PromotionalPrice(15.0, 5.0), PromotionalPrice(20.0, 2.0)) to 33.0,
+        listOf(StandardPrice(10.0), StandardPrice(15.0), PromotionalPrice(20.0, 3.0)) to 42.0
     ).forEach {
-        "${::computeTotalPrice.name} price of (${it.key}) should be ${it.value}" {
-            computeTotalPrice(it.key, 3) shouldBe it.value
+        val stdPrices = it.key.count{ it is StandardPrice }
+        val promoPrices = it.key.count{ it is StandardPrice }
+        "${::computeTotalPrice.name}() of $stdPrices standard price(s) & $promoPrices promotional price(s) should be ${it.value}" {
+            computeTotalPrice(it.key) shouldBe it.value
         }
     }
 
