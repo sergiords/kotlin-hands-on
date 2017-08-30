@@ -86,15 +86,24 @@ val product: (Int, Int) -> Int = { x, y -> x * y }
 
 
 /**
- * We can check whether an object conforms to a given type at runtime by using the is operator
- * or its negated form !is. They allow me to use smart casts
- * the ? means it can return null
+ * Type checks and Smart Casts
+ *
+ * We can check whether an object conforms to a given type by using the 'is' operator or its negated form '!is'.
+ * It allows using smart casts (no cast in branches where type can be guessed)
+ *
+ * fun size(any: Any): Int = if (any is String) any.length else if (any is List<*>) any.size else -1
  */
+interface Price
 
-fun computePrice(price: Price?): Double =
+class StandardPrice(val value: Double) : Price
+
+class PromotionalPrice(val value: Double, val discount: Double) : Price
+
+fun computePrice(price: Price): Double =
     when (price) {
-        is TotalPrice -> price.value
-        is PromotionalPrice -> price.value - price.totalDiscount
+        // TODO return value for standard prices and (value - discount) for promotional prices, otherwise 0
+        is StandardPrice -> price.value
+        is PromotionalPrice -> price.value - price.discount
         else -> 0.0
     }
 
@@ -189,9 +198,3 @@ fun computeControlNumberSiren(siren: List<Int>): Int {
 
 
 class Product(val name: String, val price: Price)
-
-interface Price
-
-class TotalPrice(val value: Double) : Price
-
-class PromotionalPrice(val value: Double, val totalDiscount: Double) : Price

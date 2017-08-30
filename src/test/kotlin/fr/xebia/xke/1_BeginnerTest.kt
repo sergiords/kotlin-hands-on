@@ -85,16 +85,24 @@ class FunctionsTest : StringSpec({
             remainingTime(it.key) shouldBe it.value
         }
     }
+})
 
+class TypeChecksSmartCastsTest : StringSpec({
 
-    mapOf(
-        TotalPrice(10.0) to 10.0,
-        PromotionalPrice(12.0, 5.0) to 7.0,
-        null to 0.0
-    ).forEach {
-        "${::computePrice.name} Prize of (${it.key}) should be ${it.value}" {
-            computePrice(it.key) shouldBe it.value
-        }
+    val stdPrice = StandardPrice(10.0)
+    "${::computePrice.name}(StandardPrice(${stdPrice.value})) should be ${stdPrice.value}" {
+        computePrice(stdPrice) shouldBe stdPrice.value
+    }
+
+    val promoPrice = PromotionalPrice(12.0, 5.0)
+    val expectedPromoPrice = promoPrice.value - promoPrice.discount
+    "${::computePrice.name}(PromotionalPrice(${promoPrice.value}, ${promoPrice.discount})) should be $expectedPromoPrice" {
+        computePrice(promoPrice) shouldBe expectedPromoPrice
+    }
+
+    val unknownPrice = object : Price {}
+    "${::computePrice.name}(UnknownPriceType) should be 0" {
+        computePrice(unknownPrice) shouldBe 0.0
     }
 
     mapOf(
@@ -141,9 +149,9 @@ class FunctionsTest : StringSpec({
     }
 
     mapOf(
-        listOf(Product("aaa", TotalPrice(10.0))) to 10.0,
-        listOf(Product("aaa", TotalPrice(10.0)), Product("bbb", PromotionalPrice(15.0, 5.0))) to 20.0,
-        listOf(Product("aaa", TotalPrice(10.0)), Product("bbb", PromotionalPrice(15.0, 5.0)), Product("aaa", PromotionalPrice(20.0, 2.0)))
+        listOf(Product("aaa", StandardPrice(10.0))) to 10.0,
+        listOf(Product("aaa", StandardPrice(10.0)), Product("bbb", PromotionalPrice(15.0, 5.0))) to 20.0,
+        listOf(Product("aaa", StandardPrice(10.0)), Product("bbb", PromotionalPrice(15.0, 5.0)), Product("aaa", PromotionalPrice(20.0, 2.0)))
             to 38.0,
         listOf(Product("aaa", PromotionalPrice(10.0, 3.0)), Product("bbb", PromotionalPrice(15.0, 5.0)), Product("aaa", PromotionalPrice(20.0, 2.0)))
             to 28.0
@@ -157,7 +165,6 @@ class FunctionsTest : StringSpec({
         listOf(5, 4, 3, 2, 1) to 5,
         listOf(8, 7, 6) to 3,
         listOf(1, 1, 1, 1) to 4
-
     ).forEach {
         "${::computeControlNumberSiren.name} control number of (${it.key}) should be ${it.value}" {
             computeControlNumberSiren(it.key) shouldBe it.value
