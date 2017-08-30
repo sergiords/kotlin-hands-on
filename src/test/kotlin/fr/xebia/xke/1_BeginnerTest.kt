@@ -22,6 +22,42 @@ class PropertiesTest : StringSpec({
 
 })
 
+class LambdasTest : StringSpec({
+
+    mapOf(
+        0 to true,
+        1 to false,
+        2 to true,
+        3 to false,
+        42 to true,
+        51 to false,
+        -1 to false,
+        -2 to true
+    ).forEach {
+
+        "${::pair.name}(${it.key}) should return ${it.value}" {
+            pair(it.key) shouldBe it.value
+        }
+
+    }
+
+    mapOf(
+        0 to 2,
+        2 to 0,
+        4 to 2,
+        3 to 1,
+        10 to 5
+    ).forEach {
+
+        val expected = it.key * it.value
+        "${::product.name}(${it.key}, ${it.value}) should return $expected" {
+            product(it.key, it.value) shouldBe expected
+        }
+
+    }
+
+})
+
 class FunctionsTest : StringSpec({
 
     mapOf(
@@ -84,7 +120,7 @@ class FunctionsTest : StringSpec({
     mapOf(
         1 to listOf(1),
         0 to emptyList(),
-        5 to listOf(1,2,3,4,5)
+        5 to listOf(1, 2, 3, 4, 5)
     ).forEach {
         "${::generateIntegerList.name} list (${it.key}) should be ${it.value}" {
             generateIntegerList(it.key) shouldBe it.value
@@ -105,22 +141,22 @@ class FunctionsTest : StringSpec({
     }
 
     mapOf(
-        listOf(Product("aaa",TotalPrice(10.0))) to 10.0,
-        listOf(Product("aaa",TotalPrice(10.0)), Product("bbb",PromotionalPrice(15.0,5.0))) to 20.0,
-        listOf(Product("aaa",TotalPrice(10.0)),Product("bbb",PromotionalPrice(15.0,5.0)),Product("aaa",PromotionalPrice(20.0,2.0)))
+        listOf(Product("aaa", TotalPrice(10.0))) to 10.0,
+        listOf(Product("aaa", TotalPrice(10.0)), Product("bbb", PromotionalPrice(15.0, 5.0))) to 20.0,
+        listOf(Product("aaa", TotalPrice(10.0)), Product("bbb", PromotionalPrice(15.0, 5.0)), Product("aaa", PromotionalPrice(20.0, 2.0)))
             to 38.0,
-        listOf(Product("aaa",PromotionalPrice(10.0,3.0)),Product("bbb",PromotionalPrice(15.0,5.0)),Product("aaa",PromotionalPrice(20.0,2.0)))
-        to 28.0
+        listOf(Product("aaa", PromotionalPrice(10.0, 3.0)), Product("bbb", PromotionalPrice(15.0, 5.0)), Product("aaa", PromotionalPrice(20.0, 2.0)))
+            to 28.0
     ).forEach {
         "${::computeTotalPrice.name} price of (${it.key}) should be ${it.value}" {
-            computeTotalPrice(it.key,3) shouldBe it.value
+            computeTotalPrice(it.key, 3) shouldBe it.value
         }
     }
 
     mapOf(
-        listOf(5,4,3,2,1) to 5,
-        listOf(8,7,6) to 3,
-        listOf(1,1,1,1) to 4
+        listOf(5, 4, 3, 2, 1) to 5,
+        listOf(8, 7, 6) to 3,
+        listOf(1, 1, 1, 1) to 4
 
     ).forEach {
         "${::computeControlNumberSiren.name} control number of (${it.key}) should be ${it.value}" {

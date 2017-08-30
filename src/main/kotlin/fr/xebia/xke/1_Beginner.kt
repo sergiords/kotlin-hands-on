@@ -62,6 +62,30 @@ fun remainingTime(durationInSeconds: Int): String = when {
 }
 
 /**
+ * Lambdas
+ *
+ * An anonymous function can be typed and declared using following syntax:
+ *
+ * val isStrictlyPositive : (Int) -> Boolean = { it -> it > 0 }
+ *
+ * Lambdas can of course be passed as function parameters
+ *
+ * names.filter({ it -> it.name == searchedName })
+ *
+ */
+val pair: (Int) -> Boolean = { number -> number % 2 == 0 }
+
+
+/**
+ * When lambda has only one parameter it can be ommited and 'it' is the default name:
+ *  { it > 0 }
+ * When lambda has more than one parameters you must give them proper names:
+ *  { name, age -> "$name is $age year(s) old" }
+ */
+val product: (Int, Int) -> Int = { x, y -> x * y }
+
+
+/**
  * We can check whether an object conforms to a given type at runtime by using the is operator
  * or its negated form !is. They allow me to use smart casts
  * the ? means it can return null

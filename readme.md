@@ -6,6 +6,7 @@
 - [x] functions
 - [x] conditional expressions
 - [x] when expression
+- [x] lambdas
 - [x] type checks / automatic casts
 - [X] loop / ranges
 - [x] null references
