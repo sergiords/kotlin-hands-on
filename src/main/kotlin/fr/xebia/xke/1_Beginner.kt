@@ -190,30 +190,3 @@ fun computeTotalPrice(prices: List<Price>): Double {
     }
     return sum
 }
-
-
-/**
- * Algorithme
- * 1. Add a 0 to the end and multiply x2 all numbers in a pair position starting by the right
- * 2. If the number is >=10 sum both digits (f.e 10 ==1+0=1 11=1+1=2)
- * 3. sum all the numbers
- * 4. if total is multiple of 10 return 0, else return 10 - sum (https://fr.wikipedia.org/wiki/Formule_de_Luhn)
- */
-fun computeControlNumberSiren(siren: List<Int>): Int {
-//TODO compute the numbers of the list to calculate the last number ot the luhn algorithme
-    val reversed = siren.reversed()
-    val sum = (0..siren.size - 1)
-        .sumBy {
-            println("computing " + reversed[it] + " it=" + it)
-            if (it % 2 == 0) {
-                val x2 = reversed[it] * 2
-                println("multiply " + reversed[it] + " getting $x2")
-                x2 % 10 + (x2 / 10)
-            } else
-                reversed[it]
-        }
-    if (sum % 10 == 0) {
-        return 0
-    }
-    return 10 - sum % 10
-}

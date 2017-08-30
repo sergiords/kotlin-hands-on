@@ -170,15 +170,4 @@ class RangesAndLoopsTest : StringSpec({
         }
     }
 
-    mapOf(
-        listOf(5, 4, 3, 2, 1) to 5,
-        listOf(8, 7, 6) to 3,
-        listOf(1, 1, 1, 1) to 4
-    ).forEach {
-        "${::computeControlNumberSiren.name} control number of (${it.key}) should be ${it.value}" {
-            computeControlNumberSiren(it.key) shouldBe it.value
-        }
-    }
-
-
 })
