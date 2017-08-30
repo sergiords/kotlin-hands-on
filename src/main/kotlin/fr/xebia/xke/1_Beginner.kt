@@ -99,9 +99,9 @@ class StandardPrice(val value: Double) : Price
 
 class PromotionalPrice(val value: Double, val discount: Double) : Price
 
+// TODO return value for standard prices and (value - discount) for promotional prices, otherwise 0
 fun computePrice(price: Price): Double =
     when (price) {
-        // TODO return value for standard prices and (value - discount) for promotional prices, otherwise 0
         is StandardPrice -> price.value
         is PromotionalPrice -> price.value - price.discount
         else -> 0.0
@@ -120,8 +120,8 @@ fun computePrice(price: Price): Double =
  * to convert un String to Integer
  *
  */
+// TODO return last url parameter converted to an Int or null if param is not found or not a valid number
 fun convertURLParam(url: String): Int? {
-    // TODO return last url parameter converted to an Int or null if param is not found or not a valid number
     val urlPar = url.split("=")
     if (urlPar.size > 1) {
         return urlPar[urlPar.size - 1].toIntOrNull()
@@ -136,8 +136,8 @@ fun convertURLParam(url: String): Int? {
  *  val user : User? = ...
  *  val city: String = user?.address?.city ?: "Unknown"
  */
+// TODO return price.value.toInt(), mind references nullability, 0 if all references are null
 fun convertPriceToInt(price: StandardPrice?): Int {
-    // TODO return price.value.toInt(), mind references nullability, 0 if all references are null
     return price?.value?.toInt() ?: 0
 }
 
@@ -151,7 +151,7 @@ fun convertPriceToInt(price: StandardPrice?): Int {
  * You can also generate ranges using any range type (IntRange, LongRange, ClosedRange<T>, ...)
  *  val oneToTen: IntRange = IntRange(1, 10)
  */
-//TODO generate a list of integers from 1 to max number using ranges
+// TODO generate a list of integers from 1 to max number using ranges
 fun generateIntegerList(max: Int): List<Int> = IntRange(1, max).toList()
 
 /**
@@ -159,7 +159,7 @@ fun generateIntegerList(max: Int): List<Int> = IntRange(1, max).toList()
  *
  * Ranges rely on *Progression and Kotlin provide useful operations on *Progressions like steps
  */
-//TODO generate a range from 0 to max and sum all numbers which are dividers of 3
+// TODO generate a range from 0 to max and sum all numbers which are dividers of 3
 fun sumSequenceNumbers(max: Int): Int = (0..max).step(3).sum()
 
 
@@ -198,10 +198,10 @@ fun computeControlNumberSiren(siren: List<Int>): Int {
     val reversed = siren.reversed()
     val sum = (0..siren.size - 1)
         .sumBy {
-            println("computing "+reversed[it]+" it="+it)
+            println("computing " + reversed[it] + " it=" + it)
             if (it % 2 == 0) {
                 val x2 = reversed[it] * 2
-                println("multiply " + reversed[it] +" getting $x2")
+                println("multiply " + reversed[it] + " getting $x2")
                 x2 % 10 + (x2 / 10)
             } else
                 reversed[it]
