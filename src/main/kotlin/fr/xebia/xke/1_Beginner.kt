@@ -143,20 +143,24 @@ fun convertPriceToInt(price: StandardPrice?): Int {
 
 
 /**
- * generating ranges with .. you can use too a range to generate ranges of any type (IntRange)
+ * Ranges
+ *
+ * You can generate ranges with '..' operator
+ *  val oneToTen: IntRange = 1..10
+ *
+ * You can also generate ranges using any range type (IntRange, LongRange, ClosedRange<T>, ...)
+ *  val oneToTen: IntRange = IntRange(1, 10)
  */
-fun generateIntegerList(maxNumber: Int): List<Int> = IntRange(1, maxNumber).toList()
-//TODO generate a list of integers from 1 to max number
-
+//TODO generate a list of integers from 1 to max number using ranges
+fun generateIntegerList(max: Int): List<Int> = IntRange(1, max).toList()
 
 /**
- * Sum all consecutive number with a step of 3 (position 3,6,9,....)
- * @max max number of the sequence
- * @return the value of the sum
+ * Ranges: Progressions
+ *
+ * Ranges rely on *Progression and Kotlin provide useful operations on *Progressions like steps
  */
-
-fun sumSequenceNumbers(max: Int): Int = (0..max step 3).sum()
-//TODO generate sequence from 0 to max and sum each 3 position
+//TODO generate a range from 0 to max and sum all numbers which are dividers of 3
+fun sumSequenceNumbers(max: Int): Int = (0..max).step(3).sum()
 
 
 /**

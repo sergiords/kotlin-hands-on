@@ -130,25 +130,29 @@ class NullReferencesTest : StringSpec({
         }
     }
 
+})
+
+class RangesTest : StringSpec({
+
     mapOf(
-        1 to listOf(1),
         0 to emptyList(),
+        1 to listOf(1),
         5 to listOf(1, 2, 3, 4, 5)
     ).forEach {
-        "${::generateIntegerList.name} list (${it.key}) should be ${it.value}" {
+        "${::generateIntegerList.name}(${it.key}) should generate a list of ${it.value.size} element(s)" {
             generateIntegerList(it.key) shouldBe it.value
         }
     }
 
     mapOf(
-        1 to 0,
         0 to 0,
+        1 to 0,
         3 to 3,
         6 to 9,
-        10 to 18,
-        9 to 18
+        9 to 18,
+        10 to 18
     ).forEach {
-        "${::sumSequenceNumbers.name} sum of (${it.key}) values should be ${it.value}" {
+        "${::sumSequenceNumbers.name}(${it.key}) should return ${it.value}" {
             sumSequenceNumbers(it.key) shouldBe it.value
         }
     }
