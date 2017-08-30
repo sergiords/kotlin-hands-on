@@ -181,5 +181,6 @@ class TypeAliases : StringSpec({
 
     "Create a type aliases corresponding to a dictionary" {
         (dict is Dict) shouldBe true
+        dict.getOrDefault("hello", "unknown") shouldBe "used as a greeting or to begin a telephone conversation"
     }
 })
