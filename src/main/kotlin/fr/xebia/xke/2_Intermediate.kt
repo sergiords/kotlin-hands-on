@@ -218,14 +218,19 @@ fun FileFilmLoader.Companion.build(callback: (String) -> Unit): FileFilmLoader {
  *
  */
 /**
- * TODO create type aliases to make code compile
+ * TODO replace dict declaration to use Type aliases
  */
+//abstract class Dict : Map<String, String>
+
+//val dict = hashMapOf(
+//    Pair("hello", "used as a greeting or to begin a telephone conversation"),
+//    Pair("world", "the earth, together with all of its countries and peoples"))
+
 typealias Dict = Map<String, String>
 
 val dict: Dict = hashMapOf(
     Pair("hello", "used as a greeting or to begin a telephone conversation"),
     Pair("world", "the earth, together with all of its countries and peoples"))
-
 
 /**
  * Task 2.7. collections & structures map, pair
