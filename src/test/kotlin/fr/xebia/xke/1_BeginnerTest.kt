@@ -105,23 +105,28 @@ class TypeChecksSmartCastsTest : StringSpec({
         computePrice(unknownPrice) shouldBe 0.0
     }
 
+})
+
+class NullReferencesTest : StringSpec({
+
     mapOf(
         "https://www.xebia.fr?par=1234" to 1234,
+        "https://www.xebia.fr?par=1234&par2=4321" to 4321,
         "https://www.xebia.fr" to null,
-        "https://www.xebia.fr?par=hello" to null
+        "https://www.xebia.fr?par=hello" to null,
+        "https://www.xebia.fr?par=hello&par2=toto" to null
     ).forEach {
-        "${::computeUrlValue.name} Parameter of url (${it.key}) should be ${it.value}" {
-            computeUrlValue(it.key) shouldBe it.value
+        "${::convertURLParam.name}(${it.key}) should be ${it.value}" {
+            convertURLParam(it.key) shouldBe it.value
         }
     }
 
     mapOf(
-        "REFERENCE 1" to "REFERENCE 1",
-        1234 to "1234",
-        1.0 to null
+        StandardPrice(10.0) to 10,
+        null to 0
     ).forEach {
-        "${::computeProductReference.name} reference (${it.key}) should be ${it.value}" {
-            computeProductReference(it.key) shouldBe it.value
+        "${::convertPriceToInt.name}(Price(${it.key?.value}) should be ${it.value}" {
+            convertPriceToInt(it.key) shouldBe it.value
         }
     }
 

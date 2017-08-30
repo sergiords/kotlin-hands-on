@@ -107,26 +107,38 @@ fun computePrice(price: Price): Double =
         else -> 0.0
     }
 
-/**
- *  For strings it is possible to use for example toIntOrNull
- *  to convert un String to Integer
- */
 
-fun computeUrlValue(url: String): Int? {
+/**
+ * Null references
+ *
+ * Kotlin references are not-null by default
+ * To allow null references one must suffix type with '?'
+ *
+ * val name: String? = null
+ *
+ * For strings it is possible to use for example toIntOrNull
+ * to convert un String to Integer
+ *
+ */
+fun convertURLParam(url: String): Int? {
+    // TODO return last url parameter converted to an Int or null if param is not found or not a valid number
     val urlPar = url.split("=")
     if (urlPar.size > 1) {
-        return urlPar[1].toIntOrNull()
+        return urlPar[urlPar.size - 1].toIntOrNull()
     }
     return null
 }
 
-
-fun computeProductReference(reference: Any): String? {
-    if (reference is String)
-        return reference
-    if (reference !is Int)
-        return null
-    return reference.toString()
+/**
+ * Null references: Elvis operator
+ *
+ * To avoid super classic if (.. != null) structures Kotlin has built-in Elvis operator
+ *  val user : User? = ...
+ *  val city: String = user?.address?.city ?: "Unknown"
+ */
+fun convertPriceToInt(price: StandardPrice?): Int {
+    // TODO return price.value.toInt(), mind references nullability, 0 if all references are null
+    return price?.value?.toInt() ?: 0
 }
 
 
