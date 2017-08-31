@@ -30,10 +30,15 @@ data class Vector(val dx: Int, val dy: Int) {
 /**
  * Coroutines
  *
- * Using buildSequence
+ * Coroutines (like async/await in Javascript) allow using non blocking calls (suspending) in a classic blocking style
+ * Suspending model also allows Generators (lazy computations) to be written in a more classic style
  *
- * TODO Let's implement Fibonacci sequence generator using this function and yield
+ * Suspension happens when calling a function marked with 'suspend' modifier
+ *
+ * Learn more: https://github.com/Kotlin/kotlinx.coroutines/blob/master/coroutines-guide.md
+ * For the brave: https://github.com/Kotlin/kotlin-coroutines/blob/master/kotlin-coroutines-informal.md
  */
+// TODO implement a Fibonacci sequence generator using yield suspending function
 val fibonacciSeq = buildSequence {
     var a = 0
     var b = 1
@@ -49,14 +54,22 @@ val fibonacciSeq = buildSequence {
     }
 }
 
+val fiveFirstFibonacci = fibonacciSeq.take(5) // values are yielded only when this sequence is iterated
+
 /**
- * Use of kotlinx-coroutines to use raw coroutines
+ * Coroutines: Non Blocking
  *
- * TODO make following code compile and pass tests
+ * Suspending functions can only be called within special coroutine-handling functions (see links below for details)
+ *  async(CommonPool) {
+ *      delay(1000)
+ *      println("Hello") // printed last
+ *  }
+ *  println("Goodbye") // printed first
  */
-suspend fun giveTreatment(res: MutableList<String>) {
+suspend fun giveTreatment(): String {
+    // TODO return 'aspirin' after a delay of 1 second (use delay suspending function and suspend modifier)
     delay(1000L)
-    res.add("aspirin")
+    return "aspirin"
 }
 /**
  * NB: Promise coroutines can be cancel at any moment by calling promise.cancel()

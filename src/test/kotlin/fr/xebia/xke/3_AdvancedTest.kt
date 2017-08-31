@@ -4,7 +4,8 @@ import io.kotlintest.matchers.shouldBe
 import io.kotlintest.matchers.shouldEqual
 import io.kotlintest.specs.StringSpec
 import kotlinx.coroutines.experimental.CommonPool
-import kotlinx.coroutines.experimental.launch
+import kotlinx.coroutines.experimental.async
+import kotlinx.coroutines.experimental.delay
 import kotlinx.coroutines.experimental.runBlocking
 import java.time.LocalDate
 import java.util.logging.Handler
@@ -28,22 +29,27 @@ class OperatorOverloadingTest : StringSpec({
 
 class CoroutineTest : StringSpec({
 
-    "Generate 5 first number of Fibonacci" {
+    "${::fibonacciSeq.name} should generate a lazily initialized Fibonacci sequence" {
         val list = fibonacciSeq.take(5).toList()
         list shouldEqual listOf(1, 1, 2, 3, 5)
     }
 
-    "Give treatment to patient" {
-        val res = mutableListOf<String>()
-        runBlocking {
-            val promise = launch(CommonPool) {
-                giveTreatment(res)
-            }
-            res.add("tee")
-            promise.join()
-        }
-        res shouldEqual listOf("tee", "aspirin")
+    "${::fiveFirstFibonacci.name} should be initialized to take 5 elements only" {
+        fiveFirstFibonacci.toList() shouldEqual listOf(1, 1, 2, 3, 5)
     }
+
+    "giveTreatment() to patient should return aspirin after a delay of one second" {
+        val start = System.currentTimeMillis()
+        val res = runBlocking {
+            val promise = async(CommonPool) {
+                giveTreatment()
+            }
+            promise.await()
+        }
+        res shouldEqual "aspirin"
+        ((System.currentTimeMillis() - start) >= 1000) shouldBe true
+    }
+
 })
 
 class ExtensionFunctionTest : StringSpec({
