@@ -19,8 +19,10 @@ val v4 = v1 - v2
 
 data class Vector(val dx: Int, val dy: Int) {
 
+    // TODO implement this operator overloading function to return the result of a Vector addition
     operator fun plus(that: Vector): Vector = Vector(this.dx + that.dx, this.dy + that.dy)
 
+    // TODO implement this operator overloading function to return the result of a Vector substraction
     operator fun minus(that: Vector): Vector = Vector(this.dx - that.dx, this.dy - that.dy)
 
 }
@@ -73,6 +75,7 @@ suspend fun giveTreatment(res: MutableList<String>) {
 val squareSize = 10
 val squareArea = 10.square()
 
+// TODO implement this function extension which computes the square value of the Int it refers to (receiver type)
 fun Int.square() = this * this
 
 /**
@@ -81,6 +84,7 @@ fun Int.square() = this * this
 val ofCourse = "Some String".isString()
 val noWay = 100.isString()
 
+// TODO implement this function extension which returns true if its receiver type is a String
 fun <T> T.isString(): Boolean = this is String
 
 
@@ -97,6 +101,7 @@ fun <T> T.isString(): Boolean = this is String
 
 data class Temperature(val celsius: Int)
 
+// TODO implement this property extension to define the temperature in Kelvin (~ 273° + celsius) (a getter may be useful)
 val Temperature.kelvin: Int
     get() = 273 + this.celsius // approximately
 
@@ -119,6 +124,7 @@ data class Build(val name: String, private val dependencies: ArrayList<String> =
     fun dependency(name: String) = dependencies.add(name)
 }
 
+// TODO implement this function which has a function type with receiver parameter to create a build and initialize it with init
 fun build(name: String, init: Build.() -> Unit): Build {
     val build = Build(name)
     build.init()
@@ -139,6 +145,7 @@ val myBuild =
  *
  * https://kotlinlang.org/docs/reference/inline-functions.html
  */
+// TODO only log at FINE level when message is loggable at FINE level
 inline fun Logger.fineIfEnabled(message: () -> String) {
     if (this.isLoggable(Level.FINE)) {
         this.fine(message())
@@ -152,6 +159,7 @@ inline fun Logger.fineIfEnabled(message: () -> String) {
  *
  * To access a type's class use the '::' operator like: 'String::class'
  */
+// TODO return the Class corresponding to function's parameter type
 inline fun <reified T> parameterTypeClass(): Class<T> = T::class.java
 
 
