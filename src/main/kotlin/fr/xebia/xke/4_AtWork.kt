@@ -16,6 +16,7 @@ import java.time.Month
  *  - enable Mockito to mock final classes: http://hadihariri.com/2016/10/04/Mocking-Kotlin-With-Mockito/
  *    add 'mock-maker-inline' line in test/resources/mockito-extension/org.mockito.plugins.MockMaker
  */
+// TODO fix tests by allowing repository to be properly mocked
 class Repository {
 
     fun data(): String = "Some Data"
@@ -31,14 +32,14 @@ class Service(private val repository: Repository) {
 /**
  * Mocks and Tests: matching and capturing arguments
  *
- * Specifying mock behaviour for given arguments can also be tricky since Kotlin types are not null by default
- *
- * And mockito when specifying or capturing mocking behaviour returns null values...
+ * Matching or capturing mock arguments can also be tricky since Kotlin types are not null by default
+ * And mockito when matching or capturing mock parameters returns null values...
  *
  * To work around this issue modify following functions in tests: anyNotNull() and captureNotNull()
  */
 class Greeter {
 
+    // TODO modify anyNotNull() and captureNotNull() in tests to allow matching and capturing mock parameters
     fun welcome(name: String): String = "Hello $name"
 
 }
@@ -53,11 +54,13 @@ class Greeter {
  */
 data class User(val name: String, val age: Int)
 
-// TODO: initialize an object mapper with KotlinModule or using jacksonObjectMapper function
+// TODO initialize an object mapper with KotlinModule or using jacksonObjectMapper function
 val mapper: ObjectMapper = ObjectMapper().registerModule(KotlinModule())
 
+// TODO complete this function extension to serialize any object to json (use previous mapper)
 fun <T> T.jsonSerialize(): String = mapper.writeValueAsString(this)
 
+// TODO complete this function extension to deserialize a String to an object of the given type T (use previous mapper)
 inline fun <reified T : Any> String.jsonDeserialize(): T = mapper.readValue(this)
 
 
@@ -68,9 +71,11 @@ inline fun <reified T : Any> String.jsonDeserialize(): T = mapper.readValue(this
  */
 
 // Some Java types are 'merely' mapped to kotlin types
+// TODO return java Class corresponding to the given T type
 inline fun <reified T> javaType(): Class<T> = T::class.java
 
 // Java getters/setters: this.year refers to getYear(), this.dayOfMonth refers to getDayOfMonth(), ...
+// TODO return a local date in same year and day but in january (notice how getters are translated in Kotlin)
 fun LocalDate.toJanuary(): LocalDate = LocalDate.of(this.year, Month.JANUARY, this.dayOfMonth)
 
 
