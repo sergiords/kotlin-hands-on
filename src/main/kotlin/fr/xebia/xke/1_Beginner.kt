@@ -11,6 +11,7 @@ package fr.xebia.xke
  *
  * val x = 10 // Type is optional when it can be inferred
  */
+// TODO initialize this value to "xebia.fr"
 val host: String = "xebia.fr"
 
 /**
@@ -18,6 +19,7 @@ val host: String = "xebia.fr"
  *
  * Kotlin has NO primitive types like in Java (int, long, ...).
  */
+// TODO initialize this value to default https port
 val port: Int = 443
 
 /**
@@ -25,6 +27,7 @@ val port: Int = 443
  *
  * "Hello $userName, today is ${localDate.format(...)}"
  */
+// TODO initialize this url to xebia's blog URL using string template (specify https port)
 val url: String = "https://blog.$host:$port"
 
 /**
@@ -36,6 +39,7 @@ val url: String = "https://blog.$host:$port"
  *
  * fun name(argName: ArgType) {...} // function with no return (same as returning Unit)
  */
+// TODO return true if given url is secured (use function expression short syntax)
 fun isSecured(url: String): Boolean = url.startsWith("https://")
 
 /**
@@ -43,6 +47,7 @@ fun isSecured(url: String): Boolean = url.startsWith("https://")
  *
  * val result = if (...) someValue else if (...) otherValue else defaultValue
  */
+// TODO use conditional expression to compute factorial of n
 fun factorial(n: Int): Int = if (n <= 1) 1 else n * factorial(n - 1)
 
 /**
@@ -54,6 +59,7 @@ fun factorial(n: Int): Int = if (n <= 1) 1 else n * factorial(n - 1)
  *   else -> x
  * }
  */
+// TODO use when expression to compute a message expressing duration in seconds, minutes, hours or days
 fun remainingTime(durationInSeconds: Int): String = when {
     durationInSeconds in 0..59 -> "$durationInSeconds second(s)"
     durationInSeconds / 60 in 0..59 -> "${durationInSeconds / 60} minute(s)"
@@ -73,6 +79,7 @@ fun remainingTime(durationInSeconds: Int): String = when {
  * names.filter({ it -> it.name == searchedName })
  *
  */
+// TODO define a lambda returning true when its parameter is pair, false otherwise
 val pair: (Int) -> Boolean = { number -> number % 2 == 0 }
 
 
@@ -82,6 +89,7 @@ val pair: (Int) -> Boolean = { number -> number % 2 == 0 }
  * When lambda has more than one parameters you must give them proper names:
  *  { name, age -> "$name is $age year(s) old" }
  */
+// TODO define a lambda returning the product of its two arguments
 val product: (Int, Int) -> Int = { x, y -> x * y }
 
 
