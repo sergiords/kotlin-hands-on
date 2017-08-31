@@ -40,15 +40,12 @@ class DataClassTest : StringSpec({
         updatedJohn.bio shouldBe john.bio
     }
 
-    "TODO 2.1.2 - it should allow deconstructions " {
-        val updatedJohn =
-            john.copy(filmography =
-            mutableListOf(
-                "Halloween",
-                "Escape from LA",
-                "Big Trouble in Little China"))
-        filmographyContaining(updatedJohn, "Trouble") shouldBe
-            mutableListOf("John Carpenter - Big Trouble in Little China")
+    "TODO 2.1.1 - it should provide 'equals' " {
+        val anotherJohn = SpecialDirector(
+            name = "John Carpenter",
+            bio = "was born in Carthage, New York",
+            filmography = emptyList())
+        (john == anotherJohn) shouldBe true
     }
 
     // ---------------------------------------
