@@ -95,16 +95,16 @@ val product: (Int, Int) -> Int = { x, y -> x * y }
  */
 interface Price
 
-class StandardPrice(val value: Double) : Price
+class StandardPrice(val value: Int) : Price
 
-class PromotionalPrice(val value: Double, val discount: Double) : Price
+class PromotionalPrice(val value: Int, val discount: Int) : Price
 
 // TODO return value for standard prices and (value - discount) for promotional prices, otherwise 0
-fun computePrice(price: Price): Double =
+fun computePrice(price: Price): Int =
     when (price) {
         is StandardPrice -> price.value
         is PromotionalPrice -> price.value - price.discount
-        else -> 0.0
+        else -> 0
     }
 
 
@@ -136,9 +136,9 @@ fun convertURLParam(url: String): Int? {
  *  val user : User? = ...
  *  val city: String = user?.address?.city ?: "Unknown"
  */
-// TODO return price.value.toInt(), mind references nullability, 0 if all references are null
-fun convertPriceToInt(price: StandardPrice?): Int {
-    return price?.value?.toInt() ?: 0
+// TODO return price.value.toLong(), mind references nullability, 0 if all references are null
+fun convertPriceToLong(price: StandardPrice?): Long {
+    return price?.value?.toLong() ?: 0
 }
 
 
@@ -176,8 +176,8 @@ fun sumSequenceNumbers(max: Int): Int = (0..max).step(3).sum()
  *  for (i in 10 downTo 1 step 2) { ... }
  */
 // TODO compute prices total amount, if 2 or more prices are promotional prices, apply a 5.0 discount to total amount
-fun computeTotalPrice(prices: List<Price>): Double {
-    var sum = 0.0
+fun computeTotalPrice(prices: List<Price>): Int {
+    var sum = 0
     var promotions = 0
     for (price in prices) {
         sum += computePrice(price)
@@ -186,7 +186,7 @@ fun computeTotalPrice(prices: List<Price>): Double {
         }
     }
     if (promotions >= 2) {
-        sum -= 5.0
+        sum -= 5
     }
     return sum
 }

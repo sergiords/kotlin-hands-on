@@ -89,12 +89,12 @@ class LambdasTest : StringSpec({
 
 class TypeChecksSmartCastsTest : StringSpec({
 
-    val stdPrice = StandardPrice(10.0)
+    val stdPrice = StandardPrice(10)
     "${::computePrice.name}(StandardPrice(${stdPrice.value})) should be ${stdPrice.value}" {
         computePrice(stdPrice) shouldBe stdPrice.value
     }
 
-    val promoPrice = PromotionalPrice(12.0, 5.0)
+    val promoPrice = PromotionalPrice(12, 5)
     val expectedPromoPrice = promoPrice.value - promoPrice.discount
     "${::computePrice.name}(PromotionalPrice(${promoPrice.value}, ${promoPrice.discount})) should be $expectedPromoPrice" {
         computePrice(promoPrice) shouldBe expectedPromoPrice
@@ -102,7 +102,7 @@ class TypeChecksSmartCastsTest : StringSpec({
 
     val unknownPrice = object : Price {}
     "${::computePrice.name}(UnknownPriceType) should be 0" {
-        computePrice(unknownPrice) shouldBe 0.0
+        computePrice(unknownPrice) shouldBe 0
     }
 
 })
@@ -122,11 +122,11 @@ class NullReferencesTest : StringSpec({
     }
 
     mapOf(
-        StandardPrice(10.0) to 10,
-        null to 0
+        StandardPrice(10) to 10L,
+        null to 0L
     ).forEach {
-        "${::convertPriceToInt.name}(Price(${it.key?.value}) should be ${it.value}" {
-            convertPriceToInt(it.key) shouldBe it.value
+        "${::convertPriceToLong.name}(Price(${it.key?.value}) should be ${it.value}" {
+            convertPriceToLong(it.key) shouldBe it.value
         }
     }
 
@@ -158,10 +158,10 @@ class RangesAndLoopsTest : StringSpec({
     }
 
     mapOf(
-        listOf(StandardPrice(10.0)) to 10.0,
-        listOf(StandardPrice(10.0), PromotionalPrice(15.0, 5.0)) to 20.0,
-        listOf(StandardPrice(10.0), PromotionalPrice(15.0, 5.0), PromotionalPrice(20.0, 2.0)) to 33.0,
-        listOf(StandardPrice(10.0), StandardPrice(15.0), PromotionalPrice(20.0, 3.0)) to 42.0
+        listOf(StandardPrice(10)) to 10,
+        listOf(StandardPrice(10), PromotionalPrice(15, 5)) to 20,
+        listOf(StandardPrice(10), PromotionalPrice(15, 5), PromotionalPrice(20, 2)) to 33,
+        listOf(StandardPrice(10), StandardPrice(15), PromotionalPrice(20, 3)) to 42
     ).forEach {
         val stdPrices = it.key.count{ it is StandardPrice }
         val promoPrices = it.key.count{ it is StandardPrice }
