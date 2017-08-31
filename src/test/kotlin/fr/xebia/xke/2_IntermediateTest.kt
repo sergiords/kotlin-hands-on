@@ -121,27 +121,6 @@ class GenericsVarianceTest : StringSpec({
 
 })
 
-class GenericsTest : StringSpec({
-
-    "TODO 2.5.1 - Lists should be able to split into words and lines" {
-        val (words, lines) = listOf("a", "a b", "c", "d e").splitWordsAndLines()
-        listOf("a", "c") shouldBe words
-        listOf("a b", "d e") shouldBe lines
-    }
-
-    "TODO 2.5.1 - Lists should be able to split into letters and other symbols" {
-        val (letters, other) = setOf('a', '%', 'r', '}').splitLettersAndOthers()
-        setOf('a', 'r') shouldBe letters
-        setOf('%', '}') shouldBe other
-    }
-
-    "TODO 2.5.3 - Add an extension function to a companion object" {
-        val confReader = FileFilmLoader.build { it shouldBe "Contents of APPLICATION.CONF" }
-        confReader.actualPath shouldBe "APPLICATION.CONF"
-    }
-
-})
-
 // ---------------------------------------
 // Task 2.7 Collections
 // ---------------------------------------

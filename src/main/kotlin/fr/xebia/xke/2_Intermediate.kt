@@ -202,53 +202,6 @@ fun useSiteVariance(arrayIn: Array<in Int>, arrayOut: Array<out Int>) {
 }
 
 
-fun List<String>.splitWordsAndLines(): Pair<List<String>, List<String>> {
-    // TODO("2.5.1. make the following line work")
-    return this.partitionTo(ArrayList<String>(), ArrayList<String>()) { s -> !s.contains(" ") }
-}
-
-fun Set<Char>.splitLettersAndOthers(): Pair<Set<Char>, Set<Char>> {
-    // TODO("2.5.1. make the following line work")
-    return partitionTo(HashSet<Char>(), HashSet()) { c -> c in 'a'..'z' || c in 'A'..'Z' }
-}
-
-/*TODO(
-        """
-        Task 2.5.2.
-        Write a 'partitionTo' extension function to the Collection class
-        This function should split a collection into two according to a predicate
-        The signature of the 'toCollection()' function from the standard library may help you.
-    """)*/
-/**
- *
- *  While in an extension function on a collection, you could iterate the list as follows
- *  for (e in this) {
- *   print("this is an element: $e")
- * }
- */
-fun <A, B : MutableCollection<A>> Collection<A>.partitionTo(first: B, second: B, predicate: (A) -> Boolean): Pair<B, B> {
-    for (e in this) {
-        if (predicate(e)) {
-            first.add(e)
-        } else {
-            second.add(e)
-        }
-    }
-    return Pair(first, second)
-}
-
-/**
- * Add an extension function to the 'FileFilmLoader' companion class that allows you to build a loader for the
- * <b>application.conf</b> file.
- * <code>
- *   MyClass.Companion.myFunc(): String = "Hello"
- * </code>
- */
-fun FileFilmLoader.Companion.build(callback: (String) -> Unit): FileFilmLoader {
-    // TODO("2.5.3. uncomment this line")
-    return FileFilmLoader.build("application.conf", callback)
-}
-
 /**
  * Type Aliases allows programmer to use a more clearly type than existing name type
  *
