@@ -107,14 +107,6 @@ class FunctionTypeReceiverTest : StringSpec({
 
 })
 
-class DestructuringDeclarationsTest : StringSpec({
-    val prettyTime = getPrettyTime(MyTime(10, 10))
-    val expectedPrettyTime = "10:10"
-    "$prettyTime should be equal to $expectedPrettyTime" {
-        prettyTime shouldBe expectedPrettyTime
-    }
-})
-
 class InlineFunctionsTest : StringSpec({
 
     val witness = arrayListOf<String>()
@@ -158,4 +150,12 @@ class InlineFunctionsWithReifiedParameterType : StringSpec({
         }
     }
 
+})
+
+class DestructuringDeclarationsTest : StringSpec({
+    val prettyTime = getPrettyTime(MyTime(10, 10))
+    val expectedPrettyTime = "10:10"
+    "$prettyTime should be equal to $expectedPrettyTime" {
+        prettyTime shouldBe expectedPrettyTime
+    }
 })

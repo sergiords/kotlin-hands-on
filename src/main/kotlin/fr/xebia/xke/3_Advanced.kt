@@ -60,6 +60,7 @@ suspend fun giveTreatment(res: MutableList<String>) {
  * NB: Promise coroutines can be cancel at any moment by calling promise.cancel()
  */
 
+
 /**
  * Function extension
  *
@@ -130,23 +131,6 @@ val myBuild =
         dependency("libB")
     }
 
-/**
- * Destructuring declarations
- * We have seen in Intermediate part that we can destruct an object
- * See below how to make an object destructible
- *
- * Destructuring declaration can be used on Maps and Lambda since v1.1
- */
-/**
- * TODO: make the following code compile by modifying MyTime class declaration
- */
-data class MyTime(val hour: Int, val minute: Int)
-
-fun getPrettyTime(myTime: MyTime): String {
-    val (hour, minute) = myTime
-    return "$hour:$minute"
-}
-
 
 /**
  * Inline functions
@@ -169,3 +153,22 @@ inline fun Logger.fineIfEnabled(message: () -> String) {
  * To access a type's class use the '::' operator like: 'String::class'
  */
 inline fun <reified T> parameterTypeClass(): Class<T> = T::class.java
+
+
+/**
+ * Destructuring declarations
+ * We have seen in Intermediate part that we can destruct an object
+ * See below how to make an object destructible
+ *
+ * Destructuring declaration can be used on Maps and Lambda since v1.1
+ */
+/**
+ * TODO: make the following code compile by modifying MyTime class declaration
+ */
+data class MyTime(val hour: Int, val minute: Int)
+
+fun getPrettyTime(myTime: MyTime): String {
+    val (hour, minute) = myTime
+    return "$hour:$minute"
+}
+
