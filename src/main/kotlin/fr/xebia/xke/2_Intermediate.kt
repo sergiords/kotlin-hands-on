@@ -151,9 +151,57 @@ class StringMagicBox {
 
 }
 
+
 /**
- * Task 2.5. generics (site-variance)
+ * Generics: declaration-site variance: Co-Variance 'out'
  */
+sealed class Text
+
+class SMS : Text()
+class Mail : Text()
+
+interface Sender<out T> {
+
+    fun send(): T
+
+    // fun receive(t: T) // Does not compile ! T can not be passed as a parameter
+}
+
+// TODO return given parameter and notice how we can assign a Sender<Mail> to a Sender<Text>
+fun textSender(mailSender: Sender<Mail>): Sender<Text> = mailSender
+
+
+/**
+ * Generics: declaration-site variance: Contra-Variance 'in'
+ */
+interface Receiver<in T> {
+
+    // fun send(): T // Does not compile ! T can not be returned
+
+    fun receive(t: T)
+}
+
+// TODO return given parameter and notice how we can assign a Receiver<Text> to a Receiver<SMS>
+fun textReceiver(textReceiver: Receiver<Text>): Receiver<SMS> = textReceiver
+
+
+/**
+ * Generics: use-site variance
+ *
+ * Sometimes type parameter variance can not be expressed at type level
+ * It is possible to express it at function parameter level
+ */
+fun useSiteVariance(arrayIn: Array<in Int>, arrayOut: Array<out Int>) {
+
+    // TODO copy arrayOut[3] element to arrayIn[5] element
+    arrayIn[5] = arrayOut[3]
+
+    // TODO notice how arrayOut elements can not be assigned and arrayIn can not be read as Int
+    // val x: Int = arrayIn[0] // Does not compile
+    // arrayOut[0] = x         // Does not compile
+}
+
+
 fun List<String>.splitWordsAndLines(): Pair<List<String>, List<String>> {
     // TODO("2.5.1. make the following line work")
     return this.partitionTo(ArrayList<String>(), ArrayList<String>()) { s -> !s.contains(" ") }

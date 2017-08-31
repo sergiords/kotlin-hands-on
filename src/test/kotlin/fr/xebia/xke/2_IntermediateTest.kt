@@ -91,9 +91,36 @@ class GettersSettersTest : StringSpec({
     }
 })
 
-// ---------------------------------------
-// Task 2.5
-// ---------------------------------------
+class GenericsVarianceTest : StringSpec({
+
+    val sender = object : Sender<Mail>{
+        override fun send(): Mail = throw NotImplementedException("NotCalled")
+    }
+
+    val receiver = object : Receiver<Text> {
+        override fun receive(t: Text)  = throw NotImplementedException("NotCalled")
+    }
+
+    "${::textSender.name} should return its parameter since parameter type and return type are covariant" {
+        textSender(sender) shouldBe sender
+    }
+
+    "${::textReceiver.name} should return its parameter since parameter type and return type are contravariant" {
+        textReceiver(receiver) shouldBe receiver
+    }
+
+    "useSiteVariance() should copy arrayOut[3] to arrayIn[5]" {
+        val arrayIn = arrayOf(0, 2, 4, 6, 8, 10)
+        val arrayOut = arrayOf(1, 3, 5, 7, 9, 11)
+
+        useSiteVariance(arrayIn, arrayOut)
+
+        arrayIn[5] shouldBe 7
+        arrayOut[3] shouldBe 7
+    }
+
+})
+
 class GenericsTest : StringSpec({
 
     "TODO 2.5.1 - Lists should be able to split into words and lines" {
