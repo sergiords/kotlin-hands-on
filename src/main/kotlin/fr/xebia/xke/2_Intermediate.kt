@@ -21,15 +21,6 @@ import kotlin.collections.ArrayList
 // Filmography should have a default value of empty list
 data class SpecialDirector(val name: String, val bio: String, val filmography: List<String> = emptyList())
 
-fun filmographyContaining(dir: SpecialDirector, keyword: String): List<String> {
-    //TODO("2.1.2. Deconstruct the director and add his name to every film containing the keyword specified")
-    val (name, _, filmography) = dir
-    return filmography
-        .filter { it.contains(keyword) }
-        .map { "$name - $it" }
-}
-
-
 /**
  * Task 2.2. Companion objects
  *
