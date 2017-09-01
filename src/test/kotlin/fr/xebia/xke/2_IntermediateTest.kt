@@ -28,31 +28,28 @@ class DataClassTest : StringSpec({
         name = "John Carpenter",
         bio = "was born in Carthage, New York")
 
-    // ---------------------------------------
-    // Task 2.1
-    // ---------------------------------------
-    "TODO 2.1.1 - it should provide 'toString'" {
+    "it should provide 'toString'" {
         john.toString() shouldBe "SpecialDirector(name=John Carpenter, bio=was born in Carthage, New York, filmography=[])"
     }
 
-    "TODO 2.1.1 - it should provide 'copy'" {
+    "it should provide 'copy'" {
         val updatedJohn = john.copy(name = "Mel Brooks")
         updatedJohn.bio shouldBe john.bio
     }
 
-    "TODO 2.1.1 - it should provide 'equals' " {
+    "it should provide 'equals' " {
         val anotherJohn = SpecialDirector(
             name = "John Carpenter",
             bio = "was born in Carthage, New York",
             filmography = emptyList())
-        (john == anotherJohn) shouldBe true
+        anotherJohn shouldBe john
     }
 
 })
 
 class CompanionObjectTest : StringSpec({
 
-    "TODO 2.2.3 - it should be able to use companion objects" {
+    "it should be able to use companion objects" {
         val csvReader = FileFilmLoader.build("file.csv") { it shouldBe "Contents of FILE.CSV" }
         csvReader.actualPath shouldBe "FILE.CSV"
 
@@ -62,28 +59,24 @@ class CompanionObjectTest : StringSpec({
 
 })
 
-
-// ---------------------------------------
-// Task 2.4
-// ---------------------------------------
 class GettersSettersTest : StringSpec({
     val withMyFilms = listOf(
         Film("Videodrome", 1984, RandomDirector, listOf(Horror), 9.0),
         Film("Donnie Darko", 2002, RandomDirector, listOf(Drama, SciFi), 10.0)
     )
 
-    "TODO 2.4.1 - It should call the getter of a property" {
+    "It should call the getter of a property" {
         val filmCollection = FilmCollection(withMyFilms)
         filmCollection.has80sFilms shouldBe false
     }
 
-    "TODO 2.4.2 - It should call the getter and setter of a property" {
+    "It should call the getter and setter of a property" {
         val filmCollection = FilmCollection(withMyFilms)
         filmCollection.periodStartYear = 1980
         filmCollection.has80sFilms shouldBe true
     }
 
-    "TODO 2.4.3 - Lists should be able to split into words and lines" {
+    "Lists should be able to split into words and lines" {
         StringMagicBox().toLower shouldBe "minuscule !"
 
         val stringMagicBox = StringMagicBox()
@@ -94,12 +87,12 @@ class GettersSettersTest : StringSpec({
 
 class GenericsVarianceTest : StringSpec({
 
-    val sender = object : Sender<Mail>{
+    val sender = object : Sender<Mail> {
         override fun send(): Mail = throw NotImplementedException("NotCalled")
     }
 
     val receiver = object : Receiver<Text> {
-        override fun receive(t: Text)  = throw NotImplementedException("NotCalled")
+        override fun receive(t: Text) = throw NotImplementedException("NotCalled")
     }
 
     "${::textSender.name} should return its parameter since parameter type and return type are covariant" {
@@ -127,21 +120,21 @@ class GenericsVarianceTest : StringSpec({
 // ---------------------------------------
 class DataClassWithCollectionsTest : StringSpec({
 
-    "TODO 2.7.1 - it should use List#filter" {
+    "it should use List#filter" {
         getFilmsMadeBy(Hitchcock, completeList) shouldBe hitchcockFilms
     }
 
-    "TODO 2.7.2 - it should use films List#filter and high order functions" {
+    "it should use films List#filter and high order functions" {
         filterFilmsUsingFilter(completeList, { it.director == Hitchcock }) shouldBe hitchcockFilms
         filterFilmsUsingFilter(completeList, { it.director == Kurosawa }) shouldBe kurosawaFilms
     }
 
-    "TODO 2.7.3 - it should use folding to sum film prices" {
+    "it should use folding to sum film prices" {
         sumPricesWithFolding(hitchcockFilms) shouldBe 7.8
         sumPricesWithFolding(kurosawaFilms) shouldBe 5.3
     }
 
-    "TODO 2.7.4 - it should delete consecutive duplicates" {
+    "it should delete consecutive duplicates" {
         deleteDuplicates(listOf<Film>()) shouldBe listOf<Film>()
         deleteDuplicates(listOf(ran)) shouldBe listOf(ran)
         deleteDuplicates(listOf(ran, rashomon)) shouldBe listOf(ran, rashomon)
@@ -149,7 +142,7 @@ class DataClassWithCollectionsTest : StringSpec({
         deleteDuplicates(listOf(ran, ran, rashomon, rashomon)) shouldBe listOf(ran, rashomon)
     }
 
-    "TODO 2.7.5 - it should use pattern matching" {
+    "it should use pattern matching" {
         val film1 = Film("Videodrome", 1984, RandomDirector, listOf(Horror), 9.0)
         val film2 = Film("Donnie Darko", 2002, RandomDirector, listOf(Drama, SciFi), 10.0)
         val film3 = Film("The Adventures of Baron Munchausen", 1989, RandomDirector, listOf(Comedy), 15.0)
@@ -158,7 +151,7 @@ class DataClassWithCollectionsTest : StringSpec({
         discounts(discountFilms) shouldBe listOf(3.15, 4.0, 7.5, 2.0)
     }
 
-    "TODO 2.7.6 - it should use pattern matching with lists" {
+    "it should use pattern matching with lists" {
         val film1 = Film("Videodrome", 1984, RandomDirector, listOf(Horror), 9.0)
         val film2 = Film("Donnie Darko", 2002, Kurosawa, listOf(Drama, SciFi, Thriller), 10.0)
         val film3 = Film("The Adventures of Baron Munchausen", 1989, RandomDirector, listOf(Comedy), 15.0)
