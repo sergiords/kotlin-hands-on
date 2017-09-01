@@ -11,6 +11,26 @@ val port: Int = 443
 val port = 443
 ```
 
+## Control flow
+```kotlin
+val result = if (bob == alice) "same" else "different"
+
+for (user in users) { ... }
+
+val result = when (x) {
+    1 -> "positive"
+    0 -> "null"
+    -1 -> "negative"
+    else -> "unknown"
+}
+
+val result = when {
+    x > 0 -> "positive"
+    x == 0 -> "null"
+    else -> "negative"
+}
+```
+
 ## Functions
 ```kotlin
 fun helloWorld(): String = "Hello World"
