@@ -205,21 +205,16 @@ fun useSiteVariance(arrayIn: Array<in Int>, arrayOut: Array<out Int>) {
 
 
 /**
- * Type Aliases allows programmer to use a more clearly type than existing name type
+ * Type Aliases allows programmer to use a more clearly type than the existing name type
  *
- * We cannot use type aliases to constrain parameters: a function accepting a HashPassword parameter will accept any String
- * value for that parameter.
+ * typealias HashPassword = String
  *
+ * fun check(hash: HashPassword) { ... }
+ * check("Plain String") // works just fine
+ *
+ * We can't use type aliases to constrain parameters: check function accepts both HashPassword and String parameters
  */
-/**
- * TODO replace dict declaration to use Type aliases
- */
-//abstract class Dict : Map<String, String>
-
-//val dict = hashMapOf(
-//    Pair("hello", "used as a greeting or to begin a telephone conversation"),
-//    Pair("world", "the earth, together with all of its countries and peoples"))
-
+// TODO define a type alias Dict for Map<String, String> and replace dict variable Type to use it
 typealias Dict = Map<String, String>
 
 val dict: Dict = hashMapOf(

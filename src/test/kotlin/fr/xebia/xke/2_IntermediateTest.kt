@@ -129,9 +129,14 @@ class GenericsVarianceTest : StringSpec({
 
 })
 
-// ---------------------------------------
-// Task 2.7 Collections
-// ---------------------------------------
+class TypeAliases : StringSpec({
+
+    "Create a type aliases corresponding to a dictionary" {
+        (dict is Dict) shouldBe true
+        dict.getOrDefault("hello", "unknown") shouldBe "used as a greeting or to begin a telephone conversation"
+    }
+})
+
 class DataClassWithCollectionsTest : StringSpec({
 
     "it should use List#filter" {
@@ -186,13 +191,5 @@ class LazyTest : StringSpec({
         lazyValue
         lazyValue
         lazyInc shouldEqual 1
-    }
-})
-
-class TypeAliases : StringSpec({
-
-    "Create a type aliases corresponding to a dictionary" {
-        (dict is Dict) shouldBe true
-        dict.getOrDefault("hello", "unknown") shouldBe "used as a greeting or to begin a telephone conversation"
     }
 })
