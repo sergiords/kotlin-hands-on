@@ -17,7 +17,7 @@
 - [x] type alias
 - [x] generics (site-variance)
 - [x] collections & structures map, pair
-- [x] lazy
+- [x] lazy / delegates
 
 ## Advanced
 - [x] operator overloading (+,-,get/set,...)
