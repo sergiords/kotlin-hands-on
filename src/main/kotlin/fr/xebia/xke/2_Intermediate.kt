@@ -1,8 +1,5 @@
 package fr.xebia.xke
 
-import java.util.*
-import kotlin.collections.ArrayList
-
 /**
  * Task 2.1. Data class is a class to do nothing but hold data
  *
@@ -222,7 +219,8 @@ typealias Dict = Map<String, String>
 
 val dict: Dict = hashMapOf(
     Pair("hello", "used as a greeting or to begin a telephone conversation"),
-    Pair("world", "the earth, together with all of its countries and peoples"))
+    Pair("world", "the earth, together with all of its countries and peoples")
+)
 
 /**
  * Task 2.7. collections & structures map, pair
