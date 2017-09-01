@@ -2,28 +2,28 @@ package fr.xebia.xke
 
 import io.kotlintest.matchers.shouldBe
 import io.kotlintest.matchers.shouldEqual
+import io.kotlintest.matchers.shouldNotBe
 import io.kotlintest.specs.StringSpec
 
 class DataClassTest : StringSpec({
 
     val john = SpecialDirector(
         name = "John Carpenter",
-        bio = "was born in Carthage, New York")
+        bio = "was born in Carthage, New York"
+    )
 
-    "it should provide 'toString'" {
-        john.toString() shouldBe "SpecialDirector(name=John Carpenter, bio=was born in Carthage, New York, filmography=[])"
+    "${SpecialDirector::class.simpleName} should provide 'toString' method" {
+        john.toString() shouldBe "SpecialDirector(name=John Carpenter, bio=was born in Carthage, New York)"
     }
 
-    "it should provide 'copy'" {
-        val updatedJohn = john.copy(name = "Mel Brooks")
-        updatedJohn.bio shouldBe john.bio
+    "${SpecialDirector::class.simpleName} should provide 'copy' method" {
+        val copiedJohn = john.copy(name = "Mel Brooks")
+        copiedJohn.bio shouldBe john.bio
+        copiedJohn.name shouldNotBe john.name
     }
 
-    "it should provide 'equals' " {
-        val anotherJohn = SpecialDirector(
-            name = "John Carpenter",
-            bio = "was born in Carthage, New York",
-            filmography = emptyList())
+    "${SpecialDirector::class.simpleName} should provide 'equals' method" {
+        val anotherJohn = SpecialDirector(name = "John Carpenter", bio = "was born in Carthage, New York")
         anotherJohn shouldBe john
     }
 

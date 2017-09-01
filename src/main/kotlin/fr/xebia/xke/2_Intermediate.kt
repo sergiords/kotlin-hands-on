@@ -11,20 +11,18 @@ package fr.xebia.xke
  * - componentN() functions corresponding to the properties in their order of declaration
  * - copy()
  *
- * They will not be generated if explicitly defined
+ * These methods will not be generated if explicitly defined
  */
-
-// TODO create a class Director with name: String, bio: String and filmography: List<String>
-// Filmography should have a default value of empty list
-data class SpecialDirector(val name: String, val bio: String, val filmography: List<String> = emptyList())
+// TODO transform this class to a data class
+data class SpecialDirector(val name: String, val bio: String)
 
 
 /**
  * Objects & Companion objects
  *
- * The 'static' keyword is not present in kotlin but there are two ways to define singletons and factory methods
+ * The 'static' keyword is not present in kotlin but there are two ways to define static-like methods: objects and companion objects
  *
- * Singletons:
+ * Objects:
  *  object Singleton { ... } // defines a class and its associated singleton all-together
  *
  * Companion objects:
