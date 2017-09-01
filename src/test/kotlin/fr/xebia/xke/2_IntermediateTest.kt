@@ -132,7 +132,7 @@ class GenericsVarianceTest : StringSpec({
 class TypeAliases : StringSpec({
 
     "Create a type aliases corresponding to a dictionary" {
-        (dict is Dict) shouldBe true
+        (dict is Dictionary) shouldBe true
         dict.getOrDefault("hello", "unknown") shouldBe "used as a greeting or to begin a telephone conversation"
     }
 })

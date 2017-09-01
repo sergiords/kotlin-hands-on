@@ -214,10 +214,10 @@ fun useSiteVariance(arrayIn: Array<in Int>, arrayOut: Array<out Int>) {
  *
  * We can't use type aliases to constrain parameters: check function accepts both HashPassword and String parameters
  */
-// TODO define a type alias Dict for Map<String, String> and replace dict variable Type to use it
-typealias Dict = Map<String, String>
+// TODO define a type alias Dictionary for Map<String, String> and replace dict variable Type to use it
+typealias Dictionary = Map<String, String>
 
-val dict: Dict = hashMapOf(
+val dict: Dictionary = mapOf(
     Pair("hello", "used as a greeting or to begin a telephone conversation"),
     Pair("world", "the earth, together with all of its countries and peoples")
 )
