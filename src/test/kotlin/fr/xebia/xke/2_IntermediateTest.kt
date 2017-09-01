@@ -1,26 +1,17 @@
 package fr.xebia.xke
 
-import fr.xebia.xke.MockFilmData.Companion.completeList
-import fr.xebia.xke.MockFilmData.Companion.hitchcockFilms
-import fr.xebia.xke.MockFilmData.Companion.kurosawaFilms
-import fr.xebia.xke.MockFilmData.Companion.ran
-import fr.xebia.xke.MockFilmData.Companion.rashomon
 import io.kotlintest.matchers.shouldBe
 import io.kotlintest.matchers.shouldEqual
 import io.kotlintest.specs.StringSpec
 
-class MockFilmData {
-    companion object {
-        val ran = Film("Ran", 1985, Kurosawa, listOf(Action, Drama, War), 2.3)
-        val rashomon = Film("Rashomon", 1950, Kurosawa, listOf(Crime, Drama), 3.0)
-        val psyco = Film("Psycho", 1960, Hitchcock, listOf(Horror, Mistery, Thriller), 2.7)
-        val vertigo = Film("Vertigo", 1958, Hitchcock, listOf(Mistery, Romance, Thriller), 5.1)
+val ran = Film("Ran", 1985, Kurosawa, listOf(Action, Drama, War), 2.3)
+val rashomon = Film("Rashomon", 1950, Kurosawa, listOf(Crime, Drama), 3.0)
+val psyco = Film("Psycho", 1960, Hitchcock, listOf(Horror, Mistery, Thriller), 2.7)
+val vertigo = Film("Vertigo", 1958, Hitchcock, listOf(Mistery, Romance, Thriller), 5.1)
 
-        val completeList = listOf<Film>(ran, rashomon, psyco, vertigo)
-        val hitchcockFilms = listOf<Film>(psyco, vertigo)
-        val kurosawaFilms = listOf<Film>(ran, rashomon)
-    }
-}
+val completeList = listOf(ran, rashomon, psyco, vertigo)
+val hitchcockFilms = listOf(psyco, vertigo)
+val kurosawaFilms = listOf(ran, rashomon)
 
 class DataClassTest : StringSpec({
 
