@@ -60,10 +60,9 @@ class FileFilmLoader private constructor(fileName: String, callback: (String) ->
  *
  * A sealed class can have subclasses, but all of them must be declared in the same file as the sealed class itself
  */
-sealed class Genre(val desc: String) {
-    override fun toString(): String {
-        return desc
-    }
+// TODO seal this open class to prevent subclasses defined outside of this file
+sealed class Genre(val description: String) {
+    override fun toString() = description
 }
 
 object Action : Genre("Action")
@@ -86,18 +85,22 @@ object Comedy : Genre("Comedy")
 
 object SciFi : Genre("Sci-Fi")
 
-
+// TODO seal this open class to prevent subclasses defined outside of this file
 sealed class Director(val name: String)
 
 object Kurosawa : Director("Kurosawa")
 
 object Hitchcock : Director("Hitchcock")
 
-object Spielberg : Director("Spielberg")
+object Spielberg : Director("Unknown")
 
-object Kubrick : Director("Kubrick")
-
-object RandomDirector : Director("does_not_matter")
+// TODO use a when expression to map genres to one movie of the genre, notice that else branch is optional once Genre is sealed
+fun directorYearOfBirth(director: Director): Int = when (director) {
+    Kurosawa -> 1910
+    Hitchcock -> 1899
+    Spielberg -> 1946
+    // else -> -1 // optional once Director class is sealed
+}
 
 
 /**

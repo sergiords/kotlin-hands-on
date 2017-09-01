@@ -59,10 +59,32 @@ class CompanionObjectTest : StringSpec({
 
 })
 
+class SealedClassTest : StringSpec({
+
+    "${Genre::class.simpleName} should be sealed" {
+        Genre::class.isSealed shouldBe true
+    }
+
+    "${Director::class.simpleName} should be sealed" {
+        Director::class.isSealed shouldBe true
+    }
+
+    mapOf(
+        Kurosawa to 1910,
+        Hitchcock to 1899,
+        Spielberg to 1946
+    ).forEach {
+        "${it.key.name} was born in year ${it.value}" {
+            directorYearOfBirth(it.key) shouldBe it.value
+        }
+    }
+
+})
+
 class GettersSettersTest : StringSpec({
     val withMyFilms = listOf(
-        Film("Videodrome", 1984, RandomDirector, listOf(Horror), 9.0),
-        Film("Donnie Darko", 2002, RandomDirector, listOf(Drama, SciFi), 10.0)
+        Film("Videodrome", 1984, Spielberg, listOf(Horror), 9.0),
+        Film("Donnie Darko", 2002, Spielberg, listOf(Drama, SciFi), 10.0)
     )
 
     "It should call the getter of a property" {
@@ -143,19 +165,19 @@ class DataClassWithCollectionsTest : StringSpec({
     }
 
     "it should use pattern matching" {
-        val film1 = Film("Videodrome", 1984, RandomDirector, listOf(Horror), 9.0)
-        val film2 = Film("Donnie Darko", 2002, RandomDirector, listOf(Drama, SciFi), 10.0)
-        val film3 = Film("The Adventures of Baron Munchausen", 1989, RandomDirector, listOf(Comedy), 15.0)
-        val film4 = Film("Brazil", 1985, RandomDirector, listOf(SciFi), 2.0)
+        val film1 = Film("Videodrome", 1984, Spielberg, listOf(Horror), 9.0)
+        val film2 = Film("Donnie Darko", 2002, Spielberg, listOf(Drama, SciFi), 10.0)
+        val film3 = Film("The Adventures of Baron Munchausen", 1989, Spielberg, listOf(Comedy), 15.0)
+        val film4 = Film("Brazil", 1985, Spielberg, listOf(SciFi), 2.0)
         val discountFilms = listOf(film1, film2, film3, film4)
         discounts(discountFilms) shouldBe listOf(3.15, 4.0, 7.5, 2.0)
     }
 
     "it should use pattern matching with lists" {
-        val film1 = Film("Videodrome", 1984, RandomDirector, listOf(Horror), 9.0)
+        val film1 = Film("Videodrome", 1984, Spielberg, listOf(Horror), 9.0)
         val film2 = Film("Donnie Darko", 2002, Kurosawa, listOf(Drama, SciFi, Thriller), 10.0)
-        val film3 = Film("The Adventures of Baron Munchausen", 1989, RandomDirector, listOf(Comedy), 15.0)
-        val film4 = Film("Brazil", 1985, RandomDirector, listOf(Action), 2.0)
+        val film3 = Film("The Adventures of Baron Munchausen", 1989, Spielberg, listOf(Comedy), 15.0)
+        val film4 = Film("Brazil", 1985, Spielberg, listOf(Action), 2.0)
 
         labelizeFilm(film1) shouldBe listOf("Horror - Videodrome")
         labelizeFilm(film2) shouldBe listOf(":( Donnie Darko", "Donnie Darko", "Thriller -> Kurosawa")
