@@ -20,36 +20,38 @@ data class SpecialDirector(val name: String, val bio: String, val filmography: L
 
 
 /**
- * Companion objects
+ * Objects & Companion objects
  *
- * The 'static' keyword is not present in kotlin so we need to create our static code inside a companion object
- * construct
+ * The 'static' keyword is not present in kotlin but there are two ways to define singletons and factory methods
  *
- * companion object {
- *   // static functions goes here
+ * Singletons:
+ *  object Singleton { ... } // defines a class and its associated singleton all-together
+ *
+ * Companion objects:
+ *  class File {
+ *      companion object {
+ *          fun load(path: String) { ... } // called with File.load(...)
+ *      }
  * }
- *
- * The init blocks lets you write code inside your class constructor
- *
- * init {
- *   print("This is the constructor")
- * }
- *
  */
-class FileFilmLoader private constructor(fileName: String, callback: (String) -> Unit) {
-    // TODO change the value of the actualPath variable to capitals
+object Ops {
+    var name = "" // Ops.name = "Bob"
+}
+
+// TODO return true if an Ops has no name (name is empty)
+fun anOpsHasNoName(): Boolean = Ops.name.isEmpty()
+
+
+class FileFilmLoader private constructor(fileName: String) {
+
+    // TODO change the value of the actualPath variable to upper case
     var actualPath: String = fileName.toUpperCase()
 
-    // TODO insert init block here; don't forget to call the callback
-    init {
-        callback("Contents of $actualPath")
+    // TODO insert companion object here and implement build method as a factory for FileFilmLoader (FileFilmLoader.build(...))
+    companion object {
+        fun build(fileName: String): FileFilmLoader = FileFilmLoader(fileName)
     }
 
-    // TODO insert companion object here to create a new instance of the class
-    companion object {
-        fun build(fileName: String, callback: (String) -> Unit): FileFilmLoader =
-            FileFilmLoader(fileName, callback)
-    }
 }
 
 

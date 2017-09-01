@@ -29,14 +29,19 @@ class DataClassTest : StringSpec({
 
 })
 
-class CompanionObjectTest : StringSpec({
+class ObjectAndCompanionObjectTest : StringSpec({
 
-    "it should be able to use companion objects" {
-        val csvReader = FileFilmLoader.build("file.csv") { it shouldBe "Contents of FILE.CSV" }
-        csvReader.actualPath shouldBe "FILE.CSV"
+    "anOpsHasNoName() should return true when Ops.name is empty, false otherwise" {
+        Ops.name = ""
+        anOpsHasNoName() shouldBe true
+        Ops.name = "Ops has a name"
+        anOpsHasNoName() shouldBe false
+    }
 
-        val xmlReader = FileFilmLoader.build("file.xml") { it shouldBe "Contents of FILE.XML" }
-        xmlReader.actualPath shouldBe "FILE.XML"
+    "${FileFilmLoader::class.simpleName}.build() should create a ${FileFilmLoader::class.simpleName} with proper path" {
+        FileFilmLoader.build("file.csv").actualPath shouldBe "FILE.CSV"
+
+        FileFilmLoader.build("file.xml").actualPath shouldBe "FILE.XML"
     }
 
 })
