@@ -178,18 +178,24 @@ inline fun <reified T> parameterTypeClass(): Class<T> = T::class.java
 
 /**
  * Destructuring declarations
+ *
  * We have seen in Intermediate part that we can destruct an object
  * See below how to make an object destructible
  *
- * Destructuring declaration can be used on Maps and Lambda since v1.1
- */
-/**
- * TODO: make the following code compile by modifying MyTime class declaration
+ * Destructuring declaration can be used in Lambdas since v1.1, examples:
+ *
+ *  data class User(val name: String, val age: Int)
+ *
+ *  val (name, age) = User("Bob", 30)
+ *
+ *  users.filter { (name, age) -> name.startsWith("Bob") && age >= 20 }
+ *  users.filter { (name, _) -> name.startsWith("Bob") }
+ *
+ *  mapOf<String, Int>(...).forEach { (key, value) -> ... }
+ *
  */
 data class MyTime(val hour: Int, val minute: Int)
 
-fun getPrettyTime(myTime: MyTime): String {
-    val (hour, minute) = myTime
-    return "$hour:$minute"
-}
+// TODO return a list of formatted times 'hour:minute' using destructuring declaration
+fun formatTimes(times: List<MyTime>): List<String> = times.map { (hour, minute) -> "$hour:$minute" }
 

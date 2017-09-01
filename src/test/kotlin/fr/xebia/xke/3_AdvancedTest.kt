@@ -5,7 +5,6 @@ import io.kotlintest.matchers.shouldEqual
 import io.kotlintest.specs.StringSpec
 import kotlinx.coroutines.experimental.CommonPool
 import kotlinx.coroutines.experimental.async
-import kotlinx.coroutines.experimental.delay
 import kotlinx.coroutines.experimental.runBlocking
 import java.time.LocalDate
 import java.util.logging.Handler
@@ -159,9 +158,13 @@ class InlineFunctionsWithReifiedParameterType : StringSpec({
 })
 
 class DestructuringDeclarationsTest : StringSpec({
-    val prettyTime = getPrettyTime(MyTime(10, 10))
-    val expectedPrettyTime = "10:10"
-    "$prettyTime should be equal to $expectedPrettyTime" {
-        prettyTime shouldBe expectedPrettyTime
+    val times = listOf(
+        MyTime(10, 10),
+        MyTime(20, 20),
+        MyTime(11, 11),
+        MyTime(12, 34)
+    )
+    "${MyTime::class.simpleName} should be formatted using 'hour:minute' format" {
+        formatTimes(times) shouldBe listOf("10:10", "20:20", "11:11", "12:34")
     }
 })
