@@ -233,33 +233,42 @@ data class Film(val name: String,
                 val price: Double = 0.0)
 
 /**
- * GetFilmsMadeBy should return films directed by the given director
+ * Collections in Kotlin have classic functional programming functions
+ *
+ * In the following exercises we are going to explore some of these functions
  */
-fun getFilmsMadeBy(director: Director, films: List<Film>): List<Film> {
-    //TODO("filter films of this director")
-    return films
+
+/**
+ * Using filters with lambdas
+ */
+// TODO return films directed by the given director
+fun filmsMadeBy(director: Director, films: List<Film>): List<Film> =
+    films
         .filter { it.director == director }
-}
 
 /**
- * filterFilmsUsingFilter should return films directed by the given director (using given filter)
+ * Using high-order function as parameter
+ *
+ * One can specify a function as a paramater with the following syntax:
+ *  fun <T> filter(predicate: (T) -> Boolean) { ... }
+ *
+ * In Kotlin there is no need to declare a specific class (like Predicate, Supplier, Consumer, ... classes in Java)
  */
-fun filterFilmsUsingFilter(films: List<Film>, withCustomFilter: (Film) -> Boolean): List<Film> {
-    //TODO("filter using high order function (function as parameter)")
-    return films
-        .filter(withCustomFilter)
-}
+// TODO return films matching the given filter
+fun filmsMatchingFilter(films: List<Film>, filter: (Film) -> Boolean): List<Film> =
+    films
+        .filter(filter)
 
 /**
- * sumPricesWithFolding should use List#foldLeft to return the given films prices sum
+ * Using map & fold functions
+ *
  * Do you know the difference between 'reduce' and 'fold'?
  */
-fun sumPricesWithFolding(films: List<Film>): Double {
-    // TODO("map the film to its price, then 'fold' the sum")
-    return films
+// TODO map each film to its price then 'fold' the sum of prices
+fun sumPricesWithFolding(films: List<Film>): Double =
+    films
         .map { it.price }
         .fold(0.0, { total, next -> total + next })
-}
 
 /**
  * Return a list containing distinct films only

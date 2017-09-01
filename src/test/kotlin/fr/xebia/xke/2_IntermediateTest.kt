@@ -137,15 +137,15 @@ class TypeAliases : StringSpec({
     }
 })
 
-class DataClassWithCollectionsTest : StringSpec({
+class CollectionsTest : StringSpec({
 
     "it should use List#filter" {
-        getFilmsMadeBy(Hitchcock, completeList) shouldBe hitchcockFilms
+        filmsMadeBy(Hitchcock, completeList) shouldBe hitchcockFilms
     }
 
     "it should use films List#filter and high order functions" {
-        filterFilmsUsingFilter(completeList, { it.director == Hitchcock }) shouldBe hitchcockFilms
-        filterFilmsUsingFilter(completeList, { it.director == Kurosawa }) shouldBe kurosawaFilms
+        filmsMatchingFilter(completeList, { it.director == Hitchcock }) shouldBe hitchcockFilms
+        filmsMatchingFilter(completeList, { it.director == Kurosawa }) shouldBe kurosawaFilms
     }
 
     "it should use folding to sum film prices" {
