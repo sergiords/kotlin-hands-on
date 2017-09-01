@@ -59,7 +59,7 @@ val fiveFirstFibonacci = fibonacciSeq.take(5) // values are yielded only when th
 /**
  * Coroutines: Non Blocking
  *
- * Suspending functions can only be called within special coroutine-handling functions (see links below for details)
+ * Suspending functions can only be called within special coroutine-handling functions (see links above for details)
  *  async(CommonPool) {
  *      delay(1000)
  *      println("Hello") // printed last
