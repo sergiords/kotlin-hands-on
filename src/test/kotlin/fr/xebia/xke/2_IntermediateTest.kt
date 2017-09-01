@@ -4,15 +4,6 @@ import io.kotlintest.matchers.shouldBe
 import io.kotlintest.matchers.shouldEqual
 import io.kotlintest.specs.StringSpec
 
-val ran = Film("Ran", 1985, Kurosawa, listOf(Action, Drama, War), 2.3)
-val rashomon = Film("Rashomon", 1950, Kurosawa, listOf(Crime, Drama), 3.0)
-val psyco = Film("Psycho", 1960, Hitchcock, listOf(Horror, Mistery, Thriller), 2.7)
-val vertigo = Film("Vertigo", 1958, Hitchcock, listOf(Mistery, Romance, Thriller), 5.1)
-
-val completeList = listOf(ran, rashomon, psyco, vertigo)
-val hitchcockFilms = listOf(psyco, vertigo)
-val kurosawaFilms = listOf(ran, rashomon)
-
 class DataClassTest : StringSpec({
 
     val john = SpecialDirector(
@@ -139,6 +130,15 @@ class TypeAliases : StringSpec({
 
 class CollectionsTest : StringSpec({
 
+    val ran = Film("Ran", 1985, Kurosawa, listOf(Action, Drama, War), 2.3)
+    val rashomon = Film("Rashomon", 1950, Kurosawa, listOf(Crime, Drama), 3.0)
+    val psyco = Film("Psycho", 1960, Hitchcock, listOf(Horror, Mistery, Thriller), 2.7)
+    val vertigo = Film("Vertigo", 1958, Hitchcock, listOf(Mistery, Romance, Thriller), 5.1)
+
+    val completeList = listOf(ran, rashomon, psyco, vertigo)
+    val hitchcockFilms = listOf(psyco, vertigo)
+    val kurosawaFilms = listOf(ran, rashomon)
+
     "it should use List#filter" {
         filmsMadeBy(Hitchcock, completeList) shouldBe hitchcockFilms
     }
@@ -153,34 +153,45 @@ class CollectionsTest : StringSpec({
         sumPricesWithFolding(kurosawaFilms) shouldBe 5.3
     }
 
-    "it should delete consecutive duplicates" {
-        deleteDuplicates(listOf<Film>()) shouldBe listOf<Film>()
-        deleteDuplicates(listOf(ran)) shouldBe listOf(ran)
-        deleteDuplicates(listOf(ran, rashomon)) shouldBe listOf(ran, rashomon)
-        deleteDuplicates(listOf(ran, rashomon, rashomon)) shouldBe listOf(ran, rashomon)
-        deleteDuplicates(listOf(ran, ran, rashomon, rashomon)) shouldBe listOf(ran, rashomon)
+})
+
+class CollectionsInitializationTest : StringSpec({
+
+    "${::films.name} should contain at least two films from Spielberg and have a genre defined" {
+        (films.size >= 2) shouldBe true
+        films.map { it.director }.distinct() shouldBe listOf(Spielberg)
+        films.forEach { it.type.isNotEmpty() shouldBe true }
     }
 
-    "it should use pattern matching" {
-        val film1 = Film("Videodrome", 1984, Spielberg, listOf(Horror), 9.0)
-        val film2 = Film("Donnie Darko", 2002, Spielberg, listOf(Drama, SciFi), 10.0)
-        val film3 = Film("The Adventures of Baron Munchausen", 1989, Spielberg, listOf(Comedy), 15.0)
-        val film4 = Film("Brazil", 1985, Spielberg, listOf(SciFi), 2.0)
-        val discountFilms = listOf(film1, film2, film3, film4)
-        discounts(discountFilms) shouldBe listOf(3.15, 4.0, 7.5, 2.0)
+    "${::filmsByYear.name} should contain at least two entries, each with at least one movie" {
+        (filmsByYear.size >= 2) shouldBe true
+        filmsByYear.forEach { it.value.isNotEmpty() shouldBe true }
     }
 
-    "it should use pattern matching with lists" {
-        val film1 = Film("Videodrome", 1984, Spielberg, listOf(Horror), 9.0)
-        val film2 = Film("Donnie Darko", 2002, Kurosawa, listOf(Drama, SciFi, Thriller), 10.0)
-        val film3 = Film("The Adventures of Baron Munchausen", 1989, Spielberg, listOf(Comedy), 15.0)
-        val film4 = Film("Brazil", 1985, Spielberg, listOf(Action), 2.0)
+})
 
-        labelizeFilm(film1) shouldBe listOf("Horror - Videodrome")
-        labelizeFilm(film2) shouldBe listOf(":( Donnie Darko", "Donnie Darko", "Thriller -> Kurosawa")
-        labelizeFilm(film3) shouldBe listOf("The Adventures of Baron Munchausen")
-        labelizeFilm(film4) shouldBe listOf("Action - Brazil")
+class SequenceTest : StringSpec({
+
+    var mapCount = 0
+    val mapWatch: (Int) -> Int = { it ->
+        mapCount++ // this counter is to test that map is executed just twice
+        it * it
     }
+
+    "${::filterSeq.name}() should return true and only be executed twice" {
+        filterSeq(mapWatch) shouldBe true
+        mapCount shouldBe 2
+    }
+
+})
+
+class PairTest : StringSpec({
+
+    val expected = Pair(Pair("Yin", "Dark side"), Pair("Yang", "Bright side"))
+    "${::mapPhilosophies.name}() should return $expected" {
+        mapPhilosophies() shouldBe expected
+    }
+
 })
 
 class LazyTest : StringSpec({

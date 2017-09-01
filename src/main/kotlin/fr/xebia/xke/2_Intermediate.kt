@@ -81,8 +81,6 @@ object Romance : Genre("Romance")
 
 object Mistery : Genre("Mistery")
 
-object Comedy : Genre("Comedy")
-
 object SciFi : Genre("Sci-Fi")
 
 // TODO seal this open class to prevent subclasses defined outside of this file
@@ -271,82 +269,57 @@ fun sumPricesWithFolding(films: List<Film>): Double =
         .fold(0.0, { total, next -> total + next })
 
 /**
- * Return a list containing distinct films only
- * Note:
- *  - start from an empty list
- *  - add a new element if not already present
+ * Initializing collections with Kotlin
+ *
+ * Kotlin provides functions to easily initialize lists, maps, sets, ...
+ *
+ * val list = listOf(1, 2, 3, 4)
+ * val map  = mapOf(1 to "one", 2 to "two")
+ * val set  = setOf(1, 2, 2, 2)
  */
-fun deleteDuplicates(allFilms: List<Film>): List<Film> {
-    // TODO("use fold to delete duplicate films")
-    return allFilms
-        .fold(mutableListOf()) { filmList, film ->
-            if (filmList.contains(film)) {
-                filmList
-            } else {
-                filmList.add(film)
-                filmList
-            }
-        }
-}
+// TODO initialize an immutable list of two films from Spielberg, specify at least one genre for each
+val films: List<Film> = listOf(
+    Film("Jurassic Park", 1993, Spielberg, listOf(SciFi)),
+    Film("Minority Report", 2002, Spielberg, listOf(SciFi))
+)
+
+// TODO initialize a mutable map containing at least 2 keys (years) with an associated list of films (at least 1)
+val filmsByYear: Map<Int, List<Film>> = mutableMapOf(
+    1993 to listOf(films[0]),
+    2002 to listOf(films[1])
+)
+
 
 /**
- * Return a discount for each film according to the following rules:
- * - 35% reduction if price is only multiple of 3
- * - 40% reduction if price is only multiple of 5
- * - 50% reduction if price is both multiple of 5 and 3
- * - 0% reduction otherwise
- * Note:
- *  - You can define a tuple like this: "Pair(x + 2, x * 2)"
- *  - You could use a when to test the different cases:
- *  <code>
- *  when(elem) {
- *    Pair(2, 4) -> "6"
- *    else -> "default value"
- *  }
- *  </code>
+ * Sequence
+ *
+ * Sequence is similar to Java 8 streams: lazily evaluated and potentially infinite
  */
-fun discounts(films: List<Film>): List<Double> {
-    //TODO("map the film to its price, then apply the discount when applies")
-    return films
-        .map { it.price }
-        .map { p ->
-            when (Pair(p % 3 == 0.0, p % 5 == 0.0)) {
-                Pair(true, true) -> 0.5 * p
-                Pair(true, false) -> 0.35 * p
-                Pair(false, true) -> 0.4 * p
-                else -> p
-            }
-        }
-}
+val seq = sequenceOf(1, 2, 3, 4, 5)
+
+// TODO map seq using given map function, return true if any mapped element is >= 4, only first two elements are mapped (check tests)!
+fun filterSeq(map: (Int) -> Int): Boolean =
+    seq
+        .map(map)
+        .any { it >= 4 }
+
 
 /**
- * Transform each type of the film following the following criteria:
- * - if the type is Action, Horror or Crime return "$type - ${film.name}"
- * - in the type is Romance or Drama return ":( ${film.name}"
- * - if it is Thriller then return "Thriller -> ${film.director.name}"
- * - otherwise, return the film name
- * <code>
- *  when(elem) {
- *    ... ->
- *    else -> "default value"
- *  }
- *  </code>
+ * Pairs
+ *
+ * Pair can hold two value without requiring a specific class
+
+ * Triple also exist but use it wisely...
  */
-fun labelizeFilm(film: Film): List<String> {
-    //TODO("map each type according to its value")
-    val bestFilms = listOf(Action, Horror, Crime)
-    val worstFilms = listOf(Romance, Drama)
-    return film
-        .type
-        .map { type ->
-            when (type) {
-                in bestFilms -> "$type - ${film.name}"
-                in worstFilms -> ":( ${film.name}"
-                Thriller -> "Thriller -> ${film.director.name}"
-                else -> film.name
-            }
-        }
-}
+val chinesePhilosophy = Pair("Yin", "Yang")
+val starWarsPhilosophy = Pair("Dark side", "Bright side")
+
+// TODO return a pair of pairs containing dark and bright sides of each philosophy together
+fun mapPhilosophies(): Pair<Pair<String, String>, Pair<String, String>> = Pair(
+    Pair(chinesePhilosophy.first, starWarsPhilosophy.first),
+    Pair(chinesePhilosophy.second, starWarsPhilosophy.second)
+)
+
 
 /**
  * Delegates allow customizing how a value is initialized
