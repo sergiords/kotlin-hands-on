@@ -341,17 +341,14 @@ fun labelizeFilm(film: Film): List<String> {
 }
 
 /**
- * Lazy is a function which is computed once and then keep result in memory.
+ * Delegates allow customizing how a value is initialized
+ *
+ * One common delegate is lazy() function which computes a value only when it used
+ *
+ * val myValue: String by lazy { "Computed only when read" }
  */
-/**
- * TODO replace fun lazyValue by a lazy value to have lazyInc incremented only once.
- */
+// TODO initialize lazyValue using a lazy delegator and increment lazyInc by one in initialization block
 var lazyInc = 0
-
-//fun lazyValue(): String {
-//    lazyInc++
-//    return "hey"
-//}
 
 val lazyValue: String by lazy {
     lazyInc++

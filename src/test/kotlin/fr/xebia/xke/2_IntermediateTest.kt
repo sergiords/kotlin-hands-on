@@ -172,10 +172,11 @@ class DataClassWithCollectionsTest : StringSpec({
 
 class LazyTest : StringSpec({
 
-    "LazyInc should be incremented once" {
-        println(lazyValue)
-        println(lazyValue)
-        println(lazyValue)
+    "${::lazyInc.name} should be incremented only once and ${::lazyValue.name} should be computed after being accessed" {
+        lazyInc shouldEqual 0
+        lazyValue
+        lazyValue
+        lazyValue
         lazyInc shouldEqual 1
     }
 })
