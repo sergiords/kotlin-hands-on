@@ -73,29 +73,30 @@ class SealedClassTest : StringSpec({
 })
 
 class GettersSettersTest : StringSpec({
+
     val withMyFilms = listOf(
-        Film("Videodrome", 1984, Spielberg, listOf(Horror), 9.0),
-        Film("Donnie Darko", 2002, Spielberg, listOf(Drama, SciFi), 10.0)
+        Film("The Color Purple", 1985, Spielberg, listOf(Drama), 9.0),
+        Film("Jurassic Park", 1993, Spielberg, listOf(SciFi), 10.0)
     )
 
-    "It should call the getter of a property" {
+    "${FilmCollection::has80sFilms} should call getter and return no film for default startingYear" {
         val filmCollection = FilmCollection(withMyFilms)
         filmCollection.has80sFilms shouldBe false
     }
 
-    "It should call the getter and setter of a property" {
+    "${FilmCollection::has80sFilms} should call return 80's film for starting year 1980" {
         val filmCollection = FilmCollection(withMyFilms)
         filmCollection.periodStartYear = 1980
         filmCollection.has80sFilms shouldBe true
     }
 
-    "Lists should be able to split into words and lines" {
-        StringMagicBox().toLower shouldBe "minuscule !"
-
+    "${StringMagicBox::reversed} should have custom getter and setter" {
         val stringMagicBox = StringMagicBox()
+        stringMagicBox.reversed shouldBe "eulav emoS"
         stringMagicBox.reversed = "reversed"
         stringMagicBox.reversed shouldBe "desrever"
     }
+
 })
 
 class GenericsVarianceTest : StringSpec({

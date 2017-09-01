@@ -107,48 +107,46 @@ fun directorYearOfBirth(director: Director): Int = when (director) {
  * Getters & setters
  *
  * The full syntax for declaring a property is:
- * <code>
+ *
  *   var <propertyName>[: <PropertyType>] [= <property_initializer>]
- *     [<getter>]
- *     [<setter>]
- * <code>
+ *     [get() { return ... }]
+ *     [set(value) { ... }]
  */
-class FilmCollection(val collection: List<Film>) {
+class FilmCollection(private val films: List<Film>) {
+
     private var startingYear = 1990
 
-    // TODO("custom accessor for has80sFilms")
-    val has80sFilms: Boolean
-        get() = this.collection
-            .filter { it.releaseYear in startingYear..1990 }
-            .isNotEmpty()
+    // TODO define a getter for this property returning true if there are films released between startingYear and 1989
+    val has80sFilms
+        get() = this.films.any { it.releaseYear in startingYear..1989 }
 
-    // TODO("custom accessor/mutator for has80sFilms")
-    var periodStartYear: Int = startingYear
+    // TODO define a setter for this property changing private startingYear variable
+    var periodStartYear = startingYear
         set(value) {
             startingYear = value
         }
-
 }
 
 
 /**
- * Another example of custom code in both getter and setter
+ * Getters & Setters: Backing field
+ *
+ * Another example of custom code in both getters and setters
  *
  * You can refer to property's current value in the following way
- * <code>
- *   var dist: Int = 0
- *       get() = field + 1
- * </code>
+ *
+ *  var dist: Int = 0
+ *      get() = field + 1
+ *
  */
 class StringMagicBox {
 
-    val toLower: String
-        // TODO("implement a getter that returns the expected value")
-        get() = "minuscule !"
+    var reversed: String = "Some value"
 
-    var reversed: String = ""
-        // TODO("use the 'field' keyword to refering the property's current value")
+        // TODO implement getter to return backing field's value in reversed order
         get() = field.reversed()
+
+        // TODO implement setter to assign value to it's backing field
         set(value) {
             field = value
         }
