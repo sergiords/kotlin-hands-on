@@ -1,7 +1,7 @@
 package fr.xebia.xke
 
 /**
- * Task 2.1. Data class is a class to do nothing but hold data
+ * Data class is a class to do nothing but hold data
  *
  * The same concepts exist in other languages: Lombock in Java, Case Classes in Scala, etc
  *
@@ -14,12 +14,13 @@ package fr.xebia.xke
  * They will not be generated if explicitly defined
  */
 
-// TODO("2.1.1. Create a class Director with name: String, bio: String and filmography: List<String>")
+// TODO("create a class Director with name: String, bio: String and filmography: List<String>")
 // Filmography should have a default value of empty list
 data class SpecialDirector(val name: String, val bio: String, val filmography: List<String> = emptyList())
 
+
 /**
- * Task 2.2. Companion objects
+ * Companion objects
  *
  * The 'static' keyword is not present in kotlin so we need to create our static code inside a companion object
  * construct
@@ -36,23 +37,24 @@ data class SpecialDirector(val name: String, val bio: String, val filmography: L
  *
  */
 class FileFilmLoader private constructor(fileName: String, callback: (String) -> Unit) {
-    // TODO("2.2.1. Change the value of the actualPath variable to capitals")
+    // TODO("change the value of the actualPath variable to capitals")
     var actualPath: String = fileName.toUpperCase()
 
-    // TODO("2.2.2. insert init block here; don't forget to call the callback")
+    // TODO("insert init block here; don't forget to call the callback")
     init {
         callback("Contents of $actualPath")
     }
 
-    // TODO("2.2.3. Insert companion object here to create a new instance of the class")
+    // TODO("insert companion object here to create a new instance of the class")
     companion object {
         fun build(fileName: String, callback: (String) -> Unit): FileFilmLoader =
             FileFilmLoader(fileName, callback)
     }
 }
 
+
 /**
- * Task 2.3. Sealed class
+ * Sealed class
  *
  * Sealed class are used for representing restricted class hierarchies
  *
@@ -97,8 +99,9 @@ object Kubrick : Director("Kubrick")
 
 object RandomDirector : Director("does_not_matter")
 
+
 /**
- * Task 2.4. getters/setters
+ * Getters & setters
  *
  * The full syntax for declaring a property is:
  * <code>
@@ -110,19 +113,20 @@ object RandomDirector : Director("does_not_matter")
 class FilmCollection(val collection: List<Film>) {
     private var startingYear = 1990
 
-    // TODO("2.4.1. custom accessor for has80sFilms")
+    // TODO("custom accessor for has80sFilms")
     val has80sFilms: Boolean
         get() = this.collection
             .filter { it.releaseYear in startingYear..1990 }
             .isNotEmpty()
 
-    // TODO("2.4.2. custom accessor/mutator for has80sFilms")
+    // TODO("custom accessor/mutator for has80sFilms")
     var periodStartYear: Int = startingYear
         set(value) {
             startingYear = value
         }
 
 }
+
 
 /**
  * Another example of custom code in both getter and setter
@@ -136,11 +140,11 @@ class FilmCollection(val collection: List<Film>) {
 class StringMagicBox {
 
     val toLower: String
-        // TODO("2.4.3. implement a getter that returns the expected value")
+        // TODO("implement a getter that returns the expected value")
         get() = "minuscule !"
 
     var reversed: String = ""
-        // TODO("2.4.3. use the 'field' keyword to refering the property's current value")
+        // TODO("use the 'field' keyword to refering the property's current value")
         get() = field.reversed()
         set(value) {
             field = value
@@ -222,8 +226,9 @@ val dict: Dict = hashMapOf(
     Pair("world", "the earth, together with all of its countries and peoples")
 )
 
+
 /**
- * Task 2.7. collections & structures map, pair
+ * Collections, Structures Map, Pair
  */
 data class Film(val name: String,
                 val releaseYear: Int,
@@ -235,7 +240,7 @@ data class Film(val name: String,
  * GetFilmsMadeBy should return films directed by the given director
  */
 fun getFilmsMadeBy(director: Director, films: List<Film>): List<Film> {
-    //TODO("2.7.1. Filter films of this director")
+    //TODO("filter films of this director")
     return films
         .filter { it.director == director }
 }
@@ -244,7 +249,7 @@ fun getFilmsMadeBy(director: Director, films: List<Film>): List<Film> {
  * filterFilmsUsingFilter should return films directed by the given director (using given filter)
  */
 fun filterFilmsUsingFilter(films: List<Film>, withCustomFilter: (Film) -> Boolean): List<Film> {
-    //TODO("2.7.2. filter using high order function (function as parameter)")
+    //TODO("filter using high order function (function as parameter)")
     return films
         .filter(withCustomFilter)
 }
@@ -254,7 +259,7 @@ fun filterFilmsUsingFilter(films: List<Film>, withCustomFilter: (Film) -> Boolea
  * Do you know the difference between 'reduce' and 'fold'?
  */
 fun sumPricesWithFolding(films: List<Film>): Double {
-    // TODO("2.7.3. map the film to its price, then 'fold' the sum")
+    // TODO("map the film to its price, then 'fold' the sum")
     return films
         .map { it.price }
         .fold(0.0, { total, next -> total + next })
@@ -267,7 +272,7 @@ fun sumPricesWithFolding(films: List<Film>): Double {
  *  - add a new element if not already present
  */
 fun deleteDuplicates(allFilms: List<Film>): List<Film> {
-    // TODO("2.7.4 use fold to delete duplicate films")
+    // TODO("use fold to delete duplicate films")
     return allFilms
         .fold(mutableListOf()) { filmList, film ->
             if (filmList.contains(film)) {
@@ -296,7 +301,7 @@ fun deleteDuplicates(allFilms: List<Film>): List<Film> {
  *  </code>
  */
 fun discounts(films: List<Film>): List<Double> {
-    //TODO("2.7.5. map the film to its price, then apply the discount when applies")
+    //TODO("map the film to its price, then apply the discount when applies")
     return films
         .map { it.price }
         .map { p ->
@@ -323,7 +328,7 @@ fun discounts(films: List<Film>): List<Double> {
  *  </code>
  */
 fun labelizeFilm(film: Film): List<String> {
-    //TODO("2.7.6. map each type according to its value")
+    //TODO("map each type according to its value")
     val bestFilms = listOf(Action, Horror, Crime)
     val worstFilms = listOf(Romance, Drama)
     return film
