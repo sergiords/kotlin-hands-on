@@ -14,7 +14,7 @@ package fr.xebia.xke
  * They will not be generated if explicitly defined
  */
 
-// TODO("create a class Director with name: String, bio: String and filmography: List<String>")
+// TODO create a class Director with name: String, bio: String and filmography: List<String>
 // Filmography should have a default value of empty list
 data class SpecialDirector(val name: String, val bio: String, val filmography: List<String> = emptyList())
 
@@ -37,15 +37,15 @@ data class SpecialDirector(val name: String, val bio: String, val filmography: L
  *
  */
 class FileFilmLoader private constructor(fileName: String, callback: (String) -> Unit) {
-    // TODO("change the value of the actualPath variable to capitals")
+    // TODO change the value of the actualPath variable to capitals
     var actualPath: String = fileName.toUpperCase()
 
-    // TODO("insert init block here; don't forget to call the callback")
+    // TODO insert init block here; don't forget to call the callback
     init {
         callback("Contents of $actualPath")
     }
 
-    // TODO("insert companion object here to create a new instance of the class")
+    // TODO insert companion object here to create a new instance of the class
     companion object {
         fun build(fileName: String, callback: (String) -> Unit): FileFilmLoader =
             FileFilmLoader(fileName, callback)
