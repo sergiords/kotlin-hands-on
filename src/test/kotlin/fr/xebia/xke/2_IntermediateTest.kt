@@ -48,9 +48,10 @@ class DataClassTest : StringSpec({
         (john == anotherJohn) shouldBe true
     }
 
-    // ---------------------------------------
-    // Task 2.2 Companion objects
-    // ---------------------------------------
+})
+
+class CompanionObjectTest : StringSpec({
+
     "TODO 2.2.3 - it should be able to use companion objects" {
         val csvReader = FileFilmLoader.build("file.csv") { it shouldBe "Contents of FILE.CSV" }
         csvReader.actualPath shouldBe "FILE.CSV"
