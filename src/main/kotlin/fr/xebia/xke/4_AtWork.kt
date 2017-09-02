@@ -1,3 +1,5 @@
+@file:Suppress("unused", "UnusedImport")
+
 package fr.xebia.xke
 
 import com.fasterxml.jackson.databind.ObjectMapper
@@ -55,13 +57,13 @@ class Greeter {
 data class User(val name: String, val age: Int)
 
 // TODO initialize an object mapper with KotlinModule or using jacksonObjectMapper function
-val mapper: ObjectMapper = ObjectMapper().registerModule(KotlinModule())
+val mapper: ObjectMapper = ObjectMapper()
 
 // TODO complete this function extension to serialize any object to json (use previous mapper)
-fun <T> T.jsonSerialize(): String = mapper.writeValueAsString(this)
+fun <T> T.jsonSerialize(): String = TODO()
 
 // TODO complete this function extension to deserialize a String to an object of the given type T (use previous mapper)
-inline fun <reified T : Any> String.jsonDeserialize(): T = mapper.readValue(this)
+inline fun <reified T : Any> String.jsonDeserialize(): T = TODO()
 
 
 /**
@@ -72,11 +74,11 @@ inline fun <reified T : Any> String.jsonDeserialize(): T = mapper.readValue(this
 
 // Some Java types are 'merely' mapped to kotlin types
 // TODO return java Class corresponding to the given T type
-inline fun <reified T> javaType(): Class<T> = T::class.java
+inline fun <reified T> javaType(): Class<T> = TODO()
 
 // Java getters/setters: this.year refers to getYear(), this.dayOfMonth refers to getDayOfMonth(), ...
 // TODO return a local date in same year and day but in january (notice how getters are translated in Kotlin)
-fun LocalDate.toJanuary(): LocalDate = LocalDate.of(this.year, Month.JANUARY, this.dayOfMonth)
+fun LocalDate.toJanuary(): LocalDate = TODO()
 
 
 /**

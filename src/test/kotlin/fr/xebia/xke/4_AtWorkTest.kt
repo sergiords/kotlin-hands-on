@@ -1,3 +1,5 @@
+@file:Suppress("UNREACHABLE_CODE", "UnusedImport", "unused")
+
 package fr.xebia.xke
 
 import io.kotlintest.matchers.shouldBe
@@ -10,15 +12,13 @@ import org.mockito.Mockito
 import java.time.LocalDate
 
 fun <T> anyNotNull(): T {
-    Mockito.any<T>() // still use mockito any() behaviour
-    @Suppress("UNCHECKED_CAST")
-    return null as T // return a not-null-but-still-null instance
+    TODO("invoke mockito any() method")
+    TODO("mislead Kotlin by returning a null value but casted to a not nullable type T")
 }
 
 fun <T> ArgumentCaptor<T>.captureNotNull(): T {
-    this.capture() // still use mockito capture() behaviour
-    @Suppress("UNCHECKED_CAST")
-    return null as T // return a not-null-but-still-null instance
+    TODO("invoke mockito capture() method")
+    TODO("mislead Kotlin by returning a null value but casted to a not nullable type T")
 }
 
 class AtWork_MocksAndTestsTest : StringSpec({
