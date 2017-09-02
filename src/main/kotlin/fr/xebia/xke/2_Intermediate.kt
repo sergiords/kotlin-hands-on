@@ -112,14 +112,14 @@ fun directorYearOfBirth(director: Director): Int = when (director) {
  */
 class FilmCollection(private val films: List<Film>) {
 
-    private var startingYear = 1990
+    private var startingYear: Int = 1990
 
     // TODO define a getter for this property returning true if there are films released between startingYear and 1989
-    val has80sFilms
+    val has80sFilms: Boolean
         get() = this.films.any { it.releaseYear in startingYear..1989 }
 
     // TODO define a setter for this property changing private startingYear variable
-    var periodStartYear = startingYear
+    var periodStartYear: Int = startingYear
         set(value) {
             startingYear = value
         }
