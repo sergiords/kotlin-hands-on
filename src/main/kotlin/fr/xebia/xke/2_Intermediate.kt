@@ -297,7 +297,7 @@ val filmsByYear: Map<Int, List<Film>> = mutableMapOf(
  */
 val seq = sequenceOf(1, 2, 3, 4, 5)
 
-// TODO map seq using given map function, return true if any mapped element is >= 4, only first two elements are mapped (check tests)!
+// TODO map seq elements using given map function, return true if any mapped element is >= 4, notice that only first 2 elements are mapped (check tests)!
 fun filterSeq(map: (Int) -> Int): Boolean =
     seq
         .map(map)
