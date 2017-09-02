@@ -164,7 +164,7 @@ class Advanced_DestructuringDeclarationsTest : StringSpec({
         MyTime(11, 11),
         MyTime(12, 34)
     )
-    "${MyTime::class.simpleName} should be formatted using 'hour:minute' format" {
+    "${::formatTimes.name}() should format ${MyTime::class.simpleName} instances using 'hour:minute' format" {
         formatTimes(times) shouldBe listOf("10:10", "20:20", "11:11", "12:34")
     }
 })

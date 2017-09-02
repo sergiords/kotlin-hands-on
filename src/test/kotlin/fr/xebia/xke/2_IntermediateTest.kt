@@ -80,7 +80,7 @@ class Intermediate_GettersSettersTest : StringSpec({
         filmCollection.has80sFilms shouldBe false
     }
 
-    "${FilmCollection::has80sFilms.name} should call return 80's film for starting year 1980" {
+    "${FilmCollection::has80sFilms.name} should call getter and return 80's film for updated starting year (1980)" {
         val filmCollection = FilmCollection(withMyFilms)
         filmCollection.periodStartYear = 1980
         filmCollection.has80sFilms shouldBe true
@@ -127,7 +127,7 @@ class Intermediate_GenericsVarianceTest : StringSpec({
 
 class Intermediate_TypeAliasesTest : StringSpec({
 
-    "Create a type aliases corresponding to a dictionary" {
+    "Dictionary should be a typealias of Map<String, String> and ${::dict.name} should be typed as a dictionary" {
         (dict is Dictionary) shouldBe true
         dict.getOrDefault("hello", "unknown") shouldBe "used as a greeting or to begin a telephone conversation"
     }
@@ -144,16 +144,16 @@ class Intermediate_CollectionsTest : StringSpec({
     val hitchcockFilms = listOf(psyco, vertigo)
     val kurosawaFilms = listOf(ran, rashomon)
 
-    "it should use List#filter" {
+    "${::filmsMadeBy.name} should only return films realized by the given ${Director::class.simpleName}" {
         filmsMadeBy(Hitchcock, completeList) shouldBe hitchcockFilms
     }
 
-    "it should use films List#filter and high order functions" {
+    "${::filmsMatchingFilter.name} should only return films matching the given predicate (high order function)" {
         filmsMatchingFilter(completeList, { it.director == Hitchcock }) shouldBe hitchcockFilms
         filmsMatchingFilter(completeList, { it.director == Kurosawa }) shouldBe kurosawaFilms
     }
 
-    "it should use folding to sum film prices" {
+    "${::sumPricesWithFolding.name} should return films total price" {
         sumPricesWithFolding(hitchcockFilms) shouldBe 7
         sumPricesWithFolding(kurosawaFilms) shouldBe 5
     }
