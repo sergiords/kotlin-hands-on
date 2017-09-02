@@ -34,7 +34,7 @@ class Advanced_CoroutineTest : StringSpec({
     }
 
     "${::fiveFirstFibonacci.name} should be initialized to take 5 elements only" {
-        fiveFirstFibonacci.toList() shouldEqual listOf(1, 1, 2, 3, 5)
+        fiveFirstFibonacci().toList() shouldEqual listOf(1, 1, 2, 3, 5)
     }
 
     "giveTreatment() to patient should return aspirin after a delay of one second" {

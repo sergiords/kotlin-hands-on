@@ -39,7 +39,7 @@ data class Vector(val dx: Int, val dy: Int) {
  * For the brave: https://github.com/Kotlin/kotlin-coroutines/blob/master/kotlin-coroutines-informal.md
  */
 // TODO implement a Fibonacci sequence generator using yield suspending function
-val fibonacciSeq = buildSequence {
+val fibonacciSeq: Sequence<Int> = buildSequence {
     var a = 0
     var b = 1
 
@@ -54,7 +54,7 @@ val fibonacciSeq = buildSequence {
     }
 }
 
-val fiveFirstFibonacci = fibonacciSeq.take(5) // values are yielded only when this sequence is iterated
+fun fiveFirstFibonacci(): Sequence<Int> = fibonacciSeq.take(5) // values are yielded only when this sequence is iterated
 
 /**
  * Coroutines: Non Blocking
@@ -89,7 +89,7 @@ val squareSize = 10
 val squareArea = 10.square()
 
 // TODO implement this function extension which computes the square value of the Int it refers to (receiver type)
-fun Int.square() = this * this
+fun Int.square(): Int = this * this
 
 /**
  * Same here but with any type
