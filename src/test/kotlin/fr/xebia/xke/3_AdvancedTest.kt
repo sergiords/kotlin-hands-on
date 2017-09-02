@@ -12,7 +12,7 @@ import java.util.logging.Level
 import java.util.logging.LogRecord
 import java.util.logging.Logger
 
-class OperatorOverloadingTest : StringSpec({
+class Advanced_OperatorOverloadingTest : StringSpec({
 
     val expectedV3 = Vector(v1.dx + v2.dx, v1.dy + v2.dy)
     "${::v3.name} should be equal to $expectedV3 (${::v1.name} + ${::v2.name})" {
@@ -26,7 +26,7 @@ class OperatorOverloadingTest : StringSpec({
 
 })
 
-class CoroutineTest : StringSpec({
+class Advanced_CoroutineTest : StringSpec({
 
     "${::fibonacciSeq.name} should generate a lazily initialized Fibonacci sequence" {
         val list = fibonacciSeq.take(5).toList()
@@ -51,7 +51,7 @@ class CoroutineTest : StringSpec({
 
 })
 
-class ExtensionFunctionTest : StringSpec({
+class Advanced_ExtensionFunctionTest : StringSpec({
 
     val expectedArea = squareSize * squareSize
     "${::squareArea.name} should be $expectedArea" {
@@ -79,7 +79,7 @@ class ExtensionFunctionTest : StringSpec({
 
 })
 
-class ExtensionPropertyTest : StringSpec({
+class Advanced_ExtensionPropertyTest : StringSpec({
 
     val expectedCelsiusValue = 10
     "${::celsiusValue.name} should be $expectedCelsiusValue °C" {
@@ -103,7 +103,7 @@ class ExtensionPropertyTest : StringSpec({
 
 })
 
-class FunctionTypeReceiverTest : StringSpec({
+class Advanced_FunctionTypeReceiverTest : StringSpec({
 
     val expectedBuild = Build("myProject", arrayListOf("libA", "libB"))
     "${::myBuild.name} should be equal to $expectedBuild" {
@@ -112,7 +112,7 @@ class FunctionTypeReceiverTest : StringSpec({
 
 })
 
-class InlineFunctionsTest : StringSpec({
+class Advanced_InlineFunctionsTest : StringSpec({
 
     val witness = arrayListOf<String>()
     val logger = Logger.getLogger("TestLogger")
@@ -143,7 +143,7 @@ class InlineFunctionsTest : StringSpec({
 
 })
 
-class InlineFunctionsWithReifiedParameterType : StringSpec({
+class Advanced_InlineFunctionsWithReifiedParameterType : StringSpec({
 
     mapOf(
         parameterTypeClass<String>() to String::class.java,
@@ -157,7 +157,7 @@ class InlineFunctionsWithReifiedParameterType : StringSpec({
 
 })
 
-class DestructuringDeclarationsTest : StringSpec({
+class Advanced_DestructuringDeclarationsTest : StringSpec({
     val times = listOf(
         MyTime(10, 10),
         MyTime(20, 20),
