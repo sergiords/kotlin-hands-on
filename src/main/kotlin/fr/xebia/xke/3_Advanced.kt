@@ -1,3 +1,5 @@
+@file:Suppress("UNREACHABLE_CODE", "UNUSED_PARAMETER", "UnusedImport", "unused")
+
 package fr.xebia.xke
 
 import kotlinx.coroutines.experimental.delay
@@ -20,10 +22,10 @@ fun v1minusV2() = v1 - v2
 data class Vector(val dx: Int, val dy: Int) {
 
     // TODO implement this operator overloading function to return the result of a Vector addition
-    operator fun plus(that: Vector): Vector = Vector(this.dx + that.dx, this.dy + that.dy)
+    operator fun plus(that: Vector): Vector = TODO()
 
     // TODO implement this operator overloading function to return the result of a Vector substraction
-    operator fun minus(that: Vector): Vector = Vector(this.dx - that.dx, this.dy - that.dy)
+    operator fun minus(that: Vector): Vector = TODO()
 
 }
 
@@ -40,17 +42,11 @@ data class Vector(val dx: Int, val dy: Int) {
  */
 // TODO implement a Fibonacci sequence generator using yield suspending function
 fun fibonacciSeq(): Sequence<Int> = buildSequence {
-    var a = 0
-    var b = 1
 
-    yield(1)
+    TODO("yield first value here")
 
     while (true) {
-        yield(a + b)
-
-        val tmp = a + b
-        a = b
-        b = tmp
+        TODO("compute and yield next values here")
     }
 }
 
@@ -66,10 +62,9 @@ fun fiveFirstFibonacci(): Sequence<Int> = fibonacciSeq().take(5) // values are y
  *  }
  *  println("Goodbye") // printed first
  */
-suspend fun giveTreatment(): String {
+fun giveTreatment(): String {
     // TODO return 'aspirin' after a delay of 1 second (use delay suspending function and suspend modifier)
-    delay(1000L)
-    return "aspirin"
+    TODO()
 }
 /**
  * NB: Promise coroutines can be cancel at any moment by calling promise.cancel()
@@ -89,7 +84,7 @@ val squareSize = 10
 fun squareArea() = 10.square()
 
 // TODO implement this function extension which computes the square value of the Int it refers to (receiver type)
-fun Int.square(): Int = this * this
+fun Int.square(): Int = TODO()
 
 /**
  * Same here but with any type
@@ -98,7 +93,7 @@ fun ofCourse() = "Some String".isString()
 fun noWay() = 100.isString()
 
 // TODO implement this function extension which returns true if its receiver type is a String
-fun <T> T.isString(): Boolean = this is String
+fun <T> T.isString(): Boolean = TODO()
 
 
 /**
@@ -116,7 +111,7 @@ data class Temperature(val celsius: Int)
 
 // TODO implement this property extension to define the temperature in Kelvin (~ 273° + celsius) (a getter may be useful)
 val Temperature.kelvin: Int
-    get() = 273 + this.celsius // approximately
+    get() = TODO() // approximately
 
 fun celsiusValue(): Int = Temperature(10).celsius // 10 °C
 fun kelvinValue(): Int = Temperature(10).kelvin   // 283 °K
@@ -139,9 +134,7 @@ data class Build(val name: String, private val dependencies: ArrayList<String> =
 
 // TODO implement this function which has a function type with receiver parameter to create a build and initialize it with init
 fun build(name: String, init: Build.() -> Unit): Build {
-    val build = Build(name)
-    build.init()
-    return build
+    TODO()
 }
 
 fun myBuild() =
@@ -160,9 +153,7 @@ fun myBuild() =
  */
 // TODO only log at FINE level when message is loggable at FINE level
 inline fun Logger.fineIfEnabled(message: () -> String) {
-    if (this.isLoggable(Level.FINE)) {
-        this.fine(message())
-    }
+    TODO()
 }
 
 /**
@@ -173,7 +164,7 @@ inline fun Logger.fineIfEnabled(message: () -> String) {
  * To access a type's class use the '::' operator like: 'String::class'
  */
 // TODO return the Class corresponding to function's parameter type
-inline fun <reified T> parameterTypeClass(): Class<T> = T::class.java
+inline fun <reified T> parameterTypeClass(): Class<T> = TODO()
 
 
 /**
@@ -197,5 +188,5 @@ inline fun <reified T> parameterTypeClass(): Class<T> = T::class.java
 data class MyTime(val hour: Int, val minute: Int)
 
 // TODO return a list of formatted times 'hour:minute' using destructuring declaration
-fun formatTimes(times: List<MyTime>): List<String> = times.map { (hour, minute) -> "$hour:$minute" }
+fun formatTimes(times: List<MyTime>): List<String> = TODO()
 
