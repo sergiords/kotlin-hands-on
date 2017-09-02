@@ -15,13 +15,13 @@ import java.util.logging.Logger
 class Advanced_OperatorOverloadingTest : StringSpec({
 
     val expectedV3 = Vector(v1.dx + v2.dx, v1.dy + v2.dy)
-    "${::v3.name} should be equal to $expectedV3 (${::v1.name} + ${::v2.name})" {
-        v3 shouldBe expectedV3
+    "${::v1plusV2.name} should be equal to $expectedV3 (${::v1.name} + ${::v2.name})" {
+        v1plusV2() shouldBe expectedV3
     }
 
     val expectedV4 = Vector(v1.dx - v2.dx, v1.dy - v2.dy)
-    "${::v4.name} should be equal to $expectedV4 (${::v1.name} - ${::v2.name})" {
-        v4 shouldBe expectedV4
+    "${::v1minusV2.name} should be equal to $expectedV4 (${::v1.name} - ${::v2.name})" {
+        v1minusV2() shouldBe expectedV4
     }
 
 })
@@ -55,15 +55,15 @@ class Advanced_ExtensionFunctionTest : StringSpec({
 
     val expectedArea = squareSize * squareSize
     "${::squareArea.name} should be $expectedArea" {
-        squareArea shouldBe expectedArea
+        squareArea() shouldBe expectedArea
     }
 
     "${::ofCourse.name} should be true" {
-        ofCourse shouldBe true
+        ofCourse() shouldBe true
     }
 
     "${::noWay.name} should be false" {
-        noWay shouldBe false
+        noWay() shouldBe false
     }
 
     mapOf(
@@ -83,12 +83,12 @@ class Advanced_ExtensionPropertyTest : StringSpec({
 
     val expectedCelsiusValue = 10
     "${::celsiusValue.name} should be $expectedCelsiusValue °C" {
-        celsiusValue shouldBe expectedCelsiusValue
+        celsiusValue() shouldBe expectedCelsiusValue
     }
 
     val expectedKelvinValue = 283
     "${::kelvinValue.name} should be $expectedKelvinValue °K" {
-        kelvinValue shouldBe expectedKelvinValue
+        kelvinValue() shouldBe expectedKelvinValue
     }
 
     mapOf(
@@ -107,7 +107,7 @@ class Advanced_FunctionTypeReceiverTest : StringSpec({
 
     val expectedBuild = Build("myProject", arrayListOf("libA", "libB"))
     "${::myBuild.name} should be equal to $expectedBuild" {
-        myBuild shouldBe expectedBuild
+        myBuild() shouldBe expectedBuild
     }
 
 })

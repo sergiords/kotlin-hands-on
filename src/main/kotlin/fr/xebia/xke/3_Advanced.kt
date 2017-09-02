@@ -14,8 +14,8 @@ import kotlin.coroutines.experimental.buildSequence
 val v1 = Vector(1, 2)
 val v2 = Vector(3, 5)
 
-val v3 = v1 + v2
-val v4 = v1 - v2
+fun v1plusV2() = v1 + v2
+fun v1minusV2() = v1 - v2
 
 data class Vector(val dx: Int, val dy: Int) {
 
@@ -86,7 +86,7 @@ suspend fun giveTreatment(): String {
  * "Bob".hello() // prints "Hello Bob"
  */
 val squareSize = 10
-val squareArea = 10.square()
+fun squareArea() = 10.square()
 
 // TODO implement this function extension which computes the square value of the Int it refers to (receiver type)
 fun Int.square(): Int = this * this
@@ -94,8 +94,8 @@ fun Int.square(): Int = this * this
 /**
  * Same here but with any type
  */
-val ofCourse = "Some String".isString()
-val noWay = 100.isString()
+fun ofCourse() = "Some String".isString()
+fun noWay() = 100.isString()
 
 // TODO implement this function extension which returns true if its receiver type is a String
 fun <T> T.isString(): Boolean = this is String
@@ -118,8 +118,8 @@ data class Temperature(val celsius: Int)
 val Temperature.kelvin: Int
     get() = 273 + this.celsius // approximately
 
-val celsiusValue: Int = Temperature(10).celsius // 10 °C
-val kelvinValue: Int = Temperature(10).kelvin   // 283 °K
+fun celsiusValue(): Int = Temperature(10).celsius // 10 °C
+fun kelvinValue(): Int = Temperature(10).kelvin   // 283 °K
 
 
 /**
@@ -144,7 +144,7 @@ fun build(name: String, init: Build.() -> Unit): Build {
     return build
 }
 
-val myBuild =
+fun myBuild() =
     build("myProject") {
         dependency("libA")
         dependency("libB")
