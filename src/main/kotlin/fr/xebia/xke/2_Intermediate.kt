@@ -1,3 +1,5 @@
+@file:Suppress("UNUSED_PARAMETER", "UNREACHABLE_CODE", "unused")
+
 package fr.xebia.xke
 
 /**
@@ -14,7 +16,14 @@ package fr.xebia.xke
  * These methods will not be generated if explicitly defined
  */
 // TODO transform this class to a data class
-data class SpecialDirector(val name: String, val bio: String)
+open class SpecialDirector(val name: String, val bio: String) {
+
+    fun copy(name: String, bio: String): SpecialDirector = TODO("remove this method when class is a data class")
+
+    fun copy(name: String): SpecialDirector = TODO("remove this method when class is a data class")
+
+    fun copyWithBioOnly(bio: String): SpecialDirector = TODO("remove this method when class is a data class")
+}
 
 
 /**
@@ -37,17 +46,17 @@ object Ops {
 }
 
 // TODO return true if an Ops has no name (name is empty)
-fun anOpsHasNoName(): Boolean = Ops.name.isEmpty()
+fun anOpsHasNoName(): Boolean = TODO()
 
 
 class FileFilmLoader private constructor(fileName: String) {
 
     // TODO initialize actualPath to fileName in upper case
-    var actualPath: String = fileName.toUpperCase()
+    var actualPath: String = TODO()
 
     // TODO insert companion object here and implement build method as a factory for FileFilmLoader (FileFilmLoader.build(...))
     companion object {
-        fun build(fileName: String): FileFilmLoader = FileFilmLoader(fileName)
+        fun build(fileName: String): FileFilmLoader = TODO()
     }
 
 }
@@ -61,7 +70,7 @@ class FileFilmLoader private constructor(fileName: String) {
  * A sealed class can have subclasses, but all of them must be declared in the same file as the sealed class itself
  */
 // TODO seal this open class to prevent subclasses defined outside of this file
-sealed class Genre(private val description: String) {
+open class Genre(private val description: String) {
     override fun toString() = description
 }
 
@@ -84,7 +93,7 @@ object Mystery : Genre("Mystery")
 object SciFi : Genre("Sci-Fi")
 
 // TODO seal this open class to prevent subclasses defined outside of this file
-sealed class Director(val name: String)
+open class Director(val name: String)
 
 object Kurosawa : Director("Kurosawa")
 
@@ -93,12 +102,7 @@ object Hitchcock : Director("Hitchcock")
 object Spielberg : Director("Unknown")
 
 // TODO use a when expression to map directors to their year of birth
-fun directorYearOfBirth(director: Director): Int = when (director) {
-    Kurosawa -> 1910
-    Hitchcock -> 1899
-    Spielberg -> 1946
-    // else -> -1 // optional once Director class is sealed
-}
+fun directorYearOfBirth(director: Director): Int = TODO()
 
 
 /**
@@ -116,12 +120,12 @@ class FilmCollection(private val films: List<Film>) {
 
     // TODO define a getter for this property returning true if there are films released between startingYear and 1989
     val has80sFilms: Boolean
-        get() = this.films.any { it.releaseYear in startingYear..1989 }
+        get() = TODO()
 
     // TODO define a setter for this property changing private startingYear variable
     var periodStartYear: Int = startingYear
         set(value) {
-            startingYear = value
+            TODO()
         }
 }
 
@@ -142,11 +146,11 @@ class StringMagicBox {
     var reversed: String = "Some value"
 
         // TODO implement getter to return backing field's value in reversed order
-        get() = field.reversed()
+        get() = TODO()
 
         // TODO implement setter to assign value to it's backing field
         set(value) {
-            field = value
+            field = TODO()
         }
 
 }
@@ -168,7 +172,7 @@ interface Sender<out T> {
 }
 
 // TODO return given parameter and notice how we can assign a Sender<Mail> to a Sender<Text>
-fun textSender(mailSender: Sender<Mail>): Sender<Text> = mailSender
+fun textSender(mailSender: Sender<Mail>): Sender<Text> = TODO()
 
 
 /**
@@ -182,7 +186,7 @@ interface Receiver<in T> {
 }
 
 // TODO return given parameter and notice how we can assign a Receiver<Text> to a Receiver<SMS>
-fun textReceiver(textReceiver: Receiver<Text>): Receiver<SMS> = textReceiver
+fun textReceiver(textReceiver: Receiver<Text>): Receiver<SMS> = TODO()
 
 
 /**
@@ -194,7 +198,7 @@ fun textReceiver(textReceiver: Receiver<Text>): Receiver<SMS> = textReceiver
 fun useSiteVariance(arrayIn: Array<in Int>, arrayOut: Array<out Int>) {
 
     // TODO copy arrayOut[3] element to arrayIn[5] element
-    arrayIn[5] = arrayOut[3]
+    TODO()
 
     // TODO notice how arrayOut elements can not be assigned and arrayIn can not be read as Int
     // val x: Int = arrayIn[0] // Does not compile
@@ -213,9 +217,9 @@ fun useSiteVariance(arrayIn: Array<in Int>, arrayOut: Array<out Int>) {
  * We can't use type aliases to constrain parameters: check function accepts both HashPassword and String parameters
  */
 // TODO define a type alias Dictionary for Map<String, String> and replace dict variable Type to use it
-typealias Dictionary = Map<String, String>
+interface Dictionary
 
-val dict: Dictionary = mapOf(
+val dict: Map<String, String> = mapOf(
     Pair("hello", "used as a greeting or to begin a telephone conversation"),
     Pair("world", "the earth, together with all of its countries and peoples")
 )
@@ -240,9 +244,7 @@ data class Film(val name: String,
  * Using filters with lambdas
  */
 // TODO return films directed by the given director
-fun filmsMadeBy(director: Director, films: List<Film>): List<Film> =
-    films
-        .filter { it.director == director }
+fun filmsMadeBy(director: Director, films: List<Film>): List<Film> = TODO()
 
 /**
  * Using high-order function as parameter
@@ -253,9 +255,7 @@ fun filmsMadeBy(director: Director, films: List<Film>): List<Film> =
  * In Kotlin there is no need to declare a specific class (like Predicate, Supplier, Consumer, ... classes in Java)
  */
 // TODO return films matching the given filter
-fun filmsMatchingFilter(films: List<Film>, filter: (Film) -> Boolean): List<Film> =
-    films
-        .filter(filter)
+fun filmsMatchingFilter(films: List<Film>, filter: (Film) -> Boolean): List<Film> = TODO()
 
 /**
  * Using map & fold functions
@@ -263,10 +263,7 @@ fun filmsMatchingFilter(films: List<Film>, filter: (Film) -> Boolean): List<Film
  * Do you know the difference between 'reduce' and 'fold'?
  */
 // TODO map each film to its price then 'fold' the sum of prices
-fun sumPricesWithFolding(films: List<Film>): Int =
-    films
-        .map { it.price }
-        .fold(0, { total, next -> total + next })
+fun sumPricesWithFolding(films: List<Film>): Int = TODO()
 
 /**
  * Initializing collections with Kotlin
@@ -278,16 +275,10 @@ fun sumPricesWithFolding(films: List<Film>): Int =
  * val set  = setOf(1, 2, 2, 2)
  */
 // TODO initialize an immutable list of two films from Spielberg, specify at least one genre for each
-fun films(): List<Film> = listOf(
-    Film("Jurassic Park", 1993, Spielberg, listOf(SciFi)),
-    Film("Minority Report", 2002, Spielberg, listOf(SciFi))
-)
+fun films(): List<Film> = TODO()
 
 // TODO initialize a mutable map containing at least 2 keys (years) with an associated list of films (at least 1)
-fun filmsByYear(): MutableMap<Int, List<Film>> = mutableMapOf(
-    1993 to listOf(Film("Jurassic Park", 1993, Spielberg, listOf(SciFi))),
-    2002 to listOf(Film("Minority Report", 2002, Spielberg, listOf(SciFi)))
-)
+fun filmsByYear(): MutableMap<Int, List<Film>> = TODO()
 
 
 /**
@@ -298,10 +289,7 @@ fun filmsByYear(): MutableMap<Int, List<Film>> = mutableMapOf(
 val seq = sequenceOf(1, 2, 3, 4, 5)
 
 // TODO map seq elements using given map function, return true if any mapped element is >= 4, notice that only first 2 elements are mapped (check tests)!
-fun filterSeq(map: (Int) -> Int): Boolean =
-    seq
-        .map(map)
-        .any { it >= 4 }
+fun filterSeq(map: (Int) -> Int): Boolean = TODO()
 
 
 /**
@@ -315,10 +303,7 @@ val chinesePhilosophy = Pair("Yin", "Yang")
 val starWarsPhilosophy = Pair("Dark side", "Bright side")
 
 // TODO return a pair of pairs containing dark and bright sides of each philosophy together
-fun mapPhilosophies(): Pair<Pair<String, String>, Pair<String, String>> = Pair(
-    Pair(chinesePhilosophy.first, starWarsPhilosophy.first),
-    Pair(chinesePhilosophy.second, starWarsPhilosophy.second)
-)
+fun mapPhilosophies(): Pair<Pair<String, String>, Pair<String, String>> = TODO()
 
 
 /**
@@ -332,6 +317,5 @@ fun mapPhilosophies(): Pair<Pair<String, String>, Pair<String, String>> = Pair(
 var lazyInc = 0
 
 val lazyValue: String by lazy {
-    lazyInc++
-    "hey"
+    TODO()
 }
