@@ -12,6 +12,10 @@ class Intermediate_DataClassTest : StringSpec({
         bio = "was born in Carthage, New York"
     )
 
+    "${SpecialDirector::class.simpleName} should be marked as a data class" {
+        SpecialDirector::class.isData shouldBe true
+    }
+
     "${SpecialDirector::class.simpleName} should provide 'toString' method" {
         john.toString() shouldBe "SpecialDirector(name=John Carpenter, bio=was born in Carthage, New York)"
     }
