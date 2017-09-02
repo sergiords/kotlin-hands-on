@@ -39,7 +39,7 @@ data class Vector(val dx: Int, val dy: Int) {
  * For the brave: https://github.com/Kotlin/kotlin-coroutines/blob/master/kotlin-coroutines-informal.md
  */
 // TODO implement a Fibonacci sequence generator using yield suspending function
-val fibonacciSeq: Sequence<Int> = buildSequence {
+fun fibonacciSeq(): Sequence<Int> = buildSequence {
     var a = 0
     var b = 1
 
@@ -54,7 +54,7 @@ val fibonacciSeq: Sequence<Int> = buildSequence {
     }
 }
 
-fun fiveFirstFibonacci(): Sequence<Int> = fibonacciSeq.take(5) // values are yielded only when this sequence is iterated
+fun fiveFirstFibonacci(): Sequence<Int> = fibonacciSeq().take(5) // values are yielded only when this sequence is iterated
 
 /**
  * Coroutines: Non Blocking

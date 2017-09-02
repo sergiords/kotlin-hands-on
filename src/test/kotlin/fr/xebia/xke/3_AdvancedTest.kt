@@ -29,7 +29,7 @@ class Advanced_OperatorOverloadingTest : StringSpec({
 class Advanced_CoroutineTest : StringSpec({
 
     "${::fibonacciSeq.name} should generate a lazily initialized Fibonacci sequence" {
-        val list = fibonacciSeq.take(5).toList()
+        val list = fibonacciSeq().take(5).toList()
         list shouldEqual listOf(1, 1, 2, 3, 5)
     }
 
