@@ -42,7 +42,7 @@ fun anOpsHasNoName(): Boolean = Ops.name.isEmpty()
 
 class FileFilmLoader private constructor(fileName: String) {
 
-    // TODO change the value of the actualPath variable to upper case
+    // TODO initialize actualPath to fileName in upper case
     var actualPath: String = fileName.toUpperCase()
 
     // TODO insert companion object here and implement build method as a factory for FileFilmLoader (FileFilmLoader.build(...))
@@ -61,7 +61,7 @@ class FileFilmLoader private constructor(fileName: String) {
  * A sealed class can have subclasses, but all of them must be declared in the same file as the sealed class itself
  */
 // TODO seal this open class to prevent subclasses defined outside of this file
-sealed class Genre(val description: String) {
+sealed class Genre(private val description: String) {
     override fun toString() = description
 }
 
