@@ -5,7 +5,7 @@ import io.kotlintest.matchers.shouldEqual
 import io.kotlintest.matchers.shouldNotBe
 import io.kotlintest.specs.StringSpec
 
-class DataClassTest : StringSpec({
+class Intermediate_DataClassTest : StringSpec({
 
     val john = SpecialDirector(
         name = "John Carpenter",
@@ -29,7 +29,7 @@ class DataClassTest : StringSpec({
 
 })
 
-class ObjectAndCompanionObjectTest : StringSpec({
+class Intermediate_ObjectAndCompanionObjectTest : StringSpec({
 
     "anOpsHasNoName() should return true when Ops.name is empty, false otherwise" {
         Ops.name = ""
@@ -46,7 +46,7 @@ class ObjectAndCompanionObjectTest : StringSpec({
 
 })
 
-class SealedClassTest : StringSpec({
+class Intermediate_SealedClassTest : StringSpec({
 
     "${Genre::class.simpleName} should be sealed" {
         Genre::class.isSealed shouldBe true
@@ -68,7 +68,7 @@ class SealedClassTest : StringSpec({
 
 })
 
-class GettersSettersTest : StringSpec({
+class Intermediate_GettersSettersTest : StringSpec({
 
     val withMyFilms = listOf(
         Film("The Color Purple", 1985, Spielberg, listOf(Drama), 9),
@@ -95,7 +95,7 @@ class GettersSettersTest : StringSpec({
 
 })
 
-class GenericsVarianceTest : StringSpec({
+class Intermediate_GenericsVarianceTest : StringSpec({
 
     val sender = object : Sender<Mail> {
         override fun send(): Mail = throw NotImplementedException("NotCalled")
@@ -125,7 +125,7 @@ class GenericsVarianceTest : StringSpec({
 
 })
 
-class TypeAliases : StringSpec({
+class Intermediate_TypeAliasesTest : StringSpec({
 
     "Create a type aliases corresponding to a dictionary" {
         (dict is Dictionary) shouldBe true
@@ -133,7 +133,7 @@ class TypeAliases : StringSpec({
     }
 })
 
-class CollectionsTest : StringSpec({
+class Intermediate_CollectionsTest : StringSpec({
 
     val ran = Film("Ran", 1985, Kurosawa, listOf(Action, Drama, War), 2)
     val rashomon = Film("Rashomon", 1950, Kurosawa, listOf(Crime, Drama), 3)
@@ -160,7 +160,7 @@ class CollectionsTest : StringSpec({
 
 })
 
-class CollectionsInitializationTest : StringSpec({
+class Intermediate_CollectionsInitializationTest : StringSpec({
 
     "${::films.name} should contain at least two films from Spielberg and have a genre defined" {
         (films.size >= 2) shouldBe true
@@ -176,7 +176,7 @@ class CollectionsInitializationTest : StringSpec({
 
 })
 
-class SequenceTest : StringSpec({
+class Intermediate_SequenceTest : StringSpec({
 
     var mapCount = 0
     val mapWatch: (Int) -> Int = { it ->
@@ -191,7 +191,7 @@ class SequenceTest : StringSpec({
 
 })
 
-class PairTest : StringSpec({
+class Intermediate_PairTest : StringSpec({
 
     val expected = Pair(Pair("Yin", "Dark side"), Pair("Yang", "Bright side"))
     "${::mapPhilosophies.name}() should return $expected" {
@@ -200,7 +200,7 @@ class PairTest : StringSpec({
 
 })
 
-class LazyTest : StringSpec({
+class Intermediate_LazyTest : StringSpec({
 
     "${::lazyInc.name} should be incremented only once and ${::lazyValue.name} should be computed after being accessed" {
         lazyInc shouldEqual 0
