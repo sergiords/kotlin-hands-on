@@ -171,6 +171,7 @@ class CollectionsInitializationTest : StringSpec({
     "${::filmsByYear.name} should contain at least two entries, each with at least one movie" {
         (filmsByYear.size >= 2) shouldBe true
         filmsByYear.forEach { it.value.isNotEmpty() shouldBe true }
+        filmsByYear[1997] = listOf(Film("Ready Player One", 2018, Spielberg, listOf(SciFi))) // make sure map is mutable
     }
 
 })

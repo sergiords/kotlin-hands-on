@@ -284,7 +284,7 @@ val films: List<Film> = listOf(
 )
 
 // TODO initialize a mutable map containing at least 2 keys (years) with an associated list of films (at least 1)
-val filmsByYear: Map<Int, List<Film>> = mutableMapOf(
+val filmsByYear: MutableMap<Int, List<Film>> = mutableMapOf(
     1993 to listOf(films[0]),
     2002 to listOf(films[1])
 )
