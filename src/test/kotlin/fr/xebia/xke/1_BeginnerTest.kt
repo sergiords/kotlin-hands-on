@@ -3,7 +3,7 @@ package fr.xebia.xke
 import io.kotlintest.matchers.shouldBe
 import io.kotlintest.specs.StringSpec
 
-class PropertiesTest : StringSpec({
+class Beginner_PropertiesTest : StringSpec({
 
     val expectedHost = "xebia.fr"
     "${::host.name} should be initialized to $expectedHost" {
@@ -22,7 +22,7 @@ class PropertiesTest : StringSpec({
 
 })
 
-class FunctionsTest : StringSpec({
+class Beginner_FunctionsTest : StringSpec({
 
     mapOf(
         "http://example.com" to false,
@@ -51,7 +51,7 @@ class FunctionsTest : StringSpec({
     }
 })
 
-class LambdasTest : StringSpec({
+class Beginner_LambdasTest : StringSpec({
 
     mapOf(
         0 to true,
@@ -87,7 +87,7 @@ class LambdasTest : StringSpec({
 
 })
 
-class TypeChecksSmartCastsTest : StringSpec({
+class Beginner_TypeChecksSmartCastsTest : StringSpec({
 
     val stdPrice = StandardPrice(10)
     "${::computePrice.name}(StandardPrice(${stdPrice.value})) should be ${stdPrice.value}" {
@@ -107,7 +107,7 @@ class TypeChecksSmartCastsTest : StringSpec({
 
 })
 
-class NullReferencesTest : StringSpec({
+class Beginner_NullReferencesTest : StringSpec({
 
     mapOf(
         "https://www.xebia.fr?par=1234" to 1234,
@@ -132,7 +132,7 @@ class NullReferencesTest : StringSpec({
 
 })
 
-class RangesAndLoopsTest : StringSpec({
+class Beginner_RangesAndLoopsTest : StringSpec({
 
     mapOf(
         0 to emptyList(),
