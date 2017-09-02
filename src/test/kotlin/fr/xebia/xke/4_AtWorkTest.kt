@@ -21,7 +21,7 @@ fun <T> ArgumentCaptor<T>.captureNotNull(): T {
     return null as T // return a not-null-but-still-null instance
 }
 
-class MocksAndTestsTest : StringSpec({
+class AtWork_MocksAndTestsTest : StringSpec({
 
     val expected = "Test Data from Service"
     "${Service::transformedData.name}() should return '$expected'" {
@@ -56,7 +56,7 @@ class MocksAndTestsTest : StringSpec({
 
 })
 
-class KotlinLovesJsonTest : StringSpec({
+class AtWork_KotlinLovesJsonTest : StringSpec({
 
     mapOf(
         User("Bob", 30) to """{"name":"Bob","age":30}""",
@@ -75,7 +75,7 @@ class KotlinLovesJsonTest : StringSpec({
 
 })
 
-class JavaInteroperabilityTest : StringSpec({
+class AtWork_JavaInteroperabilityTest : StringSpec({
 
     mapOf(
         javaType<String>() to java.lang.String::class.java,
