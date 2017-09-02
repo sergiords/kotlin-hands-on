@@ -101,3 +101,8 @@ class AtWork_JavaInteroperabilityTest : StringSpec({
     }
 
 })
+
+/**
+ * Some sugar to create ArgumentCaptor<T>
+ */
+inline fun <reified T> captor(): ArgumentCaptor<T> = ArgumentCaptor.forClass(T::class.java)
