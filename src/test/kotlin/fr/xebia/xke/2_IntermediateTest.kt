@@ -71,8 +71,8 @@ class SealedClassTest : StringSpec({
 class GettersSettersTest : StringSpec({
 
     val withMyFilms = listOf(
-        Film("The Color Purple", 1985, Spielberg, listOf(Drama), 9.0),
-        Film("Jurassic Park", 1993, Spielberg, listOf(SciFi), 10.0)
+        Film("The Color Purple", 1985, Spielberg, listOf(Drama), 9),
+        Film("Jurassic Park", 1993, Spielberg, listOf(SciFi), 10)
     )
 
     "${FilmCollection::has80sFilms} should call getter and return no film for default startingYear" {
@@ -135,10 +135,10 @@ class TypeAliases : StringSpec({
 
 class CollectionsTest : StringSpec({
 
-    val ran = Film("Ran", 1985, Kurosawa, listOf(Action, Drama, War), 2.3)
-    val rashomon = Film("Rashomon", 1950, Kurosawa, listOf(Crime, Drama), 3.0)
-    val psyco = Film("Psycho", 1960, Hitchcock, listOf(Horror, Mistery, Thriller), 2.7)
-    val vertigo = Film("Vertigo", 1958, Hitchcock, listOf(Mistery, Romance, Thriller), 5.1)
+    val ran = Film("Ran", 1985, Kurosawa, listOf(Action, Drama, War), 2)
+    val rashomon = Film("Rashomon", 1950, Kurosawa, listOf(Crime, Drama), 3)
+    val psyco = Film("Psycho", 1960, Hitchcock, listOf(Horror, Mistery, Thriller), 2)
+    val vertigo = Film("Vertigo", 1958, Hitchcock, listOf(Mistery, Romance, Thriller), 5)
 
     val completeList = listOf(ran, rashomon, psyco, vertigo)
     val hitchcockFilms = listOf(psyco, vertigo)
@@ -154,8 +154,8 @@ class CollectionsTest : StringSpec({
     }
 
     "it should use folding to sum film prices" {
-        sumPricesWithFolding(hitchcockFilms) shouldBe 7.8
-        sumPricesWithFolding(kurosawaFilms) shouldBe 5.3
+        sumPricesWithFolding(hitchcockFilms) shouldBe 7
+        sumPricesWithFolding(kurosawaFilms) shouldBe 5
     }
 
 })

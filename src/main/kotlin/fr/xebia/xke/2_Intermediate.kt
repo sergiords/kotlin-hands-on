@@ -228,7 +228,7 @@ data class Film(val name: String,
                 val releaseYear: Int,
                 val director: Director,
                 val type: List<Genre>,
-                val price: Double = 0.0)
+                val price: Int = 0)
 
 /**
  * Collections in Kotlin have classic functional programming functions
@@ -263,10 +263,10 @@ fun filmsMatchingFilter(films: List<Film>, filter: (Film) -> Boolean): List<Film
  * Do you know the difference between 'reduce' and 'fold'?
  */
 // TODO map each film to its price then 'fold' the sum of prices
-fun sumPricesWithFolding(films: List<Film>): Double =
+fun sumPricesWithFolding(films: List<Film>): Int =
     films
         .map { it.price }
-        .fold(0.0, { total, next -> total + next })
+        .fold(0, { total, next -> total + next })
 
 /**
  * Initializing collections with Kotlin
