@@ -4,6 +4,9 @@ jobs:
   build:
     docker:
       - image: circleci/openjdk:8-jdk
+    branches:
+      only:
+        - solution
     steps:
       - checkout
       - restore_cache:
