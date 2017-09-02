@@ -1,3 +1,5 @@
+@file:Suppress("UNUSED_PARAMETER", "UNREACHABLE_CODE")
+
 package fr.xebia.xke
 
 /**
@@ -12,7 +14,7 @@ package fr.xebia.xke
  * val x = 10 // Type is optional when it can be inferred
  */
 // TODO initialize this value to "xebia.fr"
-val host: String = "xebia.fr"
+val host: String = ""
 
 /**
  * Kotlin has common types like Boolean, Int, Long, Float, Double, ...
@@ -20,7 +22,7 @@ val host: String = "xebia.fr"
  * Kotlin has NO primitive types like in Java (int, long, ...).
  */
 // TODO initialize this value to default https port
-val port: Int = 443
+val port: Int = 0
 
 /**
  * Kotlin has String-templates for property interpolation.
@@ -28,7 +30,7 @@ val port: Int = 443
  * "Hello $userName, today is ${localDate.format(...)}"
  */
 // TODO initialize this url to xebia's blog URL using string template (specify https port)
-val url: String = "https://blog.$host:$port"
+val url: String = ""
 
 /**
  * Functions... are fun!
@@ -40,7 +42,7 @@ val url: String = "https://blog.$host:$port"
  * fun name(argName: ArgType) {...} // function with no return (same as returning Unit)
  */
 // TODO return true if given url is secured (use function expression short syntax)
-fun isSecured(url: String): Boolean = url.startsWith("https://")
+fun isSecured(url: String): Boolean = TODO()
 
 /**
  * Conditional expressions
@@ -48,7 +50,7 @@ fun isSecured(url: String): Boolean = url.startsWith("https://")
  * val result = if (...) someValue else if (...) otherValue else defaultValue
  */
 // TODO use conditional expression to compute factorial of n
-fun factorial(n: Int): Int = if (n <= 1) 1 else n * factorial(n - 1)
+fun factorial(n: Int): Int = TODO()
 
 /**
  * When expressions
@@ -60,12 +62,7 @@ fun factorial(n: Int): Int = if (n <= 1) 1 else n * factorial(n - 1)
  * }
  */
 // TODO use when expression to compute a message expressing duration in seconds, minutes, hours or days
-fun remainingTime(durationInSeconds: Int): String = when {
-    durationInSeconds in 0..59 -> "$durationInSeconds second(s)"
-    durationInSeconds / 60 in 0..59 -> "${durationInSeconds / 60} minute(s)"
-    durationInSeconds / 60 / 60 in 0..23 -> "${durationInSeconds / 60 / 60} hour(s)"
-    else -> "${durationInSeconds / 60 / 60 / 24} day(s)"
-}
+fun remainingTime(durationInSeconds: Int): String = TODO()
 
 /**
  * Lambdas
@@ -80,7 +77,7 @@ fun remainingTime(durationInSeconds: Int): String = when {
  *
  */
 // TODO define a lambda returning true when its parameter is pair, false otherwise
-val pair: (Int) -> Boolean = { number -> number % 2 == 0 }
+val pair: (Int) -> Boolean = { TODO() }
 
 
 /**
@@ -90,7 +87,7 @@ val pair: (Int) -> Boolean = { number -> number % 2 == 0 }
  *  { name, age -> "$name is $age year(s) old" }
  */
 // TODO define a lambda returning the product of its two arguments
-val product: (Int, Int) -> Int = { x, y -> x * y }
+val product: (Int, Int) -> Int = { _, _ -> TODO() }
 
 
 /**
@@ -108,12 +105,7 @@ class StandardPrice(val value: Int) : Price
 class PromotionalPrice(val value: Int, val discount: Int) : Price
 
 // TODO return value for standard prices and (value - discount) for promotional prices, otherwise 0
-fun computePrice(price: Price): Int =
-    when (price) {
-        is StandardPrice -> price.value
-        is PromotionalPrice -> price.value - price.discount
-        else -> 0
-    }
+fun computePrice(price: Price): Int = TODO()
 
 
 /**
@@ -129,11 +121,7 @@ fun computePrice(price: Price): Int =
  */
 // TODO return last url parameter converted to an Int or null if param is not found or not a valid number
 fun convertURLParam(url: String): Int? {
-    val urlPar = url.split("=")
-    if (urlPar.size > 1) {
-        return urlPar[urlPar.size - 1].toIntOrNull()
-    }
-    return null
+    TODO()
 }
 
 /**
@@ -145,7 +133,7 @@ fun convertURLParam(url: String): Int? {
  */
 // TODO return price.value.toLong(), mind references nullability, 0 if all references are null
 fun convertPriceToLong(price: StandardPrice?): Long {
-    return price?.value?.toLong() ?: 0
+    TODO()
 }
 
 
@@ -159,7 +147,7 @@ fun convertPriceToLong(price: StandardPrice?): Long {
  *  val oneToTen: IntRange = IntRange(1, 10)
  */
 // TODO generate a list of integers from 1 to max number using ranges
-fun generateIntegerList(max: Int): List<Int> = IntRange(1, max).toList()
+fun generateIntegerList(max: Int): List<Int> = TODO()
 
 /**
  * Ranges: Progressions
@@ -167,7 +155,7 @@ fun generateIntegerList(max: Int): List<Int> = IntRange(1, max).toList()
  * Ranges rely on *Progression and Kotlin provide useful operations on *Progressions like steps
  */
 // TODO generate a range from 0 to max and sum all numbers which are dividers of 3
-fun sumSequenceNumbers(max: Int): Int = (0..max).step(3).sum()
+fun sumSequenceNumbers(max: Int): Int = TODO()
 
 
 /**
@@ -184,16 +172,5 @@ fun sumSequenceNumbers(max: Int): Int = (0..max).step(3).sum()
  */
 // TODO compute prices total amount, if 2 or more prices are promotional prices, apply a 5.0 discount to total amount
 fun computeTotalPrice(prices: List<Price>): Int {
-    var sum = 0
-    var promotions = 0
-    for (price in prices) {
-        sum += computePrice(price)
-        if (price is PromotionalPrice) {
-            promotions++
-        }
-    }
-    if (promotions >= 2) {
-        sum -= 5
-    }
-    return sum
+    TODO()
 }
