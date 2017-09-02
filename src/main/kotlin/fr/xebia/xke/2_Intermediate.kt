@@ -92,7 +92,7 @@ object Hitchcock : Director("Hitchcock")
 
 object Spielberg : Director("Unknown")
 
-// TODO use a when expression to map genres to one movie of the genre, notice that else branch is optional once Genre is sealed
+// TODO use a when expression to map directors to their year of birth
 fun directorYearOfBirth(director: Director): Int = when (director) {
     Kurosawa -> 1910
     Hitchcock -> 1899
