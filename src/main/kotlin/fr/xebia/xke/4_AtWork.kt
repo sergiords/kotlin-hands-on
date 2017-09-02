@@ -12,7 +12,7 @@ import java.time.Month
  * Classes in kotlin are final by default
  *
  * To test Service using a mock for Repository either:
- *  - open class to allow mockito to mock it
+ *  - open class and method to be mocked to allow mockito mocking it
  *  - enable Mockito to mock final classes: http://hadihariri.com/2016/10/04/Mocking-Kotlin-With-Mockito/
  *    add 'mock-maker-inline' line in test/resources/mockito-extension/org.mockito.plugins.MockMaker
  */
