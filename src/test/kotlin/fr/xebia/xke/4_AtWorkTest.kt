@@ -77,16 +77,16 @@ class AtWork_KotlinLovesJsonTest : StringSpec({
 
 class AtWork_JavaInteroperabilityTest : StringSpec({
 
-    mapOf(
-        javaType<String>() to java.lang.String::class.java,
-        javaType<Exception>() to java.lang.Exception::class.java,
-        javaType<Any>() to java.lang.Object::class.java
-    ).forEach {
+    "javaType<String>() should return original Java type" {
+        javaType<String>() shouldBe java.lang.String::class.java
+    }
 
-        "javaType<${it.value.simpleName}>() should return original Java type ${it.value}" {
-            it.key shouldBe it.value
-        }
+    "javaType<Exception>() should return original Java type" {
+        javaType<Exception>() shouldBe java.lang.Exception::class.java
+    }
 
+    "javaType<Any>() should return original Java type" {
+        javaType<Any>() shouldBe java.lang.Object::class.java
     }
 
     mapOf(
