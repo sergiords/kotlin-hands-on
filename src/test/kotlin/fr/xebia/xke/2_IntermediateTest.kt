@@ -75,18 +75,18 @@ class GettersSettersTest : StringSpec({
         Film("Jurassic Park", 1993, Spielberg, listOf(SciFi), 10)
     )
 
-    "${FilmCollection::has80sFilms} should call getter and return no film for default startingYear" {
+    "${FilmCollection::has80sFilms.name} should call getter and return no film for default startingYear" {
         val filmCollection = FilmCollection(withMyFilms)
         filmCollection.has80sFilms shouldBe false
     }
 
-    "${FilmCollection::has80sFilms} should call return 80's film for starting year 1980" {
+    "${FilmCollection::has80sFilms.name} should call return 80's film for starting year 1980" {
         val filmCollection = FilmCollection(withMyFilms)
         filmCollection.periodStartYear = 1980
         filmCollection.has80sFilms shouldBe true
     }
 
-    "${StringMagicBox::reversed} should have custom getter and setter" {
+    "${StringMagicBox::reversed.name} should have custom getter and setter" {
         val stringMagicBox = StringMagicBox()
         stringMagicBox.reversed shouldBe "eulav emoS"
         stringMagicBox.reversed = "reversed"
