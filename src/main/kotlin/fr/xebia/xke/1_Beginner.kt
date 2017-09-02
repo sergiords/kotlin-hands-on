@@ -124,8 +124,7 @@ fun computePrice(price: Price): Int =
  *
  * val name: String? = null
  *
- * For strings it is possible to use for example toIntOrNull
- * to convert un String to Integer
+ * For strings it is possible to use for example toIntOrNull to convert a String to Integer
  *
  */
 // TODO return last url parameter converted to an Int or null if param is not found or not a valid number
