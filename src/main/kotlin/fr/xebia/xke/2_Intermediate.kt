@@ -278,15 +278,15 @@ fun sumPricesWithFolding(films: List<Film>): Int =
  * val set  = setOf(1, 2, 2, 2)
  */
 // TODO initialize an immutable list of two films from Spielberg, specify at least one genre for each
-val films: List<Film> = listOf(
+fun films(): List<Film> = listOf(
     Film("Jurassic Park", 1993, Spielberg, listOf(SciFi)),
     Film("Minority Report", 2002, Spielberg, listOf(SciFi))
 )
 
 // TODO initialize a mutable map containing at least 2 keys (years) with an associated list of films (at least 1)
-val filmsByYear: MutableMap<Int, List<Film>> = mutableMapOf(
-    1993 to listOf(films[0]),
-    2002 to listOf(films[1])
+fun filmsByYear(): MutableMap<Int, List<Film>> = mutableMapOf(
+    1993 to listOf(Film("Jurassic Park", 1993, Spielberg, listOf(SciFi))),
+    2002 to listOf(Film("Minority Report", 2002, Spielberg, listOf(SciFi)))
 )
 
 

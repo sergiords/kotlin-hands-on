@@ -132,6 +132,7 @@ class Intermediate_GenericsVarianceTest : StringSpec({
 class Intermediate_TypeAliasesTest : StringSpec({
 
     "Dictionary should be a typealias of Map<String, String> and ${::dict.name} should be typed as a dictionary" {
+        @Suppress("USELESS_IS_CHECK")
         (dict is Dictionary) shouldBe true
         dict.getOrDefault("hello", "unknown") shouldBe "used as a greeting or to begin a telephone conversation"
     }
@@ -166,13 +167,15 @@ class Intermediate_CollectionsTest : StringSpec({
 
 class Intermediate_CollectionsInitializationTest : StringSpec({
 
-    "${::films.name} should contain at least two films from Spielberg and have a genre defined" {
+    "${::films.name}() should return at least two films from Spielberg and have a genre defined" {
+        val films = films()
         (films.size >= 2) shouldBe true
         films.map { it.director }.distinct() shouldBe listOf(Spielberg)
         films.forEach { it.type.isNotEmpty() shouldBe true }
     }
 
-    "${::filmsByYear.name} should contain at least two entries, each with at least one movie" {
+    "${::filmsByYear.name}() should return at least two entries, each with at least one movie" {
+        val filmsByYear = filmsByYear()
         (filmsByYear.size >= 2) shouldBe true
         filmsByYear.forEach { it.value.isNotEmpty() shouldBe true }
         filmsByYear[1997] = listOf(Film("Ready Player One", 2018, Spielberg, listOf(SciFi))) // make sure map is mutable
