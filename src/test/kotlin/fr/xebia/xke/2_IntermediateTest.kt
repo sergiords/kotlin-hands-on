@@ -102,11 +102,11 @@ class Intermediate_GettersSettersTest : StringSpec({
 class Intermediate_GenericsVarianceTest : StringSpec({
 
     val sender = object : Sender<Mail> {
-        override fun send(): Mail = throw NotImplementedException("NotCalled")
+        override fun send(): Mail = throw UnsupportedOperationException()
     }
 
     val receiver = object : Receiver<Text> {
-        override fun receive(t: Text) = throw NotImplementedException("NotCalled")
+        override fun receive(t: Text) = throw UnsupportedOperationException()
     }
 
     "${::textSender.name} should return its parameter since parameter type and return type are covariant" {
