@@ -142,8 +142,8 @@ class Intermediate_CollectionsTest : StringSpec({
 
     val ran = Film("Ran", 1985, Kurosawa, listOf(Action, Drama, War), 2)
     val rashomon = Film("Rashomon", 1950, Kurosawa, listOf(Crime, Drama), 3)
-    val psyco = Film("Psycho", 1960, Hitchcock, listOf(Horror, Mistery, Thriller), 2)
-    val vertigo = Film("Vertigo", 1958, Hitchcock, listOf(Mistery, Romance, Thriller), 5)
+    val psyco = Film("Psycho", 1960, Hitchcock, listOf(Horror, Mystery, Thriller), 2)
+    val vertigo = Film("Vertigo", 1958, Hitchcock, listOf(Mystery, Romance, Thriller), 5)
 
     val completeList = listOf(ran, rashomon, psyco, vertigo)
     val hitchcockFilms = listOf(psyco, vertigo)

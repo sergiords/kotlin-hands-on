@@ -79,7 +79,7 @@ object War : Genre("War")
 
 object Romance : Genre("Romance")
 
-object Mistery : Genre("Mistery")
+object Mystery : Genre("Mystery")
 
 object SciFi : Genre("Sci-Fi")
 
@@ -247,7 +247,7 @@ fun filmsMadeBy(director: Director, films: List<Film>): List<Film> =
 /**
  * Using high-order function as parameter
  *
- * One can specify a function as a paramater with the following syntax:
+ * One can specify a function as a parameter with the following syntax:
  *  fun <T> filter(predicate: (T) -> Boolean) { ... }
  *
  * In Kotlin there is no need to declare a specific class (like Predicate, Supplier, Consumer, ... classes in Java)
