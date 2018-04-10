@@ -17,12 +17,13 @@ dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib-jre8"
     compile "org.jetbrains.kotlinx:kotlinx-coroutines-core:0.18"
     compile "com.fasterxml.jackson.module:jackson-module-kotlin:2.9.0"
-    compile 'io.arrow-kt:arrow-core:0.6.1'
-    compile 'io.arrow-kt:arrow-typeclasses:0.6.1'
-    compile 'io.arrow-kt:arrow-data:0.6.1'
-    compile 'io.arrow-kt:arrow-instances:0.6.1'
-    compile 'io.arrow-kt:arrow-syntax:0.6.1'
-    kapt    'io.arrow-kt:arrow-annotations-processor:0.6.1'
+    compile 'io.arrow-kt:arrow-core:0.7.0'
+    compile 'io.arrow-kt:arrow-syntax:0.7.0'
+    compile 'io.arrow-kt:arrow-typeclasses:0.7.0'
+    compile 'io.arrow-kt:arrow-data:0.7.0'
+    compile 'io.arrow-kt:arrow-instances-core:0.7.0'
+    compile 'io.arrow-kt:arrow-instances-data:0.7.0'
+    kapt    'io.arrow-kt:arrow-annotations-processor:0.7.0'
 
     testCompile "io.kotlintest:kotlintest:2.0.5"
     testCompile "org.mockito:mockito-core:2.9.0"

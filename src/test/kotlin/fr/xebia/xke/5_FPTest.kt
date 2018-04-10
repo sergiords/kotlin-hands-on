@@ -1,10 +1,10 @@
 package fr.xebia.xke
 
 import arrow.data.NonEmptyList
+import arrow.data.invalid
+import arrow.data.valid
 import io.kotlintest.matchers.shouldBe
 import io.kotlintest.specs.StringSpec
-
-import arrow.syntax.validated.*
 
 class FP_MockTest : StringSpec({
 

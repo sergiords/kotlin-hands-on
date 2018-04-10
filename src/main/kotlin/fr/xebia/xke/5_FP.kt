@@ -4,42 +4,39 @@ import arrow.core.*
 
 import arrow.core.Either
 import arrow.core.flatMap
-import arrow.data.NonEmptyList
-import arrow.data.Validated
-import arrow.data.applicative
-import arrow.data.ev
-import arrow.syntax.applicative.tupled
+import arrow.data.*
 
 /**
  * This class validates user data in two ways:
  * - Applicative for all fields (validated all fields)
  * - Monadic within each field (stops on the first error per field)
+ *
+ *
+ * The following functions might help you
+ * - Option.fromNullable("something")
+ * - Option(maybeRight).toEither { "Left value" }
+ * - Try { data.toInt() }.toEither().mapLeft { NonEmptyList.of("$name must be an integer") }
+ * - Either.cond(true, { 42 }, { "Error" })
+ * - Validated.fromEither(...)
+ * - Validated.applicative(NonEmptyList.semigroup<String>())
+ *     .map2(validated1, validated2, { v: Tuple<Int, Int> -> v.a + v.b })
+ *     .fix()
+ * - Validated.applicative(NonEmptyList.semigroup<String>())
+ *    .tupled(validated1, validated2, ..., validatedN)
+ *    .fix()
+ *    .map{ v: Tuple<Int, Int> -> v.a + v.b }
+ * - NonEmptyList.of("a string", "another string")
+ *
  */
 class UserValidation {
 
-    /*
-     * The following functions might help you
-     * - Option.fromNullable("something")
-     * - Option(maybeRight).toEither { "Left value" }
-     * - Either.cond(true, { 42 }, { "Error" })
-     * - Validated.fromEither(...)
-     * - Validated.applicative<List<String>>()
-            .map2(validated1, validated2, { v: Tuple<Int, Int> -> v.a + v.b })
-            .ev()
-     * - Validated.applicative<NonEmptyList<String>>()
-            .tupled(validated1, validated2, ..., validatedN)
-            .ev()
-            .map{ v: Tuple<Int, Int> -> v.a + v.b }
-     * - NonEmptyList.of("a string", "another string")
-     */
-
     // TODO find a way to aggregate in an applicative way the 'readName' and 'readAge' functions
     fun validateUser(params: Map<String, String>): Validated<NonEmptyList<String>, User>  {
-        return Validated.applicative<NonEmptyList<String>>()
+        return Validated.applicative(NonEmptyList.semigroup<String>())
             .tupled(
                 Validated.fromEither(readName(params)),
                 Validated.fromEither(readAge(params)))
-            .ev()
+            .fix()
             .map { z: Tuple2<String, Int> -> User(z.a, z.b) }
     }
 
