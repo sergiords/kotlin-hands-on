@@ -164,7 +164,7 @@ class Beginner_RangesAndLoopsTest : StringSpec({
         listOf(StandardPrice(10), StandardPrice(15), PromotionalPrice(20, 3)) to 42
     ).forEach {
         val stdPrices = it.key.count{ it is StandardPrice }
-        val promoPrices = it.key.count{ it is StandardPrice }
+        val promoPrices = it.key.count{ it is PromotionalPrice }
         "${::computeTotalPrice.name}() of $stdPrices standard price(s) & $promoPrices promotional price(s) should be ${it.value}" {
             computeTotalPrice(it.key) shouldBe it.value
         }
