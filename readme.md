@@ -31,3 +31,6 @@
 - [x] mocks / tests
 - [x] JSON / Mappings
 - [x] Java Interoperability
+
+## Functional Programming
+- [x] Validated and Either
